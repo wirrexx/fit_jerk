@@ -16,8 +16,8 @@ Languages:
 Webframework: [Django](https://www.djangoproject.com/)
 
 Database: 
-	- Development: [Sqlite3](https://sqlite.org/)
- 	- Production: [Postgresql](https://www.postgresql.org/)
+- Development: [Sqlite3](https://sqlite.org/)
+- Production: [Postgresql](https://www.postgresql.org/)
 
 Hosting: [pythonanywhere](https://www.pythonanywhere.com/) 
 	
