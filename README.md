@@ -9,13 +9,16 @@ plans that depend on your goals.
 ## Technology used:
 
 Languages: 
-	- Python 
- 	- HTML 
-  	- CSS
+- Python 
+- HTML 
+- CSS
+   
 Webframework: [Django](https://www.djangoproject.com/)
+
 Database: 
 	- Development: [Sqlite3](https://sqlite.org/)
  	- Production: [Postgresql](https://www.postgresql.org/)
+
 Hosting: [pythonanywhere](https://www.pythonanywhere.com/) 
 	
 
