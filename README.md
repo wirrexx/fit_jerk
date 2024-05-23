@@ -1,28 +1,24 @@
-# fit_jerk
+# Fit Bastard
 
 ## Overview
 
-A rude fitness app. 
-Fit Jerk is here to help you loose weight, gain muscles or tone down. It will give you an coach that pushes you beyond your levels. Fit jerk has three prepared workout plans that depend on your goals. 
-
-## Resources:
-
-[Django Testing](https://docs.djangoproject.com/en/5.0/intro/tutorial05/)
+The different fitness app. Fit Bastard is here to help you loose weight, gain muscles or tone down. 
+It will give you a coach that pushes you beyond your levels. Fit Bastard has three prepared workout 
+plans that depend on your goals. 
 
 ## Technology used:
 
-Implementation will be done with 
-	Django
-	Development:
-		Sqlite
-	Production 
-		Postgresql 
-	CSS
+Languages: 
+	- Python 
+ 	- HTML 
+  	- CSS
+Webframework: [Django](https://www.djangoproject.com/)
+Database: 
+	- Development: [Sqlite3](https://sqlite.org/)
+ 	- Production: [Postgresql](https://www.postgresql.org/)
+Hosting: [pythonanywhere](https://www.pythonanywhere.com/) 
 	
-	Hosting:
-		AWS -> nope, hidden costs!
-		Google -> nope, suckers in data collection!
-		Pythonanywhere -> Easy to use at least for development
+
 
 ## Features 
 
@@ -51,8 +47,8 @@ Implementation will be done with
 	Automatic finish -> redirect to landing page
 
 - Progress tracker
-	- Audio confirmation "Hey, you fat bastard, you did it"
-	- automatic blogpost
+	- Audio confirmation: "Hey! You did it! Great job!
+	- automatic blogpost on users landing page
 
 - Logout 
 	
@@ -70,7 +66,7 @@ Implementation will be done with
 ## User Story
 
 Landing Page (Profile) -> Start Workout -> Workout starts -> Finish -> Landing Page  
-												|								|			
+		|								|			
 												-----> Pause --> Restart --- Finish
 
 ## Questions
@@ -82,14 +78,8 @@ How do workout messages get created?
 ## Roles
 
 Product Owner (Ana)
-	Survey to generate ideas
-
 Lead Developer (Wisam)
-	
-
 Head of Operation (Christian)
-	
-
 
 ## General Planning
 
@@ -99,8 +89,7 @@ We use github project:
 
 [Project](https://github.com/users/wirrexx/projects/1/views/7)
 	
-
-- Standup at 9.00am
+Standups at 9.00am
 
 
 
