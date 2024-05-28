@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "fitness_jerk"
+    "fitness_jerk",
 ]
 
 MIDDLEWARE = [
@@ -52,10 +52,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "fj.urls"
 
+# Base directory for base.html and navbar.html
+template_base = BASE_DIR / "templates"
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [template_base],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -122,3 +125,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# LOGIN/LOGOUT
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
