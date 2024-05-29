@@ -3,20 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %} Document {% endblock %}</title>
 </head>
 <body>
-
-{% if user.is_authenticated %}
-    <form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button type="">Log Out</button>
-    </form>
-    <p>Hello, {{ user.username }}! You are logged in.</p>
-{% else %}
-    <li><a href="{% url 'login' %}">Login</a></li>
-    
-{% endif %}
 
     {% block content %}
     {% endblock %}

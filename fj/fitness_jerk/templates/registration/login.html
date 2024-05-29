@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block title %}SIGNIN{% endblock %}
 
-<h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+{% block content %}
+<h1>SIGNIN</h1>
+<h2>Inspirational Quote</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Log In</button>
+  </form>
+<a href="{% url 'passwd_reset' %}">Forgot your password?</a><br>
+<a href="{% url 'signup' %}">JOIN</a>
 
 {% endblock %}
