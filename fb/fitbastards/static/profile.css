@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.profile {
+    padding: 10px;
+}
+
+
+
+
+.member-progress h2{
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    color: #222;
+    font-size: 16px;
+
+}
+
+.progress-bar{
+    background: #959595;
+    width: 600px;
+    height: 10px;
+    border-radius: 5px;
+    margin-left: 15px;
+}
+
+.progress-bar div{
+    height: 10px;
+    border-radius: 5px;
+    width: 0%;
+    
+}
+
+.progress-bar div span{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: #fff;
+    float: right;
+    margin-top: -15px;
+    margin-right: -30px;
+    margin-left: 30px;
+    color: #959595;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(100, 248, 1);
+
+}
+
+.progress{
+    
+    background: rgb(100, 248, 1);
+    animation: progress 1s linear forwards;
+}
+
+@keyframes progress{
+    100% {
+        width: var(--width);
+    }
+}

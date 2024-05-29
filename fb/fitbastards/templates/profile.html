@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="profile">
+        <h1>{{member.username}}</h1>
+        <p>Height: {{ member.height }} m</p>
+        <p>Weight: {{ member.weight }} kg</p>
+        <p>BMI: {{ BMI }}</p>
+    </div>
+    <div class="member-progress">
+        <h2>PROGRESS</h2>
+        <div class="progress-bar">
+            <div class="progress" style="--width: {{ progress }};"><span>{{ progress }}</span></div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+
