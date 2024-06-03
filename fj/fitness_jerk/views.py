@@ -1,43 +1,48 @@
 
 from django.contrib.auth.views import LogoutView, LoginView
+from django.core.mail import send_mail
 from django.shortcuts import redirect, render
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
-from .forms import FitBastardUserCreationForm
-from django.http import HttpResponse
+from .forms import FitUserForm, UserInfoForm
+
 
 # Create your views here.
-def test_form_view(request):
-    if request.method == "POST":
-        form = FitBastardUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            return redirect("testendpoint")
-    else:
-        context = {"form":FitBastardUserCreationForm()}
 
-    return render(request, "fitness_jerk/testform.html", context)
+def index_view(request):
+    return render()
 
-def test_endpoint(request):
-    return HttpResponse("Thanks a bunch")
+def send_confirmation_email():
+    subject = "Signup confirmation"
+    message = ""
+    from_email = ""
 
 def signup_view(request):
-    # TODO: Create UserCreationForm
-    # if request.method == "GET":
-    #   show SignupForm
-    # if request.method == "POST"
-    #   check if password meets requirements
-    #   check if passwords match
-    #   check if email is valid
-    #   check if email is taken
-    #   check if username is valid
-    #   check if username is taken
-    #   save user
-    #   send confirmation email 
-    #   log user in
-    #   redirect to complete_your_profile view
-    
-    return render(request, "registration/signup.html")
+    if request.method == "POST":
+        form = FitUserForm(request.POST)
+        
+        # is_valid executes cleaning functions defined in forms 
+        if form.is_valid():
+            # create the new user
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password1")
+            email = form.cleaned_data.get("email")
+            user = User.objects.create_user(username=username, email=email, password=password)
+            
+            # send_confirmation_email()
+
+            # Authenticicate and login the new user
+            #NOTE: Is this step realy necessary?
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                #   redirect to complete_your_profile view
+                return redirect("complete_profile")
+    else: 
+        form = FitUserForm()
+    return render(request, "registration/signup.html", {"form":form})
 
 @login_required
 def complete_profile(request):
@@ -48,11 +53,17 @@ def complete_profile(request):
     # show link to Logout
     # show 
 
-    # if request.method == "POST":
-    # sanitize data
-    # save data to database
-    # redirect to index
-    return render(request, "registration/complete_profile.html")
+    if request.method == "POST":
+        form = UserInfoForm(request.POST)
+        # sanitize data
+        # save data to database
+        # redirect to index
+        if form.is_valid():
+
+            return redirect("profile")
+    else:
+        form = UserInfoForm()
+    return render(request, "registration/complete_profile.html", {"form":form})
 
 def profile_view(request):
     # if userinformation != complete:

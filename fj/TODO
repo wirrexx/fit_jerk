@@ -1,7 +1,10 @@
 Implement User Creation
     Signup
+        Research ValidationErrors
+        Research validate_password()
         Research Email confirmation
         Create UserCreationForm
+
     Complete Profile
         Create CompleteProfileForm
 Implement password forgotten
@@ -15,4 +18,4 @@ Use Argon Hash algorithm
 Encrypt Userdata
 
 Testform:
-    delete: view, template, url 
+    delete: view, template, url, 
