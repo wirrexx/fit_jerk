@@ -103,5 +103,17 @@ def workout_finish(request, id):
     
     return redirect(reverse('details', kwargs={'id': id}))
 
-def post(request):
-    pass
+def delete(request, id):
+    member = Members.objects.get(id=id)
+    template = loader.get_template('delete.html')
+    context = {
+      'member': member,
+    }
+
+    if request.method == 'POST':
+        dmember = Members.objects.filter(pk=id)
+        dmember.delete()
+
+        return redirect('members')
+    
+    return HttpResponse(template.render(context, request))

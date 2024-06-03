@@ -31,7 +31,9 @@
             {% csrf_token %}
             {{ profile_pic.as_p }}
             <br><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Update">
+            <br><br>
+            <p>Click <a href="{% url 'delete' context.member.id %}">here</a> if you would to delete your account.</p>
         </form>
     </div>
     

@@ -8,5 +8,6 @@ urlpatterns = [
     path('<int:id>', views.profile_test, name='details'),
     path("logout/", views.member_logout, name="logout"),
     path('<int:id>/settings', views.settings, name='settings'),
-    path('<int:id>/finish', views.workout_finish, name='finish')
+    path('<int:id>/finish', views.workout_finish, name='finish'),
+    path('<int:id>/delete', views.delete, name='delete'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
