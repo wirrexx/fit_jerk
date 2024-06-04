@@ -2,7 +2,29 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
-from .models import UserInfo
+from django import forms 
+from django.forms import ModelForm
+from django.contrib.auth.forms import UserChangeForm
+from .models import Profile
+
+class ProfileChangeForm(UserChangeForm):
+    #hide password change message
+    password = None
+    class Meta:
+        model = Profile
+        fields = ['height', 'weight']
+
+class PictureChangeForm(UserChangeForm):
+    #hide password change message
+    password = None
+    image = forms.ImageField()
+    class Meta:
+        model = Profile
+        fields = ['image']
+
+class LoginForm(forms.Form):
+    class Meta:
+        fields = ["username", "password"]
 
 class FitUserForm(forms.Form):
     username = forms.CharField(max_length=50)
@@ -56,7 +78,7 @@ class UserInfoForm(forms.Form):
     user_height = forms.FloatField(label="Put in your height")
 
     class Meta:
-        model = UserInfo
+        model = Profile
         fields = ["user_weight", "user_height"]
 
     def clean_user_weight(self):

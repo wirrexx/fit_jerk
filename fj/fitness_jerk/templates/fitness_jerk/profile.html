@@ -1,9 +1,51 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    {% for message in messages %}
+        <p class="message">{{ message }}</p>
+    {% endfor %}
 
-{% block title %}PROFILE{% endblock %}
-
-{% block content %}
-
-<h1>USER PROFILE</h1>
-
-{% endblock %}
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+                <a href="{% url 'settings' user.id%}">Settings</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div> 
+    </div>
+    <div class="profile">
+        {% if user.profile.image %}
+            <img src="{{member.image.url}}" alt="profile-image" style="width: 150px;">
+        {% endif %}
+        <h1>{{user.username}}</h1>
+        <p>Height: {{ user.profile.height }} m</p>
+        <p>Weight: {{ user.profile.weight }} kg</p>
+        <p>BMI: {{ BMI }}</p>
+    </div>
+    <div class="member-progress">
+        <h2>PROGRESS</h2>
+        <div class="progress-bar">
+            <div class="progress" style="--width: {{ progress }};"><span>{{ progress }}</span></div>
+        </div>
+    </div>
+    <div class="post">
+        {% for post in posts %}
+            <li>{{ post.post }}</li>
+        {% endfor %}
+    </div>
+    <div class="workout">
+        <div class="wo1"><a href="{% url 'finish' user.id%}"><img src="{% static 'LOOSE.png' %}" alt=""></a></div>
+        <div class="wo2"><a href=""><img src="{% static 'TONE.png' %}" alt=""></a></div>
+        <div class="wo3"><a href=""><img src="{% static 'MUSCLE.png' %}" alt=""></a></div>
+    </div>
+    
+</body>
+</html>

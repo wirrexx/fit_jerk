@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,6 +123,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+MEDIA_URL = "media/"
+
+MEDIA_ROOT = BASE_DIR / "fitness_jerk/static"
+STATICFILES_DIRS = [BASE_DIR / "fitness_jerk/static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -130,8 +137,16 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Custom authenticication settings
 
 # LOGIN/LOGOUT
-LOGIN_REDIRECT_URL = '/profile'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = 'profile/'
+LOGOUT_REDIRECT_URL = 'login/'
 
 
 # Email Backend
+load_dotenv()
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # The backend to use for sending emails
+EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
+EMAIL_PORT = 587  # Port for TLS/STARTTLS
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")#os.environ("EMAIL_HOST_USER")  # Your Gmail email address
+EMAIL_HOST_PASSWORD = "jlkk ewkh ymts tlig"# os.environ("EMAIL_HOST_PASSWORD")  # Your Gmail App Password
+EMAIL_USE_TLS = True  # Use TLS/STARTTLS for security
