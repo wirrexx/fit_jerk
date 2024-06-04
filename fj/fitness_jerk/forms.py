@@ -53,9 +53,10 @@ class FitUserForm(forms.Form):
 
 
     def clean_email(self):
+        email = self.cleaned_data.get("email")
         #   check if email is valid
         #   check if email is taken
-        pass
+        return email
     
     def clean_password1(self):
         """Checks if password meets requirements"""

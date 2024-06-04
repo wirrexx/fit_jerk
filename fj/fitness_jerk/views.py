@@ -70,6 +70,7 @@ def signup_view(request):
             email = form.cleaned_data.get("email")
             user = User.objects.create_user(username=username, email=email, password=password)
             
+            # send welcome email
             send_mail(
                 subject=f"Welcome to FitBastard",
                 message="You finally made it. You choose to better yourself. Well, good luck with that!",
@@ -79,7 +80,6 @@ def signup_view(request):
 
             
             login(request, user)
-            #   redirect to complete_your_profile view
             return redirect("profile")
     else: 
         form = FitUserForm()
@@ -87,6 +87,7 @@ def signup_view(request):
 
 
 def profile_view(request):
+    user = request.user
     
     # if userinformation != complete:
     # show message: diggi, you forgot to 
