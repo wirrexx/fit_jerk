@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'settings.css' %}">
-    <title>Settings</title>
+    <title>SETTINGS</title>
 </head>
 <body>
+
+
     <div class="navbar">
         <div class="dropdown">
             <button class="dropbtn">Dropdown</button>
@@ -33,14 +35,16 @@
             <br><br>
             <input type="submit" value="Update">
             <br><br>
-            <p>Click <a href="{% url 'delete' context.member.id %}">here</a> if you would to delete your account.</p>
+            <p>Click <a href="{% url 'delete' user.id %}">here</a> if you would to delete your account.</p>
         </form>
     </div>
     
-    
-    
-    
 </body>
 </html>
+  
+    
+    
+
+
 
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -6,7 +7,7 @@ from django.db import models
 #created the image field so member can upload image and update also
 
 class Members(models.Model):
-    username = models.CharField(max_length=255, null=True, blank=True)
+    username = models.OneToOneField(User, on_delete=models.CASCADE)
     weight = models.FloatField(null=True, blank=True)
     height = models.FloatField(null=True, blank=True)
     progress = models.IntegerField(default=0)
@@ -15,4 +16,5 @@ class Members(models.Model):
 
 class Posts(models.Model):
     member = models.ForeignKey(Members, on_delete=models.CASCADE, null=True)
-    post = models.CharField(max_length=255, default="Welcome")
+    post = models.CharField(max_length=255, null=True)
+

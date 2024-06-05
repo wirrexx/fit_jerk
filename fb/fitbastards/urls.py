@@ -1,13 +1,17 @@
 from django.urls import path
 from . import views
+from django import forms 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView
 
 urlpatterns = [
-    path('', views.login_test, name='members'),
-    path('<int:id>', views.profile_test, name='details'),
-    path("logout/", views.member_logout, name="logout"),
-    path('<int:id>/settings', views.settings, name='settings'),
-    path('<int:id>/finish', views.workout_finish, name='finish'),
-    path('<int:id>/delete', views.delete, name='delete'),
+    path("", LoginView.as_view(), name="login"),
+    path("logout/", views.logout_view, name="logout"),
+    path('signup/', views.signup_view, name="signup"),
+    path('passwd-reset', views.password_reset_view, name="passwd_reset"),
+    path('accounts/profile/', views.profile_view, name='details'), 
+    path('settings/', views.settings_view, name='settings'),
+    path('finish', views.workout_finish, name='finish'),
+    path('<int:id>/delete', views.delete_view, name='delete'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

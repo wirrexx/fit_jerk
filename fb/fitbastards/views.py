@@ -1,119 +1,152 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
 from .models import Members, Posts
-from django.contrib.auth import authenticate, login, logout
-from .forms import Profile, Profile_pic
-from django import forms
+from django.contrib.auth import logout, login
+from .forms import Profile, Profile_pic, FitUserForm, UserInfoForm
 from django.contrib import messages
 from django.urls import reverse
-import random
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+import random 
+from django.core.mail import send_mail
 
-posts_list = ["ok", "done", "OMG", "finally"]
-    
-#this view is to simulate when the member logs in so the testing profile would get the member id
-def login_test(request):
-    members = Members.objects.all().values()
-    template = loader.get_template("test.html")
-    context = {
-        'members': members,
-    }
-    return HttpResponse(template.render(context, request))
 
-#display for now the member profile info
-def profile_test(request, id):
-    data = Members.objects.get(id=id)
-    member_posts = Posts.objects.filter(member=data)
-    template = loader.get_template('profile.html')
-    progress = data.progress/10*100
-    
-    if data.height and data.weight:
-        BMI = data.weight/(data.height**2)
+posts_list = ["ok", "done", "OMG", "finally"] #TODO STORE THIS IN A JSON.FILE
+
+def signup_view(request):
+
+    if request.method == "POST":
+        form_user = FitUserForm(request.POST)
         
+        # is_valid executes cleaning functions defined in forms 
+        if form_user.is_valid():
+            # create the new user
+            username = form_user.cleaned_data.get("username")
+            password = form_user.cleaned_data.get("password1")
+            email = form_user.cleaned_data.get("email")
+            user = User.objects.create_user(username=username, email=email, password=password)
+            user.save()
+            
+            
+            send_mail(
+                subject=f"Welcome to FitBastard",
+                message="You finally made it. You choose to better yourself. Well, good luck with that!",
+                from_email="fitbastards.team@gmail.com",
+                recipient_list=[email],
+            ) 
+
+            login(request, user)
+            new_user = request.user
+            
+            member = Members.objects.create(username=new_user)
+            member.save()
+
+            return redirect("details")
+    
+    else: 
+        form_user = FitUserForm()
+    return render(request, "signin.html", {"form_user": form_user})  
+
+
+def password_reset_view(request):
+    #TODO: Research password reset via email
+    return render(request, "pass_reset.html")
+
+#TODO FIGURE IT OUT HOW TO ACCESS AND RETRIEVE INFO
+@login_required
+def profile_view(request):
+    user = request.user
+    
+    member_info = Members.objects.get(username=user)
+    member_posts = Posts.objects.filter(member=member_info)
+    progress = member_info.progress/10*100
+
+    if member_info.height and member_info.weight:
+        BMI = member_info.weight/(member_info.height**2)
+    
         context = {
-            'member': data,
+            'member': member_info,
             'BMI': f"{BMI:.2f}",
             'progress': f"{progress:.0f}%",
             'posts': member_posts
-            
+        
         }
-
-    else:
-        BMI = "Please complete your profile"
     
+    else:
+
+        BMI = "Please complete your profile"
+
         context = {
-          'member': data,
+          'member': member_info,
           'BMI': BMI,
           'progress': f"{progress:.0f}%",
           'posts': member_posts
-          
+      
         }
 
-    
-    return HttpResponse(template.render(context, request))
+    return render(request, 'profile.html', context)
 
-#settings page where member can update and delete account
-def settings(request, id):
-    #this is to when we have the login implemented
-    #if request.user.is_authenticated:
-        #current_user = Members.objects.get(id=id)
-    member = Members.objects.get(id=id)
-    progress = member.progress/10*100
-    profile_form = Profile(request.POST or None, instance=member)
-    profile_pic = Profile_pic(request.POST or None, request.FILES, instance=member)
+
+@login_required
+def settings_view(request):
+    """settings page where member can update and delete account"""
+    #TODO FIGURE IT OUT HOW TO ACCESS AND RETRIEVE INFO 
+    user = request.user
     
+    member_info = Members.objects.get(username=user)
+    progress = member_info.progress/10*100
+
+    
+    profile_form = Profile(request.POST or None, instance=member_info)
+    profile_pic = Profile_pic(request.POST or None, request.FILES, instance=member_info)
+    
+    #IT'S NOT SAVING
+
     if profile_form.is_valid() and profile_pic.is_valid():
         profile_form.save()
         profile_pic.save()
         messages.success(request, "Profile updated successfully")
        
-        return redirect(reverse('details', kwargs={'id': id}))  
+        return redirect('details')
     
-    if member.height and member.weight:
-        BMI = member.weight/(member.height**2)
-        
-        context = {
-            'member': member,
-            'BMI': f"{BMI:.2f}",
-            'progress': f"{progress:.0f}%"
-        }
-
+    if member_info.height and member_info.weight:
+        BMI = member_info.weight/(member_info.height**2)
+        BMI = f"{BMI:.2f}"
     else:
         BMI = "Please complete your profile"
-    
-        context = {
-          'member': member,
-          'BMI': BMI,
-          'progress': f"{progress:.0f}%"
-        } 
+
+    context = {
+        'member': member_info,
+        'BMI': BMI,
+        'progress': f"{progress:.0f}%"
+    } 
 
     return render(request, 'settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
     
 
-#logout func 
-def member_logout(request):
+
+def logout_view(request):
     logout(request)
     return redirect('/')
 
-def workout_finish(request, id):
-    member = get_object_or_404(Members, id=id)
+@login_required
+def workout_finish(request):
+    user = request.user
+    id = user.id
+    member_info = Members.objects.get(username=user)
     msg = random.choice(posts_list)
-    Posts.objects.create(member=member, post=msg)
-    Members.objects.update(progress=(member.progress+1))
-    
-    return redirect(reverse('details', kwargs={'id': id}))
 
-def delete(request, id):
-    member = Members.objects.get(id=id)
-    template = loader.get_template('delete.html')
-    context = {
-      'member': member,
-    }
+    Posts.objects.create(member=member_info, post=msg)
+    Members.objects.update(progress=(member_info.progress+1))
+    
+    return redirect('details')
+
+def delete_view(request, id):
+    user = request.user
+    member = User.objects.get(id=id)
 
     if request.method == 'POST':
-        dmember = Members.objects.filter(pk=id)
-        dmember.delete()
+        member.delete()
 
-        return redirect('members')
+        return redirect('login')
+    return render(request, 'delete.html')
     
-    return HttpResponse(template.render(context, request))
