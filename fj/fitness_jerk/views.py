@@ -105,8 +105,6 @@ def delete_user_func(request, id):
     return render(request, "fitness_jerk/delete.html", {'member': user})
 
 
-
-
 def profile_view(request):
     # if userinformation != complete:
     # show message: diggi, you forgot to 
