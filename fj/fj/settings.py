@@ -142,13 +142,20 @@ LOGOUT_REDIRECT_URL = 'login/'
 
 
 # Email Backend
-dotenv_path = BASE_DIR / ".env"
-dotenv.read_dotenv(dotenv_path)
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # The backend to use for sending emails
-EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
-EMAIL_PORT = 587  # Port for TLS/STARTTLS
-EMAIL_HOST_USER = os.getenv("EMAIL_USER")  # Your Gmail email address
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS") # Your Gmail App Password
-EMAIL_USE_TLS = True  # Use TLS/STARTTLS for security
+# DEVELOPMENT SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 
+# # PRODUCTION SETTINGS
+# dotenv_path = BASE_DIR / ".env"
+# dotenv.read_dotenv(dotenv_path)
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # The backend to use for sending emails
+# EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
+# EMAIL_PORT = 587  # Port for TLS/STARTTLS
+# EMAIL_HOST_USER = os.getenv("EMAIL_USER")  # Your Gmail email address
+# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASS") # Your Gmail App Password
+# EMAIL_USE_TLS = True  # Use TLS/STARTTLS for security
+
+# DEFAULT_FROM_EMAIL = os.getenv("EMAIL_USER")

@@ -1,20 +1,72 @@
 import random
 from django.contrib import messages
-from django.contrib.auth.views import LogoutView, LoginView
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.template import loader
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from .forms import FitUserForm, UserInfoForm, ProfileChangeForm, PictureChangeForm
 from .models import Profile, Posts
 
 
 # Create your views here.
+## Password Reset
+class CustomPasswordResetView(PasswordResetView):
+    template_name = "registration/custom_password_reset_form.html"
+    email_template_name = "registration/custom_password_reset_email.html"
+    success_url = reverse_lazy("password_reset_done")
 
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = "registration/custom_password_reset_done.html"
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = "registration/custom_password_reset_confirm.html"
+
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "registration/custom_password_reset_complete.html"
+
+## Signup
+def signup_view(request):
+    """View that lets the user signup to the page. Sends a welcome mail upon successfull signup"""
+    if request.method == "POST":
+        form = FitUserForm(request.POST)
+        if form.is_valid():
+            # create the new user
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password1")
+            email = form.cleaned_data.get("email")
+            user = User.objects.create_user(username=username, email=email, password=password)
+            # send welcome email
+            send_mail(
+                subject=f"Welcome to FitBastard",
+                message="You finally made it. You choose to better yourself. Well, good luck with that!",
+                from_email="fitbastards.team@gmail.com",
+                recipient_list=[email],
+            ) 
+            login(request, user)
+            return redirect("profile")
+    else: 
+        form = FitUserForm()
+    return render(request, "registration/signup.html", {"form":form})
+
+#logout functionality
+def logout_endpoint(request):
+    """Logs out the user"""
+    logout(request)
+    return redirect('/')
+
+#########################################
+#               ANA DEV                 #
+#########################################
 #display for now the member profile info
 def profile_test(request, id):
     user = User.objects.get(id=id)
@@ -53,62 +105,19 @@ def delete_user_func(request, id):
     return render(request, "fitness_jerk/delete.html", {'member': user})
 
 
-def send_confirmation_email():
-    subject = "Signup confirmation"
-    message = ""
-    from_email = ""
-
-def signup_view(request):
-    if request.method == "POST":
-        form = FitUserForm(request.POST)
-        
-        # is_valid executes cleaning functions defined in forms 
-        if form.is_valid():
-            # create the new user
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password1")
-            email = form.cleaned_data.get("email")
-            user = User.objects.create_user(username=username, email=email, password=password)
-            
-            # send welcome email
-            send_mail(
-                subject=f"Welcome to FitBastard",
-                message="You finally made it. You choose to better yourself. Well, good luck with that!",
-                from_email="fitbastards.team@gmail.com",
-                recipient_list=[email],
-            ) 
-
-            
-            login(request, user)
-            return redirect("profile")
-    else: 
-        form = FitUserForm()
-    return render(request, "registration/signup.html", {"form":form})
 
 
 def profile_view(request):
-    user = request.user
-    
     # if userinformation != complete:
     # show message: diggi, you forgot to 
     # show bmi
     # show workouts
     return render(request, "fitness_jerk/profile.html")
 
-# def login_func(request, user):
-#     if request.method == "POST":
-#         login(request, user)
-#     pass
 
-def password_reset_view(request):
-    #TODO: Research password reset via email
-    return render(request, "registration/passwd_reset.html")
 
-#logout func 
-def logout_endpoint(request):
-    """Logs out the user"""
-    logout(request)
-    return redirect('/')
+
+
 
 
 def workout_finish(request, id):

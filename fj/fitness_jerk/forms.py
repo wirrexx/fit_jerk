@@ -22,9 +22,6 @@ class PictureChangeForm(UserChangeForm):
         model = Profile
         fields = ['image']
 
-class LoginForm(forms.Form):
-    class Meta:
-        fields = ["username", "password"]
 
 class FitUserForm(forms.Form):
     username = forms.CharField(max_length=50)
