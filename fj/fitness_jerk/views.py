@@ -2,9 +2,10 @@ import random
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView
+from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -33,6 +34,13 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = "registration/custom_password_reset_complete.html"
+
+class CustomPasswordChangeView(PasswordChangeView, LoginRequiredMixin):
+    template_name = "registration/change_password.html"
+    success_url = reverse_lazy("password_change_done")
+
+class CustomPasswordChangeDoneView(PasswordChangeDoneView, LoginRequiredMixin):
+    template_name = "registration/change_password_done.html"
 
 ## Signup
 def signup_view(request):
