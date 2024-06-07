@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <title>Document</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
             <button class="dropbtn">Dropdown</button>
             <div class="dropdown-content">
                 <a href="{% url 'profile' %}">Profile</a>
-                <a href="{% url 'settings' user.id%}">Settings</a>
+                <a href="{% url 'settings' %}">Settings</a>
                 <a href="{% url 'logout' %}">Logout</a>
                 <a href="{% url 'password_change' %}">Password Reset</a>
             </div>
@@ -28,8 +28,8 @@
             <img src="{{member.image.url}}" alt="profile-image" style="width: 150px;">
         {% endif %}
         <h1>{{user.username}}</h1>
-        <p>Height: {{ user.profile.height }} m</p>
-        <p>Weight: {{ user.profile.weight }} kg</p>
+        <p>Height: {{ user.members.height }} m</p>
+        <p>Weight: {{ user.members.weight }} kg</p>
         <p>BMI: {{ BMI }}</p>
     </div>
     <div class="member-progress">
@@ -44,9 +44,9 @@
         {% endfor %}
     </div>
     <div class="workout">
-        <div class="wo1"><a href="{% url 'finish' user.id%}"><img src="{% static 'LOOSE.png' %}" alt=""></a></div>
-        <div class="wo2"><a href=""><img src="{% static 'TONE.png' %}" alt=""></a></div>
-        <div class="wo3"><a href=""><img src="{% static 'MUSCLE.png' %}" alt=""></a></div>
+        <div class="wo1"><a href="{% url 'exercise_loose' %}""><img src="{% static 'LOOSE.png' %}" alt=""></a></div>
+        <div class="wo2"><a href="{% url 'exercise_tone' %}"><img src="{% static 'TONE.png' %}" alt=""></a></div>
+        <div class="wo3"><a href="{% url 'exercise_muscles' %}"><img src="{% static 'MUSCLE.png' %}" alt=""></a></div>
     </div>
     
 </body>

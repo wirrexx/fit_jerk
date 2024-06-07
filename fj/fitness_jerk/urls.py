@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from .views import delete_user_func, logout_endpoint, profile_view, profile_test, settings_view, signup_view, LoginView, workout_finish, CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView
+from .views import delete_user_func, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView
+from . import views
 
-# proof of concept passwd reset
 from django.contrib.auth import views as auth_views
 
 
@@ -22,10 +22,16 @@ urlpatterns = [
     path("", LoginView.as_view(), name="login"),
     path('signup/', signup_view, name="signup"),
     
+    #Training Functions
+    path("exercise-loose/", views.weight_loose, name="exercise_loose"),
+    path("exercise-tone/", views.tone_down, name="exercise_tone"),
+    path("exercise-muscles/", views.build_muscles, name="exercise_muscles"),
+
+
+
     path("profile/", profile_view, name="profile"),
-    path('<int:id>', profile_test, name='details'),
-    path('<int:id>/settings', settings_view, name='settings'),
-    path('<int:id>/finish', workout_finish, name='finish'),
-    path('<int:id>/delete', delete_user_func, name='delete'),
+    path('settings/', settings_view, name='settings'),
+    path('finish', workout_finish, name='finish'),
+    path('delete', delete_user_func, name='delete'),
  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,15 +1,28 @@
+## DRY!!!!
+
+Save BMI in database [x]
+
 ## Admin Panel
 	Register Profile and connect it to User
 
 ## Implement Argon2
 
+## Implement OAuth
+	Google
+	
+## Tests
+	Write tests for views, functions etc..
+
+## Integrate a ChatBot
+	Research: 
+		Chatter
+		Google Bard
+		ChatGPT
+		Other
+
 ## Password Reset
 	Force HTTPS
 	Customize: registration/custom_password_reset_email.html
-	create endpoint
-	create reset token to send
-	create password reset email
-
 	nice to have: function based approach
 	def password_reset_viev(request):
  	   token_generator = PasswordResetTokenGenerator()
@@ -34,6 +47,16 @@
 	def save_user_profile(sender, instance, **kwargs):
 	    instance.profile.save()
 	```
+
+## Functionality
+	Add a Stop workout button
+	Add Footer: 
+		Imprint
+		Copyright
+		About
+
+## Style
+	Add favicon
 
 ## Documentation
 	Add docstrings

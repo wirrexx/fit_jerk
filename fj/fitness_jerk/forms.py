@@ -5,13 +5,13 @@ from django.contrib.auth.password_validation import validate_password
 from django import forms 
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserChangeForm
-from .models import Profile
+from .models import Members
 
 class ProfileChangeForm(UserChangeForm):
     #hide password change message
     password = None
     class Meta:
-        model = Profile
+        model = Members 
         fields = ['height', 'weight']
 
 class PictureChangeForm(UserChangeForm):
@@ -19,7 +19,7 @@ class PictureChangeForm(UserChangeForm):
     password = None
     image = forms.ImageField()
     class Meta:
-        model = Profile
+        model = Members
         fields = ['image']
 
 
@@ -50,6 +50,7 @@ class FitUserForm(forms.Form):
 
 
     def clean_email(self):
+        """Checks if email is valid"""
         email = self.cleaned_data.get("email")
         #   check if email is valid
         #   check if email is taken
@@ -76,7 +77,7 @@ class UserInfoForm(forms.Form):
     user_height = forms.FloatField(label="Put in your height")
 
     class Meta:
-        model = Profile
+        model = Members
         fields = ["user_weight", "user_height"]
 
     def clean_user_weight(self):
