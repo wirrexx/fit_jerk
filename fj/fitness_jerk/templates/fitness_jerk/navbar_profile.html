@@ -1,22 +1,22 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/navbar_css.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 <nav class="navbar">
     <div class="navbar-left">
-        <a href="#" class="logo">FitBastard</a>
+        <a href="#" class="main-logo">FITBASTARDS</a>
     </div>
     <div class="navbar-right">
         {% if user.is_authenticated %}
         <div class="menu-icon" id="menu-icon">&#9776;</div>
         <div class="nav-menu" id="nav-menu">
-            <div id="profile-btn">
-                <a href="{% url 'profile' %}" class="nav-item">Profile</a>
+            <div id="logout-btn">
+                <a href="{% url 'logout' %}" class="nav-item">Log out</a>
             </div>
             <div id="settings-btn">
                 <a href="{% url 'settings' %}" class="nav-item">Settings</a>
             </div>
-            <div id="logout-btn">
-                <a href="{% url 'logout' %}" class="nav-item">Log out</a>
+            <div id="profile-btn">
+                <a href="{% url 'profile' %}" class="nav-item">Profile</a>
             </div>
         </div>
         {% else %}

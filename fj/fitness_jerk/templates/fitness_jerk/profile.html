@@ -1,8 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'fitness_jerk/base.html' %}
 {% load static %}
 
+{% block title %}User Profile{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
 {% for message in messages %}
 <p class="message">{{ message }}</p>
 {% endfor %}
@@ -15,12 +20,16 @@
     <p>Weight: {{ user.members.weight }} kg</p>
     <p>BMI: {{ BMI }}</p>
 </div>
+
+
 <div class="member-progress">
     <h2>PROGRESS</h2>
     <div class="progress-bar">
         <div class="progress" style="--width: {{ progress }};"><span>{{ progress }}</span></div>
     </div>
 </div>
+
+
 <div class="post">
     {% for post in posts %}
     <li>{{ post.post }}</li>
@@ -37,15 +46,34 @@
             <div class="wo3"><a href="{% url 'exercise_muscles' %}"><img src="{% static 'MUSCLE.png' %}" alt=""></a>
             </div>
         </div> -->
-
-    <div class="muscles"><a href="{% url 'exercise_muscles' %}">
+    <div class="muscles">
+        <a href="{% url 'exercise_muscles' %}">
             <img class="logo" src="{% static 't_build_muscles.png' %}" alt="">
             <img class="front-image" src="{% static 'fg_muscles.png' %}" alt="">
             <img class="bg-muscles" src="{% static 'bg_chubby.jpeg' %}" alt="">
         </a>
     </div>
+
+    <div class="muscles">
+        <a href="{% url 'exercise_loose' %}">
+            <img class="logo" src="{% static 't_weight_loss.png' %}" alt="">
+            <img class="front-image" src="{% static 'fg_tone.png' %}" alt="">
+            <img class="bg-muscles" src="{% static 'bg_chubby.jpeg' %}" alt="">
+        </a>
+    </div>
+
+    <div class="muscles">
+        <a href="{% url 'exercise_tone' %}">
+            <img class="logo" src="{% static 't_tone_down.png' %}" alt="">
+            <img class="front-image" src="{% static 'fg_tone.png' %}" alt="">
+            <img class="bg-muscles" src="{% static 'bg_chubby.jpeg' %}" alt="">
+        </a>
+    </div>
+
+
+
+
 </div>
 </div>
 <script src="{% static 'navbar_js.js' %}"></script>
-
 {% endblock %}

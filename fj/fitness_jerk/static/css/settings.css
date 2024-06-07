@@ -4,5 +4,6 @@
 }
 
 .profile {
+    outline: 3px solid limegreen;
     padding: 10px;
 }
