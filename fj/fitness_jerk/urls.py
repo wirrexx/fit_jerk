@@ -28,7 +28,6 @@ urlpatterns = [
     path("exercise-muscles/", views.build_muscles, name="exercise_muscles"),
 
 
-
     path("profile/", profile_view, name="profile"),
     path('settings/', settings_view, name='settings'),
     path('finish', workout_finish, name='finish'),
