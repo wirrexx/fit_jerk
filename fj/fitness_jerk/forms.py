@@ -17,7 +17,6 @@ class ProfileChangeForm(UserChangeForm):
 class PictureChangeForm(UserChangeForm):
     #hide password change message
     password = None
-    image = forms.ImageField()
     class Meta:
         model = Members
         fields = ['image']

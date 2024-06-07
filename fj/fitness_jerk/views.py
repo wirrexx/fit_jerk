@@ -109,13 +109,11 @@ def profile_view(request):
 @login_required
 def settings_view(request):
     """settings page where member can update and delete account"""
-    #TODO FIGURE IT OUT HOW TO ACCESS AND RETRIEVE INFO 
     user = request.user
     member_info = Members.objects.get(user=user)
     progress = member_info.progress/10*100
     profile_form = ProfileChangeForm(request.POST or None, instance=member_info)
     profile_pic = PictureChangeForm(request.POST or None, request.FILES, instance=member_info)
-    #IT'S NOT SAVING -> What is this even supposed to do?
     if profile_form.is_valid() and profile_pic.is_valid():
         profile_form.save()
         profile_pic.save()
@@ -135,7 +133,7 @@ def settings_view(request):
 @login_required
 def workout_finish(request):
     """"""
-    posts_list = ["ok", "done", "OMG", "finally"] #TODO: Store this in a different way
+    posts_list = ["ok", "done", "OMG", "finally"] #TODO: Store this in a different way/generate GPT
     user = request.user
     member_info = Members.objects.get(user=user)
     msg = random.choice(posts_list)
@@ -146,6 +144,7 @@ def workout_finish(request):
 
 # ---------------------------------------- WISAM --------------------------------------
 
+@login_required
 def weight_loose(request):
     """"""
     exercises = [
@@ -165,7 +164,7 @@ def weight_loose(request):
 
 
 
-
+@login_required
 def tone_down(request):
     """"""
     exercises = [
@@ -184,7 +183,7 @@ def tone_down(request):
 
 
 
-
+@login_required
 def build_muscles(request):
     """"""
     exercises = [

@@ -50,6 +50,7 @@ Save BMI in database [x]
 
 ## Functionality
 	Add a Stop workout button
+	Add automatic generation of posts with LLM -> integrate ChatBot
 	Add Footer: 
 		Imprint
 		Copyright
