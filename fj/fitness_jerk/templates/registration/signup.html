@@ -1,29 +1,30 @@
-{% extends "base.html" %}
+{% extends "fitness_jerk/base.html" %}
+{% load static %}
 
 {% block title %}SIGNUP{% endblock %}
 
 {% block content %}
-  <h2>SIGNUP</h2>
-  <form action="" method="post">
+<h2>SIGNUP</h2>
+<form action="" method="post">
     {% csrf_token %}
     {{ form }}
 
     {% if form.errors %}
-                <div class="alert alert-danger">
-                    <ul>
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <li>{{ field.label }}: {{ error }}</li>
-                            {% endfor %}
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field in form %}
+            {% for error in field.errors %}
+            <li>{{ field.label }}: {{ error }}</li>
+            {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
     <input type="submit" value="Signup">
-  </form>
-  <a href="{% url 'login' %}">Sign In</a>
-  
+</form>
+<a href="{% url 'login' %}">Sign In</a>
+
 {% endblock %}

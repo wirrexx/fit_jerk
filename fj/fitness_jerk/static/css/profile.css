@@ -1,8 +1,86 @@
+:root {
+    --timing: 800ms;
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
+    perspective: 1000px;
+
 }
 
+body {
+    display: grid;
+    place-content: center;
+    min-height: 100%;
+}
+
+/*--------------------------Card css------------------------*/
+img {
+    max-width: 100%;
+}
+
+.muscles {
+    width: 300px;
+    aspect-ratio: 9 / 12;
+    /* background-image: url("/static/bg_chubby.jpeg"); */
+
+    position: relative;
+    transform-style: preserve-3d;
+    transition: rotate var(--timing) ease;
+}
+
+.muscles:hover {
+    rotate: x 35deg;
+}
+
+.muscles::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: lime;
+    z-index: 100;
+    background-image: radial-gradient(circle);
+}
+
+.muscles::after {
+    content: "";
+    position: absolute;
+    inset: 80% 1.5rem 1.5rem;
+    translate: 0;
+    background: red;
+    filter: blur(1rem);
+    z-index: 1;
+    transition: translate var(--timing);
+}
+
+.muscles:hover::after {
+    rotate: x -30;
+    translate: 0 40px;
+}
+
+.bg-muscles {
+    position: absolute;
+    z-index: 10;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.logo,
+.front-image {
+    position: absolute;
+    opacity: 0;
+}
+
+/*--------------------------Card css------------------------*/
+
+
+
+
+
+
+/*--------------------------Anas--------------------------*/
 .message {
     background-color: #dff0d8;
     border: 1px solid #d6e9c6;
@@ -19,60 +97,6 @@
     }
 }
 
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-}
-
-.navbar h1 {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.dropdown {
-    float: right;
-}
-
-.dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-
-}
-
-.dropdown-content a {
-
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
 
 .profile {
     padding: 10px;
@@ -146,7 +170,7 @@
     text-decoration: none;
 }
 
-.wo1,
+/* .wo1,
 .wo2,
 .wo3 {
     width: 30%;
@@ -155,15 +179,17 @@
     border: 1px solid black;
     text-align: center;
     margin-bottom: 30px;
-}
+} */
 
-.workout img {
+/* .workout img {
     width: 100%;
     text-align: center;
-}
+} */
 
 @keyframes progress {
     100% {
         width: var(--width);
     }
 }
+
+/*--------------------------Anas--------------------------*/
