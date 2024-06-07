@@ -1,32 +1,21 @@
+{% extends 'fitness_jerk/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/delete.css' %}">
-    <title>Settings</title>
-</head>
-<body>
-    <div class="navbar">
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-                <a href="">Settings</a>
-                <a href="{% url 'logout' %}">Logout</a>
-            </div>
-        </div> 
-    </div>
-    <div class="profile">
-        <form action="" method=POST>
-            {% csrf_token %}
-            <h1>{{ member.username }}</h1><br><br><h1 style="color: black; background-color: red; width: fit-content;">Are you sure you want to delete your account?</h1>
-            <br><br>
-            <button><a href="{% url 'profile' %}">Back to profile</a></button>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>Settings</title>
+
+{% block content %}
+<div class="profile">
+    <form action="" method=POST>
+        {% csrf_token %}
+        <h1>{{ member.username }}</h1><br><br>
+        <h1>Are you sure you want to delete your
+            account?</h1>
+        <br><br>
+        <button><a href=" {% url 'profile' %}">Back to profile</a></button>
+        <div class="delete">
             <input type="submit" value="Delete">
-        </form>
-    </div>
-</body>
-</html>
-
-
+        </div>
+    </form>
+</div>
+{% endblock %}

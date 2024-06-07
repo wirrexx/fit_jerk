@@ -11,6 +11,7 @@
     box-sizing: border-box;
     perspective: 1500px;
     font-family: 'Inter', sans-serif;
+    color: white;
 }
 
 html,
@@ -48,7 +49,6 @@ body {
     align-items: center;
     padding: 20px;
     /* background-color: #141414; */
-    border-bottom: 1px solid #333;
 }
 
 .navbar-left .main-logo {
@@ -324,25 +324,42 @@ img {
 
 /*--------------------Login-------------------*/
 
-.quote-text {
+.quote-small {
+    font-size: 16px;
+    font-weight: 500;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
+.quote-text {
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+    line-height: 1;
+}
+
 .login-menu {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 30vh;
 }
 
 .login-box {
+    flex-direction: column;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 16px;
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 12px #d19b4e;
+    width: 300px;
 }
 
 .form-group {
@@ -352,33 +369,305 @@ img {
 input[type="text"],
 input[type="password"] {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
+    color: #292929;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #292929;
+}
+
+.login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button {
-    width: 100%;
+    font-size: 16px;
+    width: 50%;
     background-color: #d19b4e;
     color: white;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
+    margin: auto;
+    /* Center the button horizontally */
 }
 
-.password-reset {
-    margin-top: 10px;
-    text-align: center;
+.links {
     text-decoration: none;
 }
 
+.password-reset {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 5px;
+    text-align: center;
+    background: black;
+    border-radius: 20px;
+    color: white;
+
+}
+
+.password-reset a {
+    text-decoration: none;
+}
+
+
 .join-us {
+    font-size: 16px;
     text-align: center;
     margin-top: 20px;
 }
 
 .join-us a {
+    font-size: 16px;
     color: black;
+    text-decoration: none;
+
+    :root {
+        --timing: 800ms;
+        --rotation: 20deg;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0px;
+        box-sizing: border-box;
+        perspective: 1500px;
+        font-family: 'Inter', sans-serif;
+        color: white;
+    }
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 2px;
+        background-image: linear-gradient(rgba(15, 15, 15, 1), rgb(14, 14, 14, .95));
+        background-repeat: no-repeat;
+    }
+
+
+
+    /*------------settings/profile---------*/
+    .profile {
+        outline: 3px solid limegreen;
+        padding: 10px;
+    }
+
+
+
+
+    /*-----------navbar-------------------*/
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        /* background-color: #141414; */
+        border-bottom: 1px solid #333;
+    }
+
+    .navbar-left .main-logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+    }
+
+    .navbar-right {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .nav-item {
+        color: white;
+        font-size: 16px;
+        text-decoration: none;
+        transition: color 0.3s;
+        margin: 12px;
+    }
+
+    #joinus-btn,
+    #profile-btn {
+        background-color: #d19b4e;
+        border-radius: 18px;
+        padding: 5px;
+    }
+
+    #joinus-btn a,
+    #profile-btn a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .nav-item:hover {
+        color: #b3b3b3;
+    }
+
+    .menu-icon {
+        display: none;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .nav-menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        .menu-icon {
+            display: block;
+        }
+
+        .nav-menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: #141414;
+            border: 1px solid #333;
+            padding: 10px;
+        }
+
+        .nav-item {
+            margin: 10px 0;
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+    }
+
+
+
+    /*--------------------------Card css------------------------*/
+    .workout {
+        flex-direction: row;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
+
+    img {
+        max-width: 100%;
+
+    }
+
+    .muscles {
+        margin: 20px;
+        width: 300px;
+        aspect-ratio: 9 / 12;
+        /* background-image: url("/static/bg_chubby.jpeg"); */
+
+        position: relative;
+        transform-style: preserve-3d;
+        transition: rotate var(--timing) ease;
+    }
+
+    .muscles:hover {
+        rotate: x var(--rotation);
+    }
+
+
+    .muscles::before {
+        border-radius: 20px;
+        content: '';
+        position: absolute;
+        inset: 0;
+        /* background: limegreen; */
+        z-index: 100;
+        background-image: radial-gradient(circle, transparent 50px, black);
+        opacity: 0;
+        transition: opacity var(--timing);
+    }
+
+    .muscles:hover::before {
+        opacity: 1;
+    }
+
+    .muscles::after {
+        content: "";
+        position: absolute;
+        inset: 80% 1.5rem 1.5rem;
+        translate: 0;
+        transform: translateZ(-100px);
+        background: #d19b4e;
+        filter: blur(1rem);
+        z-index: 1;
+        transition: translate var(--timing);
+    }
+
+    .muscles:hover::after {
+        rotate: x calc(var(--rotation)) * -1;
+        translate: 0 40px;
+    }
+
+    .bg-muscles {
+        border-radius: 20px;
+        position: absolute;
+        z-index: 10;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .logo,
+    .front-image {
+        position: absolute;
+    }
+
+    .logo {
+        z-index: 1000;
+        filter: invert(0);
+        width: 70%;
+        margin-inline: auto;
+        /* transform: translateY(0rem) translateZ(20px); */
+        inset: auto 0 2rem;
+        transition: var(--timing);
+    }
+
+    /* .youda:hover .logo {
+    transform: translateY(-2rem) translateZ(20px);
+    rotate: x -30deg;
+} */
+
+    .front-image {
+        scale: 1.5;
+        transform-origin: center;
+        opacity: 0;
+        z-index: 100;
+        transition: var(--timing);
+        rotate: x -25;
+    }
+
+    .muscles:hover .front-image {
+        opacity: 1;
+        /* transform: translateY(-2rem) translateZ(-10px); */
+    }
+
+
 
 }

@@ -148,15 +148,15 @@ def workout_finish(request):
 def weight_loose(request):
     """"""
     exercises = [
-        {'name': 'Squats', 'duration': 15},
-        # {'name': 'Pushups', 'duration': 30},
-        # {'name': 'Situps', 'duration': 30},
-        # {'name': 'Burpees', 'duration': 30},
-        # {'name': 'Mountain Climbers', 'duration': 30},
-        # {'name': 'Lunge Jumps', 'duration': 30},
-        # {'name': 'Plank', 'duration': 60},
-        # {'name': 'Punches non-stop', 'duration': 60},
-        # {'name': 'Climbers', 'duration': 30},
+        {'name': 'Squats', 'duration': 30},
+        {'name': 'Pushups', 'duration': 30},
+        {'name': 'Situps', 'duration': 30},
+        {'name': 'Burpees', 'duration': 30},
+        {'name': 'Mountain Climbers', 'duration': 30},
+        {'name': 'Lunge Jumps', 'duration': 30},
+        {'name': 'Plank', 'duration': 60},
+        {'name': 'Punches non-stop', 'duration': 60},
+        {'name': 'Climbers', 'duration': 30},
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_loose.html', {'exercises': exercises, 'training_schedules': training_schedules})
@@ -187,15 +187,15 @@ def tone_down(request):
 def build_muscles(request):
     """"""
     exercises = [
-        {'name': 'Overhead Crunch', 'duration': 10},
-        # {'name': 'Pistol Squat', 'duration': 30},
-        # {'name': 'Dips', 'duration': 30},
-        # {'name': 'Sit Ups', 'duration': 30},
-        # {'name': 'Burpees', 'duration': 30},
-        # {'name': 'Mountain Climbers', 'duration': 30},
-        # {'name': 'Bench Dips', 'duration': 30},
-        # {'name': 'Push Ups', 'duration': 30},
-        # {'name': 'Plank', 'duration': 60},
+        {'name': 'Overhead Crunch', 'duration': 30},
+        {'name': 'Pistol Squat', 'duration': 30},
+        {'name': 'Dips', 'duration': 30},
+        {'name': 'Sit Ups', 'duration': 30},
+        {'name': 'Burpees', 'duration': 30},
+        {'name': 'Mountain Climbers', 'duration': 30},
+        {'name': 'Bench Dips', 'duration': 30},
+        {'name': 'Push Ups', 'duration': 30},
+        {'name': 'Plank', 'duration': 60},
         
 
     ]
