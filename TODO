@@ -15,8 +15,6 @@
  	   token_generator = PasswordResetTokenGenerator()
   	   token = token_generator.make_token()
 
-
-
 ## Signup
 	Handle Error messages
 	finish cleaning functions

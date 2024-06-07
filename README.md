@@ -25,58 +25,23 @@ Hosting: [pythonanywhere](https://www.pythonanywhere.com/)
 
 ## Features 
 
-- Sign Up
-	- user name
-	- weight
-	- hight
-	- email 
-	- password
-	- What are your goals? 
-		loose weight -> be very rude about it
-		gain muscle -> be politely rude about it
-		stay the same -> why are you using this app? 
-
-	-> Backend sends confirmation email, redirect to login?
-
-- Login
-	- Landing page
-		greetings User
-		trainingplan based on your goals
-		Start workout now -> button
-
-- Do workout 
-	Start -> Countdown starts 
-	Pause/Resume workout -> button 
-	Automatic finish -> redirect to landing page
-
-- Progress tracker
-	- Audio confirmation: "Hey! You did it! Great job!
-	- automatic blogpost on users landing page
-
-- Logout 
+- Authenticication System
+	[Logout, Login, ChangePassword, ResetPassword, Signup]
+- Profile
+	[BMI, weight, height, progress, picture, completion posts, choose exercise]
+- Workouts
+	[Exercises: Loose, Muscles, ToneDown, Timer, Start, Pause, Resume, Finish] 
 	
 
-## Nice to have
+## Expected Features
 
 - Create an Avatar
-- Continue with workout -> button on landing page
-- Automatic posts on twitter/linkedIn
 - Audio 
 - Oauth
 - AppStore Implementationn
 - Host our own server
+- ChatBot for auto generation of messages 
 
-## User Story
-
-Landing Page (Profile) -> Start Workout -> Workout starts -> Finish -> Landing Page  
-		|								|			
-												-----> Pause --> Restart --- Finish
-
-## Questions
-
-How do workout messages get created? 
-	-> Prewritten messages
-	-> ChatGPT generates message
 
 ## Roles
 
@@ -90,7 +55,9 @@ We are, and I can't stress this enough, a team!
 Don't be afraid to ask for help!
 We use github project:
 
+
 [Project](https://github.com/users/wirrexx/projects/1/views/7)
+
 	
 Standups at 9.00am
 
