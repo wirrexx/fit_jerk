@@ -38,6 +38,15 @@ body {
     padding: 10px;
 }
 
+#id_height,
+#id_weight {
+    color: black;
+}
+
+input[type="submit"] {
+    color: black;
+}
+
 /*-----------user/profile-------------*/
 
 
@@ -215,10 +224,6 @@ img {
     transition: var(--timing);
 }
 
-/* .youda:hover .logo {
-    transform: translateY(-2rem) translateZ(20px);
-    rotate: x -30deg;
-} */
 
 .front-image {
     scale: 1.5;
@@ -226,7 +231,7 @@ img {
     opacity: 0;
     z-index: 100;
     transition: var(--timing);
-    rotate: x -25;
+    rotate: x -35deg;
 }
 
 .muscles:hover .front-image {

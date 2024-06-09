@@ -19,7 +19,9 @@
         {% csrf_token %}
         {{ profile_pic.as_p }}
         <br><br>
-        <input type="submit" value="Update">
+        <div class="submit-btn">
+            <input type="submit" value="Update">
+        </div>
         <br><br>
         <p>Click <a href="{% url 'delete' %}">here</a> if you would to delete your account.</p>
     </form>
