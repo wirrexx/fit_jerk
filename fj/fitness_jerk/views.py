@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView
+from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView, TemplateView
 # from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -201,3 +201,11 @@ def build_muscles(request):
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_muscles.html', {'exercises': exercises, 'training_schedules': training_schedules})
+
+
+
+
+#---------------------Landing Page --------------------
+
+class LandingPage(TemplateView):
+    template_name = "fitness_jerk/landing_page.html"

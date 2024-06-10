@@ -1,9 +1,9 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/navbar_css.css' %}">
 
 <nav class="navbar">
     <div class="navbar-left">
-        <a href="#" class="main-logo">FITBASTARDS</a>
+        <a href="{% url 'welcome' %}" class="main-logo">FITBASTARDS</a>
     </div>
     <div class="navbar-right">
         {% if user.is_authenticated %}

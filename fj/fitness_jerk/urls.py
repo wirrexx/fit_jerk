@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from .views import delete_user_func, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView
+from .views import delete_user_func, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView, LandingPage
 from . import views
 
 from django.contrib.auth import views as auth_views
@@ -19,7 +19,7 @@ urlpatterns = [
 
     # Signin/Signout/Signup
     path('logout/', logout_endpoint, name='logout'),
-    path("", LoginView.as_view(), name="login"),
+    path("login/", LoginView.as_view(), name="login"),
     path('signup/', signup_view, name="signup"),
     
     #Training Functions
@@ -28,7 +28,8 @@ urlpatterns = [
     path("exercise-muscles/", views.build_muscles, name="exercise_muscles"),
 
 
-
+    #Main pages
+    path("", LandingPage.as_view(), name="welcome"),
     path("profile/", profile_view, name="profile"),
     path('settings/', settings_view, name='settings'),
     path('finish', workout_finish, name='finish'),
