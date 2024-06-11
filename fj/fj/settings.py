@@ -137,8 +137,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Custom authenticication settings
 
 # LOGIN/LOGOUT
-LOGIN_REDIRECT_URL = 'profile/'
-LOGOUT_REDIRECT_URL = 'login/'
+LOGIN_REDIRECT_URL = '/profile/'
+LOGOUT_REDIRECT_URL = '/login/'
 
 
 # Email Backend
@@ -159,3 +159,12 @@ DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 # EMAIL_USE_TLS = True  # Use TLS/STARTTLS for security
 
 # DEFAULT_FROM_EMAIL = os.getenv("EMAIL_USER")
+
+# Password Hashing
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+    "django.contrib.auth.hashers.ScryptPasswordHasher",
+]

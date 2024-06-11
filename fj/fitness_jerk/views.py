@@ -11,7 +11,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 from django.urls import reverse_lazy
-from .forms import FitUserForm, UserInfoForm, ProfileChangeForm, PictureChangeForm
+from .forms import FitUserForm, ProfileChangeForm, PictureChangeForm
 from .models import Members, Posts, TrainingSchedule
 
 
@@ -43,6 +43,9 @@ class CustomPasswordChangeView(PasswordChangeView):
 class CustomPasswordChangeDoneView(PasswordChangeDoneView):
     template_name = "registration/change_password_done.html"
 
+class CustomLoginView(LoginView):
+    template_name = "registration/login.html"
+
 ## Signup
 def signup_view(request):
     """View that lets the user signup to the page. Sends a welcome mail upon successfull signup"""
@@ -73,6 +76,13 @@ def logout_endpoint(request):
     """Logs out the user"""
     logout(request)
     return redirect('/')
+
+#login view
+def login_view(request):
+    pass
+
+def index_view(request):
+    return render(request, "fitness_jerk/index.html")
 
 
 # ------------------------------------- ANA ----------------------------------------
@@ -201,3 +211,4 @@ def build_muscles(request):
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_muscles.html', {'exercises': exercises, 'training_schedules': training_schedules})
+

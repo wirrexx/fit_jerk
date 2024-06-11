@@ -69,20 +69,3 @@ class FitUserForm(forms.Form):
             raise ValidationError("Passwords do not match")
     
 
-
-class UserInfoForm(forms.Form):
-    # redirect to settings page
-    user_weight = forms.FloatField(label="Put in your weight")
-    user_height = forms.FloatField(label="Put in your height")
-
-    class Meta:
-        model = Members
-        fields = ["user_weight", "user_height"]
-
-    def clean_user_weight(self):
-        """Checks if weight is between 20 and 250kg"""
-        pass
-
-    def clean_user_height(self):
-        """Checks if height is between 0 and 3m"""
-        pass

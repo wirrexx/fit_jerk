@@ -1,13 +1,12 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from .views import delete_user_func, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView
+from .views import delete_user_func, index_view, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomLoginView, CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView
 from . import views
 
 from django.contrib.auth import views as auth_views
 
-
-urlpatterns = [
+urlpatterns = [    
     ## Auth
     # Password management
     path('password-reset/', CustomPasswordResetView.as_view(), name='password_reset'),
@@ -17,9 +16,10 @@ urlpatterns = [
     path('password-change/', CustomPasswordChangeView.as_view(), name='password_change'),
     path('password-change/done/', CustomPasswordChangeDoneView.as_view(), name='password_change_done'),
 
-    # Signin/Signout/Signup
+    # Signin/Signout/Signup/Landing
+    path("", index_view, name="index"),
     path('logout/', logout_endpoint, name='logout'),
-    path("", LoginView.as_view(), name="login"),
+    path("login/", CustomLoginView.as_view(), name="login"),
     path('signup/', signup_view, name="signup"),
     
     #Training Functions
