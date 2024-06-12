@@ -29,7 +29,7 @@ urlpatterns = [
 
 
     #Main pages
-    path("", LandingPage.as_view(), name="welcome"),
+    path('', LandingPage.as_view(), name="welcome"),
     path("profile/", profile_view, name="profile"),
     path('settings/', settings_view, name='settings'),
     path('finish', workout_finish, name='finish'),

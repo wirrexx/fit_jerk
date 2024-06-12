@@ -33,13 +33,23 @@ body {
     background-repeat: no-repeat;
 }
 
+.container {
+    display: flex;
+    align-content: center;
+    height: 90%;
+    width: 90%;
+    flex-direction: column;
+    outline: 3px solid red;
+    position: relative;
+}
+
 /*------------Landing Page ------------*/
 .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
     outline: 3px solid red;
 
@@ -50,8 +60,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30%;
-    z-index: 1;
+    width: 40%;
+    z-index: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,6 +82,9 @@ body {
     z-index: -1;
 }
 
+
+
+
 .land-text {
     position: absolute;
     display: flex;
@@ -86,17 +99,19 @@ body {
 
 @media (max-width: 768px) {
     .landing-page {
-        width: 60%;
+        width: 90%;
     }
 
     .outer-box {
-        width: 50%;
+        width: 70%;
         outline: 12px solid #d19b4e;
     }
 
     .land-text {
         font-size: 6vw;
     }
+
+
 }
 
 
@@ -306,6 +321,21 @@ img {
 @keyframes progress {
     100% {
         width: var(--width);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .progress-bar {
+        width: 100%;
+        /* Adjust width for smaller screens */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .progress-bar div span {
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 

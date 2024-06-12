@@ -1,13 +1,13 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/navbar_css.css' %}">
 
-<nav class="navbar">
+<div class="navbar">
     <div class="navbar-left">
         <a href="{% url 'welcome' %}" class="main-logo">FITBASTARDS</a>
     </div>
     <div class="navbar-right">
-        {% if user.is_authenticated %}
         <div class="menu-icon" id="menu-icon">&#9776;</div>
+        {% if user.is_authenticated %}
         <div class="nav-menu" id="nav-menu">
             <div id="logout-btn">
                 <a href="{% url 'logout' %}" class="nav-item">Log out</a>
@@ -30,4 +30,4 @@
         </div>
         {% endif %}
     </div>
-</nav>
+</div>
