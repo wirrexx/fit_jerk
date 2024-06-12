@@ -209,3 +209,6 @@ def build_muscles(request):
 
 class LandingPage(TemplateView):
     template_name = "fitness_jerk/landing_page.html"
+    
+class AboutPage(TemplateView):
+    template_name = "fitness_jerk/learn_more.html"

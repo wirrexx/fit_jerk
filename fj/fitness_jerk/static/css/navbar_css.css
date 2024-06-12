@@ -8,6 +8,7 @@
     top: 0;
     left: 0;
     z-index: 1000;
+    color: white;
 }
 
 .navbar-left {
@@ -16,7 +17,7 @@
 }
 
 .navbar-left .main-logo {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
     color: white;
     text-decoration: none;
@@ -66,6 +67,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
 
 /* Media query for mobile view */
@@ -80,7 +82,7 @@
         position: absolute;
         top: 35px;
         right: 0px;
-        background-color: #141414;
+        background-color: rgb(3, 19, 26);
         border: 1px solid #333;
         padding: 10px;
         gap: 1rem;
@@ -93,5 +95,11 @@
     .nav-menu.active {
         display: flex;
         width: 100px;
+    }
+
+    .navbar-left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
