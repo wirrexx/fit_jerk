@@ -12,7 +12,7 @@ class Members(models.Model):
     weight = models.FloatField(default=0)
     height = models.FloatField(default=0)
     progress = models.IntegerField(default=0)
-    
+
     # TODO:ImageField Path: It's generally not a good practice to upload user files to the static/ directory. It's better to use a directory like media/ for user-uploaded files and configure your project to serve them properly.
     image = models.ImageField(null=True, blank=True, upload_to="static/")
 

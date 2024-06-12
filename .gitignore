@@ -161,6 +161,8 @@ cython_debug/
 #.idea/
 
 LOGBOOK
-fj/playground
 TODO
+TextBot/*
 TextBot/
+
+
