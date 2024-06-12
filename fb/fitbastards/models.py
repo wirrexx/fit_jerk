@@ -18,3 +18,22 @@ class Posts(models.Model):
     member = models.ForeignKey(Members, on_delete=models.CASCADE, null=True)
     post = models.CharField(max_length=255, null=True)
 
+class TrainingSchedule(models.Model):
+    title = models.CharField(max_length=50)
+    description = models.TextField()
+    date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    
+    
+    def __str__(self):
+        return self.title
+    
+
+class Exercise(models.Model):
+    name = models.CharField(max_length=255)
+    duration = models.IntegerField(help_text="Duration in seconds")
+
+    def __str__(self):
+        return self.name
+

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Members, Posts
+from .models import Members, Posts, TrainingSchedule
 from django.contrib.auth import logout, login
 from .forms import Profile, Profile_pic, FitUserForm, UserInfoForm
 from django.contrib import messages
@@ -51,7 +51,7 @@ def password_reset_view(request):
     #TODO: Research password reset via email
     return render(request, "pass_reset.html")
 
-#TODO FIGURE IT OUT HOW TO ACCESS AND RETRIEVE INFO
+#TODO CREATE THE PROGRESS LEVELS 
 @login_required
 def profile_view(request):
     user = request.user
@@ -89,7 +89,7 @@ def profile_view(request):
 @login_required
 def settings_view(request):
     """settings page where member can update and delete account"""
-    #TODO FIGURE IT OUT HOW TO ACCESS AND RETRIEVE INFO 
+    #TODO DISPLAY THE MEMBER LEVEL 
     user = request.user
     
     member_info = Members.objects.get(username=user)
@@ -149,4 +149,62 @@ def delete_view(request, id):
 
         return redirect('login')
     return render(request, 'delete.html')
+
+def weight_loose(request):
+    exercises = [
+        {'name': 'Squats', 'duration': 30},
+        {'name': 'Pushups', 'duration': 30},
+        {'name': 'Situps', 'duration': 30},
+        {'name': 'Burpees', 'duration': 30},
+        {'name': 'Mountain Climbers', 'duration': 30},
+        {'name': 'Lunge Jumps', 'duration': 30},
+        {'name': 'Plank', 'duration': 60},
+        {'name': 'Punches non-stop', 'duration': 60},
+        {'name': 'Climbers', 'duration': 30},
+
+
+    ]
     
+    training_schedules = TrainingSchedule.objects.all()
+    return render(request, 'exercise_loose.html', {'exercises': exercises, 'training_schedules': training_schedules})
+
+
+
+def tone_down(request):
+    exercises = [
+        {'name': 'Push Ups', 'duration': 30},
+        {'name': 'Plank', 'duration': 60},
+        {'name': 'Glute Bridge', 'duration': 30},
+        {'name': 'Jumping Jacks', 'duration': 60},
+        {'name': 'Side Lunges', 'duration': 30},
+        {'name': 'Lunges', 'duration': 30},
+        {'name': 'Chair Squat', 'duration': 30},
+        {'name': 'Sumo Squat Hammer Curl', 'duration': 30},
+        {'name': 'Triceps Extension', 'duration': 30},
+        
+
+    ]
+    
+    training_schedules = TrainingSchedule.objects.all()
+    return render(request, 'exercise_tone.html', {'exercises': exercises, 'training_schedules': training_schedules})
+
+
+
+
+def build_muscles(request):
+    exercises = [
+        {'name': 'Overhead Crunch', 'duration': 1},
+        # {'name': 'Pistol Squat', 'duration': 30},
+        # {'name': 'Dips', 'duration': 30},
+        # {'name': 'Sit Ups', 'duration': 30},
+        # {'name': 'Burpees', 'duration': 30},
+        # {'name': 'Mountain Climbers', 'duration': 30},
+        # {'name': 'Bench Dips', 'duration': 30},
+        # {'name': 'Push Ups', 'duration': 30},
+        # {'name': 'Plank', 'duration': 60},
+        
+
+    ]
+    
+    training_schedules = TrainingSchedule.objects.all()
+    return render(request, 'exercise_muscles.html', {'exercises': exercises, 'training_schedules': training_schedules})

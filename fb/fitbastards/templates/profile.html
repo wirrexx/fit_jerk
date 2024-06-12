@@ -45,9 +45,9 @@
         {% endfor %}
     </div>
     <div class="workout">
-        <div class="wo1"><a href="{% url 'finish' %}"><img src="{% static 'LOOSE.png' %}" alt=""></a></div>
-        <div class="wo2"><a href=""><img src="{% static 'TONE.png' %}" alt=""></a></div>
-        <div class="wo3"><a href=""><img src="{% static 'MUSCLE.png' %}" alt=""></a></div>
+        <div class="wo1"><a href="{% url 'exercise_loose' %}"><img src="{% static 'LOOSE.png' %}" alt=""></a></div>
+        <div class="wo2"><a href="{% url 'exercise_tone' %}"><img src="{% static 'TONE.png' %}" alt=""></a></div>
+        <div class="wo3"><a href="{% url 'exercise_muscles' %}"><img src="{% static 'MUSCLE.png' %}" alt=""></a></div>
     </div>
 
 </body>

@@ -1,0 +1,58 @@
+/* Define a simple, clean style for the timer and buttons */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#message {
+    font-size: 1.5em;
+    margin-top: 10px;
+    color: green;
+}
+
+#timer {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: green;
+    font-weight: bold;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start-btn {
+    background-color: green;
+    color: white;
+}
+
+#pause-resume-btn {
+    background-color: #5bc0de;
+    color: white;
+}
+
+#pause-resume-btn:hover {
+    background-color: #31b0d5;
+}
+
+#finish-btn {
+    background-color: #d9534f;
+    color: white;
+}
+
+#finish-btn:hover {
+    background-color: #c9302c;
+}

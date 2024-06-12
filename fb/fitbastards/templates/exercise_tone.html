@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Training Loose It All!{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'timer.css' %}">
+<h1>FitBastards Timer</h1>
+
+<button id="start-btn">Start</button>
+<button id="pause-resume-btn">Pause</button>
+<form action="{% url 'exercise_muscles' %}" method="POST">
+    {% csrf_token %}
+    <button id="finish-btn" style="display:none;"><a href="{% url 'finish' %}">Finish</a></button>
+</form>
+
+<h1>Exercise List</h1>
+<h2>Exercises</h2>
+<ul id="exercise-list">
+    {% if exercises %}
+    {% for exercise in exercises %}
+    <li class="exercise-item" data-duration="{{ exercise.duration }}" data-name="{{ exercise.name }}"
+        style="display: none;">
+        <span class="exercise-name">{{ exercise.name }}</span>
+    </li>
+    {% endfor %}
+    {% endif %}
+</ul>
+
+<div id="message">Start</div>
+<div id="timer"></div> <!-- Initialize with 30 seconds -->
+
+<script src="{% static 'js/timer.js' %}"></script>
+{% endblock %}
