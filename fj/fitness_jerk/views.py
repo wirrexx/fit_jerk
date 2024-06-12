@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView
+from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView, TemplateView
 # from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -148,15 +148,15 @@ def workout_finish(request):
 def weight_loose(request):
     """"""
     exercises = [
-        {'name': 'Squats', 'duration': 15},
-        # {'name': 'Pushups', 'duration': 30},
-        # {'name': 'Situps', 'duration': 30},
-        # {'name': 'Burpees', 'duration': 30},
-        # {'name': 'Mountain Climbers', 'duration': 30},
-        # {'name': 'Lunge Jumps', 'duration': 30},
-        # {'name': 'Plank', 'duration': 60},
-        # {'name': 'Punches non-stop', 'duration': 60},
-        # {'name': 'Climbers', 'duration': 30},
+        {'name': 'Squats', 'duration': 30},
+        {'name': 'Pushups', 'duration': 30},
+        {'name': 'Situps', 'duration': 30},
+        {'name': 'Burpees', 'duration': 30},
+        {'name': 'Mountain Climbers', 'duration': 30},
+        {'name': 'Lunge Jumps', 'duration': 30},
+        {'name': 'Plank', 'duration': 60},
+        {'name': 'Punches non-stop', 'duration': 60},
+        {'name': 'Climbers', 'duration': 30},
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_loose.html', {'exercises': exercises, 'training_schedules': training_schedules})
@@ -187,17 +187,28 @@ def tone_down(request):
 def build_muscles(request):
     """"""
     exercises = [
-        {'name': 'Overhead Crunch', 'duration': 10},
-        # {'name': 'Pistol Squat', 'duration': 30},
-        # {'name': 'Dips', 'duration': 30},
-        # {'name': 'Sit Ups', 'duration': 30},
-        # {'name': 'Burpees', 'duration': 30},
-        # {'name': 'Mountain Climbers', 'duration': 30},
-        # {'name': 'Bench Dips', 'duration': 30},
-        # {'name': 'Push Ups', 'duration': 30},
-        # {'name': 'Plank', 'duration': 60},
+        {'name': 'Overhead Crunch', 'duration': 30},
+        {'name': 'Pistol Squat', 'duration': 30},
+        {'name': 'Dips', 'duration': 30},
+        {'name': 'Sit Ups', 'duration': 30},
+        {'name': 'Burpees', 'duration': 30},
+        {'name': 'Mountain Climbers', 'duration': 30},
+        {'name': 'Bench Dips', 'duration': 30},
+        {'name': 'Push Ups', 'duration': 30},
+        {'name': 'Plank', 'duration': 60},
         
 
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_muscles.html', {'exercises': exercises, 'training_schedules': training_schedules})
+
+
+
+
+#---------------------Landing Page --------------------
+
+class LandingPage(TemplateView):
+    template_name = "fitness_jerk/landing_page.html"
+    
+class AboutPage(TemplateView):
+    template_name = "fitness_jerk/learn_more.html"

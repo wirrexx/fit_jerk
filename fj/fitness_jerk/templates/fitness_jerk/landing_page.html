@@ -1,0 +1,26 @@
+{% extends 'fitness_jerk/base.html' %}
+{% load static %}
+
+{% block title %}Welcome to FitBastards{% endblock %}
+<h1>Hello World</h1>
+{% block content %}
+
+<div class="image-container">
+    <img class="landing-page" src="{% static 'landing_page.png' %}" alt="">
+    <div class="land-text">
+        <h1>FITBASTARDS</h1>
+    </div>
+
+    <div class="outer-box"></div>
+    <p class="about-text">
+        A Message from Your Fit Future Self: Welcome To FitBastards, Your Ultimate Personal Trainer App.
+        Hey there,
+
+        I know this might sound a bit unusual...
+        <br></b><a href="{% url 'about' %}" class="learn-more-btn">Learn More ></a>
+    </p>
+
+</div>
+
+<script src="{% static 'navbar_js.js' %}"></script>
+{% endblock%}

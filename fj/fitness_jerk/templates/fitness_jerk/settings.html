@@ -1,48 +1,34 @@
+{% extends 'fitness_jerk/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
-    <title>Settings</title>
-</head>
-<body>
-    <div class="navbar">
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-                <a href="{% url 'profile' %}">Profile</a>
-                <a href="">Settings</a>
-                <a href="{% url 'password_change' %}">Change Password</a>
-                <a href="{% url 'logout' %}">Logout</a>
-            </div>
-        </div> 
-    </div>
-    <div class="profile">
-        <form action="" method=POST enctype="multipart/form-data">
-            {% if context.member.image %}
-            <img src="{{context.member.image.url}}" alt="profile-image" style="width: 150px;">
-            {% endif %}
-            <p>Username: {{ context.member.username }}</p>
-            {% csrf_token %}
-            {{ profile_form.as_p }}
-            <br>
-            <p>BMI: {{ context.BMI }}</p>
-            <p>Progress: {{ context.progress }}</p><br>
-            {% csrf_token %}
-            {{ profile_pic.as_p }}
-            <br><br>
+
+{% block title %}User Settings{% endblock %}
+{% block content %}
+
+
+<div class="profile">
+    <form action="" method=POST enctype="multipart/form-data">
+        {% if context.member.image %}
+        <img src="{{context.member.image.url}}" alt="profile-image" style="width: 150px;">
+        {% endif %}
+        <p>Username: {{ context.member.username }}</p>
+        {% csrf_token %}
+        {{ profile_form.as_p }}
+        <br>
+        <p>BMI: {{ context.BMI }}</p>
+        <p>Progress: {{ context.progress }}</p><br>
+        {% csrf_token %}
+        {{ profile_pic.as_p }}
+        <br><br>
+        <div class="submit-btn">
             <input type="submit" value="Update">
-            <br><br>
-            <p>Click <a href="{% url 'delete' %}">here</a> if you would to delete your account.</p>
-        </form>
-    </div>
-    
-    
-    
-    
-</body>
-</html>
+        </div>
+        <br><br>
+        <p>Click <a href="{% url 'delete' %}">here</a> if you would to delete your account.</p>
+    </form>
+</div>
 
 
+
+<script src="{% static 'navbar_js.js' %}"></script>
+
+{% endblock %}
