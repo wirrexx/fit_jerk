@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from .views import delete_user_func, index_view, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomLoginView, CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView
+from .views import delete_user_func, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomPasswordResetView, CustomLoginView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView, LandingPage, AboutPage
 from . import views
 
 from django.contrib.auth import views as auth_views
@@ -27,6 +27,11 @@ urlpatterns = [
     path("exercise-tone/", views.tone_down, name="exercise_tone"),
     path("exercise-muscles/", views.build_muscles, name="exercise_muscles"),
 
+
+
+    #Main pages
+    path('', LandingPage.as_view(), name="welcome"),
+    path('about/', AboutPage.as_view(), name="about"),
 
     path("profile/", profile_view, name="profile"),
     path('settings/', settings_view, name='settings'),

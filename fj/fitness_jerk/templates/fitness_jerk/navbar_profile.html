@@ -1,33 +1,33 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/navbar_css.css' %}">
 
-<nav class="navbar">
+<div class="navbar">
     <div class="navbar-left">
-        <a href="#" class="logo">FitBastard</a>
+        <a href="{% url 'welcome' %}" class="main-logo">FITBASTARDS</a>
     </div>
     <div class="navbar-right">
-        {% if request.user.is_authenticated %}
         <div class="menu-icon" id="menu-icon">&#9776;</div>
+        {% if user.is_authenticated %}
         <div class="nav-menu" id="nav-menu">
-            <div id="profile-btn">
-                <a href="{% url 'profile' %}" class="nav-item">Profile</a>
-            </div>
-            <div id="signin-btn">
-                <a href="{% url 'settings' %}" class="nav-item">Settings</a>
-            </div>
             <div id="logout-btn">
                 <a href="{% url 'logout' %}" class="nav-item">Log out</a>
             </div>
-            {% else %}
-            <div class="menu-icon" id="menu-icon">&#9776;</div>
-            <div class="nav-menu" id="nav-menu">
-                <div id="signin-btn">
-                    <a href="{% url 'login' %}" class="nav-item">Sign in</a>
-                </div>
-                <div id="joinus-btn">
-                    <a href="{% url 'signup' %}" class="nav-item">Join us</a>
-                </div>
+            <div id="settings-btn">
+                <a href="{% url 'settings' %}" class="nav-item">Settings</a>
+            </div>
+            <div id="profile-btn">
+                <a href="{% url 'profile' %}" class="nav-item">Profile</a>
             </div>
         </div>
+        {% else %}
+        <div class="nav-menu" id="nav-menu">
+            <div id="signin-btn">
+                <a href="{% url 'login' %}" class="nav-item">Sign in</a>
+            </div>
+            <div id="joinus-btn">
+                <a href="{% url 'signup' %}" class="nav-item">Join us</a>
+            </div>
+        </div>
+        {% endif %}
     </div>
-</nav>
+</div>
