@@ -17,7 +17,6 @@ urlpatterns = [
     path('password-change/done/', CustomPasswordChangeDoneView.as_view(), name='password_change_done'),
 
     # Signin/Signout/Signup/Landing
-    path("", index_view, name="index"),
     path('logout/', logout_endpoint, name='logout'),
     path("login/", CustomLoginView.as_view(), name="login"),
     path('signup/', signup_view, name="signup"),
