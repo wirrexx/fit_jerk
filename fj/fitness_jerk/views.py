@@ -37,14 +37,18 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = "registration/custom_password_reset_complete.html"
 
+
 class CustomPasswordChangeView(PasswordChangeView):
     template_name = "registration/change_password.html"
+
 
 class CustomPasswordChangeDoneView(PasswordChangeDoneView):
     template_name = "registration/change_password_done.html"
 
+
 class CustomLoginView(LoginView):
     template_name = "registration/login.html"
+
 
 ## Signup
 def signup_view(request):
@@ -138,12 +142,26 @@ def settings_view(request):
         'progress': f"{progress:.0f}%"
     } 
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
-    
+
+
+def get_all_replies(path_to_response_file: str) -> list:
+    """Returns content of a file as a list of strings one string per line"""
+    try:
+        with open(path_to_response_file) as f:
+            content = f.readlines()
+    except FileNotFoundError as err:
+        print(err)
+    return content    
+
 
 @login_required
 def workout_finish(request):
     """"""
-    posts_list = ["ok", "done", "OMG", "finally"] #TODO: Store this in a different way/generate GPT
+    posts_list = get_all_replies("templates/tough_responses.txt") #TODO: Store this in a different way/generate GPT
+    # chatterbot: create a response
+    # python: add the response to the db:
+    #   if lenght(created_posts) > 10: delete posts[0]
+    
     user = request.user
     member_info = Members.objects.get(user=user)
     msg = random.choice(posts_list)
