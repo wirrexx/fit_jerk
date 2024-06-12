@@ -49,7 +49,6 @@ body {
     align-items: center;
     position: absolute;
     bottom: 0;
-    z-index: -3;
 }
 
 .copyright {
@@ -637,4 +636,33 @@ button {
 
 
 
+}
+
+/*------------------learn_more/about_us-----------*/
+.about-us-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 5px;
+    width: 50%;
+}
+
+.about-us {
+    font-size: 15px;
+    text-align: left;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .about-us-container {
+        width: 100%;
+        overflow: auto;
+    }
+
+    .about-us {
+        font-size: 14px;
+        text-align: left;
+        color: white;
+    }
 }
