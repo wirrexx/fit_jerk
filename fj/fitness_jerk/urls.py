@@ -16,25 +16,25 @@ urlpatterns = [
     path('password-change/', CustomPasswordChangeView.as_view(), name='password_change'),
     path('password-change/done/', CustomPasswordChangeDoneView.as_view(), name='password_change_done'),
 
+
     # Signin/Signout/Signup/Landing
     path('logout/', logout_endpoint, name='logout'),
     path("login/", CustomLoginView.as_view(), name="login"),
     path('signup/', signup_view, name="signup"),
-    
+
+
     #Training Functions
     path("exercise-loose/", views.weight_loose, name="exercise_loose"),
     path("exercise-tone/", views.tone_down, name="exercise_tone"),
     path("exercise-muscles/", views.build_muscles, name="exercise_muscles"),
 
 
-
     #Main pages
     path('', LandingPage.as_view(), name="welcome"),
     path('about/', AboutPage.as_view(), name="about"),
-
     path("profile/", profile_view, name="profile"),
     path('settings/', settings_view, name='settings'),
     path('finish', workout_finish, name='finish'),
     path('delete', delete_user_func, name='delete'),
- ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+ ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Get rid of that
 
