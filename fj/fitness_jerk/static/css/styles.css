@@ -127,7 +127,7 @@ body {
     width: 320px;
     padding: 10px;
     color: whitesmoke;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .learn-more-btn {
@@ -164,6 +164,11 @@ body {
     }
 
     .about-text {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+        backdrop-filter: blur(10px);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
         bottom: 30%;
         left: 50%;
         transform: translateX(-50%);
@@ -173,11 +178,16 @@ body {
     }
 
     .learn-more-btn {
-        display: block;
-        margin-top: 20px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+        backdrop-filter: blur(10px);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        margin-top: 25px;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
+        outline: none;
     }
 }
 
@@ -644,7 +654,7 @@ button {
     justify-content: center;
     text-align: center;
     margin: 0 auto;
-    padding: 5px;
+    padding: .5rem;
     width: 50%;
 }
 
@@ -656,8 +666,14 @@ button {
 
 @media (max-width: 768px) {
     .about-us-container {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+        backdrop-filter: blur(10px);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
         width: 100%;
         overflow: auto;
+        font-size: 12px;
     }
 
     .about-us {
