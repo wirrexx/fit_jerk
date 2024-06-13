@@ -656,6 +656,7 @@ button {
     margin: 0 auto;
     padding: .5rem;
     width: 50%;
+    margin-top: 1rem;
 }
 
 .about-us {
@@ -674,6 +675,7 @@ button {
         width: 100%;
         overflow: auto;
         font-size: 12px;
+        margin-top: 1rem;
     }
 
     .about-us {
