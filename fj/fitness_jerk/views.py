@@ -1,4 +1,5 @@
 import random
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 from django.urls import reverse_lazy
+from pathlib import Path
 from .forms import FitUserForm, ProfileChangeForm, PictureChangeForm
 from .models import Members, Posts, TrainingSchedule
 
@@ -81,12 +83,6 @@ def logout_endpoint(request):
     logout(request)
     return redirect('/')
 
-#login view
-def login_view(request):
-    pass
-
-def index_view(request):
-    return render(request, "fitness_jerk/index.html")
 
 
 # ------------------------------------- ANA ----------------------------------------
@@ -157,11 +153,9 @@ def get_all_replies(path_to_response_file: str) -> list:
 @login_required
 def workout_finish(request):
     """"""
-    posts_list = get_all_replies("templates/tough_responses.txt") #TODO: Store this in a different way/generate GPT
-    # chatterbot: create a response
-    # python: add the response to the db:
-    #   if lenght(created_posts) > 10: delete posts[0]
-    
+    BASE_DIR = Path(__file__).resolve().parent
+    path_to_response_file = BASE_DIR / "templates/tough_responses.txt" 
+    posts_list = get_all_replies(path_to_response_file) #TODO: Store this in a different way/generate GPT
     user = request.user
     member_info = Members.objects.get(user=user)
     msg = random.choice(posts_list)
@@ -196,15 +190,15 @@ def weight_loose(request):
 def tone_down(request):
     """"""
     exercises = [
-        {'name': 'Push Ups', 'duration': 30},
-        {'name': 'Plank', 'duration': 60},
-        {'name': 'Glute Bridge', 'duration': 30},
-        {'name': 'Jumping Jacks', 'duration': 60},
-        {'name': 'Side Lunges', 'duration': 30},
-        {'name': 'Lunges', 'duration': 30},
-        {'name': 'Chair Squat', 'duration': 30},
-        {'name': 'Sumo Squat Hammer Curl', 'duration': 30},
-        {'name': 'Triceps Extension', 'duration': 30},
+        {'name': 'Push Ups', 'duration': 1},
+        # {'name': 'Plank', 'duration': 60},
+        # {'name': 'Glute Bridge', 'duration': 30},
+        # {'name': 'Jumping Jacks', 'duration': 60},
+        # {'name': 'Side Lunges', 'duration': 30},
+        # {'name': 'Lunges', 'duration': 30},
+        # {'name': 'Chair Squat', 'duration': 30},
+        # {'name': 'Sumo Squat Hammer Curl', 'duration': 30},
+        # {'name': 'Triceps Extension', 'duration': 30},
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_tone.html', {'exercises': exercises, 'training_schedules': training_schedules})
