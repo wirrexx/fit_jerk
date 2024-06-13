@@ -110,6 +110,7 @@
     }
 
     #joinus-btn {
-        border-radius: 8px;
+        border-radius: 12px;
+        padding-inline: 12px;
     }
 }
