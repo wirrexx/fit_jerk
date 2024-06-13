@@ -41,7 +41,7 @@
 #profile-btn {
     background-color: #d19b4e;
     border-radius: 18px;
-    padding: 5px;
+
 }
 
 #joinus-btn a,
@@ -49,6 +49,8 @@
     text-decoration: none;
     color: #fff;
     font-weight: bold;
+    padding-inline: 8px;
+    padding-block: 4px;
 }
 
 .nav-item:hover {
@@ -111,6 +113,7 @@
 
     #joinus-btn {
         border-radius: 12px;
-        padding-inline: 12px;
     }
+
+
 }

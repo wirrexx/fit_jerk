@@ -136,7 +136,7 @@ body {
     outline: 3px solid whitesmoke;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 16px;
     text-align: center;
     z-index: 5;
 }
@@ -148,8 +148,10 @@ body {
 .about-btn {
     position: absolute;
     bottom: 95px;
-    left: 5px;
+    left: 8px;
 }
+
+
 
 @media (max-width: 768px) {
     .landing-page {
@@ -202,7 +204,8 @@ body {
     .about-btn {
         position: relative;
         margin-block-start: auto;
-        margin-bottom: 6.5rem;
+        margin-bottom: 7rem;
+        left: -1px;
     }
 }
 
@@ -532,136 +535,121 @@ button {
 }
 
 
-.join-us {
-    font-size: 16px;
-    text-align: center;
-    margin-top: 20px;
+
+
+/*------------settings/profile---------*/
+.profile {
+    outline: 3px solid limegreen;
+    padding: 10px;
 }
 
-.join-us a {
-    font-size: 16px;
-    color: black;
-    text-decoration: none;
+/*--------------------------Card css------------------------*/
+.workout {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
 
-    :root {
-        --timing: 800ms;
-        --rotation: 20deg;
-    }
+img {
+    max-width: 100%;
 
-    /*------------settings/profile---------*/
-    .profile {
-        outline: 3px solid limegreen;
-        padding: 10px;
-    }
+}
 
-    /*--------------------------Card css------------------------*/
-    .workout {
-        flex-direction: row;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 50px;
-    }
+.muscles {
+    margin: 20px;
+    width: 300px;
+    aspect-ratio: 9 / 12;
+    /* background-image: url("/static/bg_chubby.jpeg"); */
 
-    img {
-        max-width: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: rotate var(--timing) ease;
+}
 
-    }
-
-    .muscles {
-        margin: 20px;
-        width: 300px;
-        aspect-ratio: 9 / 12;
-        /* background-image: url("/static/bg_chubby.jpeg"); */
-
-        position: relative;
-        transform-style: preserve-3d;
-        transition: rotate var(--timing) ease;
-    }
-
-    .muscles:hover {
-        rotate: x var(--rotation);
-    }
+.muscles:hover {
+    rotate: x var(--rotation);
+}
 
 
-    .muscles::before {
-        border-radius: 20px;
-        content: '';
-        position: absolute;
-        inset: 0;
-        /* background: limegreen; */
-        z-index: 100;
-        background-image: radial-gradient(circle, transparent 50px, black);
-        opacity: 0;
-        transition: opacity var(--timing);
-    }
+.muscles::before {
+    border-radius: 20px;
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* background: limegreen; */
+    z-index: 100;
+    background-image: radial-gradient(circle, transparent 50px, black);
+    opacity: 0;
+    transition: opacity var(--timing);
+}
 
-    .muscles:hover::before {
-        opacity: 1;
-    }
+.muscles:hover::before {
+    opacity: 1;
+}
 
-    .muscles::after {
-        content: "";
-        position: absolute;
-        inset: 80% 1.5rem 1.5rem;
-        translate: 0;
-        transform: translateZ(-100px);
-        background: #d19b4e;
-        filter: blur(1rem);
-        z-index: 1;
-        transition: translate var(--timing);
-    }
+.muscles::after {
+    content: "";
+    position: absolute;
+    inset: 80% 1.5rem 1.5rem;
+    translate: 0;
+    transform: translateZ(-100px);
+    background: #d19b4e;
+    filter: blur(1rem);
+    z-index: 1;
+    transition: translate var(--timing);
+}
 
-    .muscles:hover::after {
-        rotate: x calc(var(--rotation)) * -1;
-        translate: 0 40px;
-    }
+.muscles:hover::after {
+    rotate: x calc(var(--rotation)) * -1;
+    translate: 0 40px;
+}
 
-    .bg-muscles {
-        border-radius: 20px;
-        position: absolute;
-        z-index: 10;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-    }
+.bg-muscles {
+    border-radius: 20px;
+    position: absolute;
+    z-index: 10;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
 
-    .logo,
-    .front-image {
-        position: absolute;
-    }
+.logo,
+.front-image {
+    position: absolute;
+}
 
-    .logo {
-        z-index: 1000;
-        filter: invert(0);
-        width: 70%;
-        margin-inline: auto;
-        /* transform: translateY(0rem) translateZ(20px); */
-        inset: auto 0 2rem;
-        transition: var(--timing);
-    }
+.logo {
+    z-index: 1000;
+    filter: invert(0);
+    width: 70%;
+    margin-inline: auto;
+    /* transform: translateY(0rem) translateZ(20px); */
+    inset: auto 0 2rem;
+    transition: var(--timing);
+}
 
-    /* .youda:hover .logo {
+/* .youda:hover .logo {
     transform: translateY(-2rem) translateZ(20px);
     rotate: x -30deg;
 } */
 
-    .front-image {
-        scale: 1.5;
-        transform-origin: center;
-        opacity: 0;
-        z-index: 100;
-        transition: var(--timing);
-        rotate: x -25;
-    }
-
-    .muscles:hover .front-image {
-        opacity: 1;
-        /* transform: translateY(-2rem) translateZ(-10px); */
-    }
-
-
-
+.front-image {
+    scale: 1.5;
+    transform-origin: center;
+    opacity: 0;
+    z-index: 100;
+    transition: var(--timing);
+    rotate: x -25;
 }
+
+.muscles:hover .front-image {
+    opacity: 1;
+    /* transform: translateY(-2rem) translateZ(-10px); */
+}
+
+
+
 
 /*------------------learn_more/about_us-----------*/
 .about-us-container {
@@ -681,6 +669,28 @@ button {
 }
 
 @media (max-width: 768px) {
+    .about-us-container {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+        backdrop-filter: blur(10px);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        width: 100%;
+        overflow: auto;
+        font-size: 12px;
+        margin-top: 1rem;
+        z-index: 1;
+    }
+
+    .about-us {
+        font-size: 14px;
+        text-align: left;
+        color: white;
+        z-index: 1;
+    }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
     .about-us-container {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
         backdrop-filter: blur(10px);
