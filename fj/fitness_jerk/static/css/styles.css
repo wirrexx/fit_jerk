@@ -78,9 +78,9 @@ body {
 
 .landing-page {
     position: absolute;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     width: 40%;
     z-index: 0;
     display: flex;
@@ -143,6 +143,12 @@ body {
 
 .learn-more-btn:hover {
     color: #292929;
+}
+
+.about-btn {
+    position: absolute;
+    bottom: 95px;
+    left: 5px;
 }
 
 @media (max-width: 768px) {
