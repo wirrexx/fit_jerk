@@ -2,78 +2,70 @@
 {% load static %}
 
 {% block title %}User Profile{% endblock %}
+
 {% block content %}
-
-
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
 
 {% for message in messages %}
 <p class="message">{{ message }}</p>
 {% endfor %}
-<div class="profile">
-    {% if user.profile.image %}
-    <img src="{{member.image.url}}" alt="profile-image" style="width: 150px;">
-    {% endif %}
-    <h1>{{user.username}}</h1>
-    <p>Height: {{ user.members.height }} m</p>
-    <p>Weight: {{ user.members.weight }} kg</p>
-    <p>BMI: {{ BMI }}</p>
-</div>
-
-
-<div class="member-progress">
-    <h2>PROGRESS</h2>
-    <div class="progress-bar">
-        <div class="progress" style="--width: {{ progress }};"><span>{{ progress }}</span></div>
-    </div>
-</div>
-
-
-<div class="post">
-    {% for post in posts %}
-    <li>{{ post.post }}</li>
-    {% endfor %}
-</div>
-<div class="workout">
-    <!-- <d class="weight">
-            <div class="wo1"><a href="{% url 'exercise_loose' %}"><img src="{% static 'LOOSE.png' %}" alt=""></a></div>
-        </d>
-        <div class="tone">
-            <div class="wo2"><a href="{% url 'exercise_tone' %}"><img src="{% static 'TONE.png' %}" alt=""></a></div>
-        </div> -->
-    <!-- <div class="muscles">
-            <div class="wo3"><a href="{% url 'exercise_muscles' %}"><img src="{% static 'MUSCLE.png' %}" alt=""></a>
+<div class="row">
+    <div class="rightcolumn">
+        <div class="intro">
+            <div class="post">
+                <h1>Hello</h1><h1 style="text-transform: capitalize;">{{user.username}}</h1><br>
+                <p>{{ posts.post }}</p>
+                
             </div>
-        </div> -->
-    <div class="muscles">
-        <a href="{% url 'exercise_muscles' %}">
-            <img class="logo" src="{% static 't_build_muscles.png' %}" alt="">
-            <img class="front-image" src="{% static 'fg_muscles.png' %}" alt="">
-            <img class="bg-muscles" src="{% static 'bg_chubby.jpeg' %}" alt="">
-        </a>
+            <div class="profile">
+                <h3 style="text-align: left; margin-bottom: 10px;">Profile</h3>
+                <div class="profile_pic">
+                    {% if user.members.image %}
+                    <img src="{{member.image.url}}" alt="profile-image">
+                    {% endif %}
+                </div>
+                <hr>
+                <div class="details">
+                    <div class="height" style="padding: 10px;"><p>{{ user.members.height }} m<br></p><p style="color: rgb(170, 167, 167);">Height</p></div>
+                    <div class="weight" style="padding: 10px;"><p>{{ user.members.weight }} kg<br></p><p style="color: rgb(170, 167, 167);">Current<br>Weight</p></div>
+                    <div class="bmi" style="padding: 10px;"><p>{{ BMI }}<br></p><p style="color: rgb(170, 167, 167);">Current<br>BMI</p></div>
+                    <div class="progress_workouts" style="padding: 10px;"><p>{{ user.members.progress }}<br></p><p style="color: rgb(170, 167, 167);">Current<br>Workouts</p></div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="leftcolumn">
+        <div class="member-progress">
+            <h2>{{ level }}</h2>
+            <div class="progress-bar">
+                <div class="progress" style="--width: {{ progress }};"><span>{{ progress }}</span></div>
+            </div>
+        </div>
+        <div class="workout">
+            <h3 style="margin-top: 15px; margin-left: 15px;">Workouts</h3>
+            <div class="muscles">
+                <a href="{% url 'exercise_muscles' %}">
+                    <img class="logo" src="{% static 't_build_muscles.png' %}" alt="">
+                    <img class="front-image" src="" alt="">
+                    <img class="bg-muscles" src="{% static 'fitpeople.jpg' %}" alt="">
+                </a>
+            </div>
+            <div class="muscles">
+                <a href="{% url 'exercise_loose' %}">
+                    <img class="logo" src="{% static 't_weight_loss.png' %}" alt="">
+                    <img class="front-image" src="" alt="">
+                    <img class="bg-muscles" src="{% static 'fitpeople.jpg' %}" alt="">
+                </a>
+            </div>
 
-    <div class="muscles">
-        <a href="{% url 'exercise_loose' %}">
-            <img class="logo" src="{% static 't_weight_loss.png' %}" alt="">
-            <img class="front-image" src="{% static 'fg_tone.png' %}" alt="">
-            <img class="bg-muscles" src="{% static 'bg_chubby.jpeg' %}" alt="">
-        </a>
+            <div class="muscles">
+                <a href="{% url 'exercise_tone' %}">
+                    <img class="logo" src="{% static 't_tone_down.png' %}" alt="">
+                    <img class="front-image" src="" alt="">
+                    <img class="bg-muscles" src="{% static 'fitpeople.jpg' %}" alt="">
+                </a>
+            </div>
+        </div>
     </div>
-
-    <div class="muscles">
-        <a href="{% url 'exercise_tone' %}">
-            <img class="logo" src="{% static 't_tone_down.png' %}" alt="">
-            <img class="front-image" src="{% static 'fg_tone.png' %}" alt="">
-            <img class="bg-muscles" src="{% static 'bg_chubby.jpeg' %}" alt="">
-        </a>
-    </div>
-
-
-
-
 </div>
-</div>
-<script src="{% static 'navbar_js.js' %}"></script>
+
 {% endblock %}

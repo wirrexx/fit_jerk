@@ -5,50 +5,55 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0px;
+/* Apply box-sizing and global reset */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    perspective: 1500px;
+    margin: 0;
+    padding: 0;
     font-family: 'Inter', sans-serif;
     text-decoration: none;
 }
 
 html,
 body {
-    height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2px;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center; 
+    padding: 2px; 
     background-image: linear-gradient(rgba(4, 30, 42, 1), rgb(30, 3, 14, .50));
     background-repeat: no-repeat;
+    color: rgba(255, 255, 255, 1);
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 
 .container {
     display: flex;
     align-content: center;
-    height: 90%;
-    width: 90%;
-    flex-direction: column;
-    position: relative;
-}
+    height: 100%;
+    flex-direction: column; 
+    margin: auto;
+    padding: 20px;
+   
+} 
 
-.footer {
-    background: whitesmoke;
-    height: 100px;
+footer {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
+    text-align: center;
+    padding: 10px; 
+    background: whitesmoke;
+    height: 40px;
+    position: relative;
 }
 
 .copyright {
@@ -182,10 +187,87 @@ body {
 }
 
 
-/*------------settings/profile---------*/
+/*------------profile page---------*/
+    
+/* Flex container for the intro section */
+.row{
+    display: flex;
+    padding: 5px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.leftcolumn {   
+    float:left;
+    
+   
+   
+}
+  
+.rightcolumn {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: fit-content;
+    padding: 5px;
+    border-color:#cccccc00;
+    border-style: solid;
+    border-radius: 10px;
+    margin-right: 10px;
+    align-items: center;
+    text-align: center;
+    
+} 
+
+.centercolumn {
+    text-transform: uppercase; /* Make the text uppercase */
+    text-align: center;
+    font-size: calc(0.5em + 1vw);
+
+}
+
+/* Clear floats after the columns */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+} 
+
 .profile {
-    outline: 3px solid limegreen;
+    background-color: #2929294f;
+    border-radius: 30px;
+    padding: 30px;
+}
+  
+.profile_pic img {
+    width: 150px;
+    height: 150px; /* Ensure the image is square */
+    border-radius: 15px; /* Make the image round */
+    object-fit: cover; /* Ensure the image covers the dimensions without distortion */
+}
+
+
+.details {
+    display: flex;
     padding: 10px;
+    margin-bottom: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: center;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.post {
+    width: 100%;
+    padding: 50px;
+    margin-bottom: 50px;
+    background-color: #2929294f;
+    border-radius: 30px;
+    height: fit-content;
+    align-content: center;
+    text-align: center;
 }
 
 #id_height,
@@ -197,29 +279,42 @@ input[type="submit"] {
     color: black;
 }
 
-/*-----------user/profile-------------*/
+.message {
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    color: #3c763d;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    animation: message 2s forwards;
+}
 
+@keyframes message {
+    100% {
+        display: none;
+    }
+}
 
-
-/*--------------------------Card css------------------------*/
 .workout {
     flex-direction: row;
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
+    background-color: #2929294f;
+    border-radius: 30px;
+    
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
 
 }
 
+
 .muscles {
     margin: 20px;
+    margin-top: 40px;
     width: 300px;
     aspect-ratio: 9 / 12;
-    /* background-image: url("/static/bg_chubby.jpeg"); */
-
     position: relative;
     transform-style: preserve-3d;
     transition: rotate var(--timing) ease;
@@ -280,7 +375,7 @@ img {
 .logo {
     z-index: 1000;
     filter: invert(0);
-    width: 70%;
+    width: 100%;
     margin-inline: auto;
     /* transform: translateY(0rem) translateZ(20px); */
     inset: auto 0 2rem;
@@ -302,60 +397,39 @@ img {
     /* transform: translateY(-2rem) translateZ(-10px); */
 }
 
-/*--------------------------Card css------------------------*/
+/*Progress Bar*/
 
-
-/*------------------------Progress Bar--------------------*/
-
-.message {
-    background-color: #dff0d8;
-    border: 1px solid #d6e9c6;
-    color: #3c763d;
-    padding: 10px;
-    margin-bottom: 10px;
-    position: relative;
-    animation: message 2s forwards;
-}
-
-@keyframes message {
-    100% {
-        display: none;
-    }
-}
-
-
-.profile {
-    padding: 10px;
-}
-
-.member-progress {
+.member-progress { 
     display: block;
-    margin: auto;
-    width: fit-content;
-
+    width: 50%;
+    height: 100px;
+    text-align: left;
+    background-color: #2929294f;
+    border-radius: 30px;
+    padding: 15px;
+    margin-bottom: 20px;
 
 }
 
 .member-progress h2 {
     letter-spacing: 1px;
-    margin-top: 40px;
-    margin-bottom: 15px;
-    margin-left: 15px;
+    margin-bottom: 20px;
+    margin-left: 10px;
     color: #ffffff;
     font-size: 16px;
 
 }
 
 .progress-bar {
-    background: #959595;
-    width: 600px;
-    height: 10px;
+    background: white;
+    width: 100%;
+    height: 25px;
     border-radius: 5px;
-    margin-left: 15px;
+    
 }
 
 .progress-bar div {
-    height: 10px;
+    height: 25px;
     border-radius: 5px;
     width: 0%;
 
@@ -367,7 +441,7 @@ img {
     border-radius: 50%;
     background: #fff;
     float: right;
-    margin-top: -15px;
+    margin-top: -10px;
     margin-right: -30px;
     margin-left: 30px;
     color: #959595;
@@ -404,6 +478,10 @@ img {
         margin-right: auto;
     }
 }
+
+
+
+
 
 /*--------------------Login-------------------*/
 
@@ -522,121 +600,25 @@ button {
         --timing: 800ms;
         --rotation: 20deg;
     }
-
-    /*------------settings/profile---------*/
-    .profile {
-        outline: 3px solid limegreen;
-        padding: 10px;
-    }
-
-    /*--------------------------Card css------------------------*/
-    .workout {
-        flex-direction: row;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 50px;
-    }
-
-    img {
-        max-width: 100%;
-
-    }
-
-    .muscles {
-        margin: 20px;
-        width: 300px;
-        aspect-ratio: 9 / 12;
-        /* background-image: url("/static/bg_chubby.jpeg"); */
-
-        position: relative;
-        transform-style: preserve-3d;
-        transition: rotate var(--timing) ease;
-    }
-
-    .muscles:hover {
-        rotate: x var(--rotation);
-    }
-
-
-    .muscles::before {
-        border-radius: 20px;
-        content: '';
-        position: absolute;
-        inset: 0;
-        /* background: limegreen; */
-        z-index: 100;
-        background-image: radial-gradient(circle, transparent 50px, black);
-        opacity: 0;
-        transition: opacity var(--timing);
-    }
-
-    .muscles:hover::before {
-        opacity: 1;
-    }
-
-    .muscles::after {
-        content: "";
-        position: absolute;
-        inset: 80% 1.5rem 1.5rem;
-        translate: 0;
-        transform: translateZ(-100px);
-        background: #d19b4e;
-        filter: blur(1rem);
-        z-index: 1;
-        transition: translate var(--timing);
-    }
-
-    .muscles:hover::after {
-        rotate: x calc(var(--rotation)) * -1;
-        translate: 0 40px;
-    }
-
-    .bg-muscles {
-        border-radius: 20px;
-        position: absolute;
-        z-index: 10;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-    }
-
-    .logo,
-    .front-image {
-        position: absolute;
-    }
-
-    .logo {
-        z-index: 1000;
-        filter: invert(0);
-        width: 70%;
-        margin-inline: auto;
-        /* transform: translateY(0rem) translateZ(20px); */
-        inset: auto 0 2rem;
-        transition: var(--timing);
-    }
-
-    /* .youda:hover .logo {
-    transform: translateY(-2rem) translateZ(20px);
-    rotate: x -30deg;
-} */
-
-    .front-image {
-        scale: 1.5;
-        transform-origin: center;
-        opacity: 0;
-        z-index: 100;
-        transition: var(--timing);
-        rotate: x -25;
-    }
-
-    .muscles:hover .front-image {
-        opacity: 1;
-        /* transform: translateY(-2rem) translateZ(-10px); */
-    }
-
-
-
 }
+
+/*------------settings---------------------*/
+
+.profile_settings {
+    background-color: #2929294f;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.profile_settings a {
+    text-decoration: none;
+    color:rgba(4, 30, 42, 1)
+}
+
+#image-clear_id, label{
+    display: none;
+}
+    
 
 /*------------------learn_more/about_us-----------*/
 .about-us-container {
