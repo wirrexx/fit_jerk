@@ -16,6 +16,7 @@
 
 html,
 body {
+    width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -30,24 +31,31 @@ body {
     background-repeat: no-repeat;
 }
 
+body h1 {
+    font-size: 2em;
+}
+
+body p {
+    font-size: 1em;
+}
+
 
 .container {
     display: flex;
     align-content: center;
-    height: 90%;
-    width: 90%;
-    flex-direction: column;
+    height: 100%;
+    width: 100%;
     position: relative;
 }
 
 .footer {
-    background: whitesmoke;
-    height: 100px;
-    width: 100%;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    background: whitesmoke;
+    height: 60px;
+    width: 100%;
     bottom: 0;
     z-index: -1;
 }
@@ -68,146 +76,95 @@ body {
 /*------------Landing Page ------------*/
 .image-container {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-}
-
-.landing-page {
-    position: absolute;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    width: 40%;
+    height: 85vh;
+    /* Full viewport height */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
-
-
 }
+
 
 .outer-box {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
+    width: 30%;
     aspect-ratio: 1;
     outline: 25px solid #d19b4e;
     transform: rotate(-20deg);
     border-radius: 30px;
-    z-index: 0;
+    position: relative;
+    z-index: 1;
+    top: 5%;
+    /* Ensure it is behind the landing page */
 }
 
 
-.land-text {
+.landing-page {
     position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%;
+}
+
+.h1 {
+    position: absolute;
+    font-size: 10vw;
+    color: whitesmoke;
+    z-index: 1;
+    font-weight: 700;
+    margin-top: 15%;
+}
+
+.h1 p {
+    position: absolute;
+    width: 320px;
+    font-size: 1rem;
+    padding-left: .5rem;
+}
+
+.join-us-btn {
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 5vw;
-    z-index: 2;
+    color: whitesmoke;
+    background: #d19b4e;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 16px;
     text-align: center;
-    color: whitesmoke;
+    font-size: .8rem;
+    margin-left: .5rem;
+    width: 128px;
+    margin-top: 1rem;
 }
 
-
-.about-text {
-    position: absolute;
-    font-weight: bold;
-    bottom: 180px;
-    left: 0;
-    height: 8rem;
-    width: 320px;
-    padding: 10px;
-    color: whitesmoke;
-    font-size: 16px;
+.join-us-btn:hover {
+    color: #292929;
 }
+
 
 .learn-more-btn {
-    display: inline-block;
-    margin-top: 20px;
+    display: flex;
+    justify-content: center;
     color: whitesmoke;
     outline: 3px solid whitesmoke;
     padding: 10px 20px;
     border: none;
     border-radius: 16px;
     text-align: center;
-    z-index: 5;
+    font-size: .8rem;
+    margin-left: .5rem;
+    width: 128px;
+    margin-top: 6rem;
 }
 
 .learn-more-btn:hover {
     color: #292929;
 }
 
-.about-btn {
-    position: absolute;
-    bottom: 95px;
-    left: 8px;
-}
-
-
-
-@media (max-width: 768px) {
-    .landing-page {
-        width: 100%;
-        z-index: 0;
-    }
-
-    .outer-box {
-        width: 70%;
-        outline: 12px solid #d19b4e;
-        z-index: -1;
-    }
-
-    .land-text {
-        font-size: 6vw;
-    }
-
-    .quote-small {
-        margin-top: 5%;
-    }
-
-    .about-text {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-        backdrop-filter: blur(10px);
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-        bottom: 30%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 70%;
-        /* Adjust width for smaller screens */
-        text-align: center;
-    }
-
-    .learn-more-btn {
-        position: relative;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-        backdrop-filter: blur(10px);
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-        margin-top: 25px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        outline: none;
-    }
-
-    .about-btn {
-        position: relative;
-        margin-block-start: auto;
-        margin-bottom: 7rem;
-        left: -1px;
-    }
-}
 
 
 /*------------settings/profile---------*/
@@ -330,7 +287,6 @@ img {
     /* transform: translateY(-2rem) translateZ(-10px); */
 }
 
-/*--------------------------Card css------------------------*/
 
 
 /*------------------------Progress Bar--------------------*/
@@ -435,23 +391,31 @@ img {
 
 /*--------------------Login-------------------*/
 
+.login-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    margin-top: 50px;
+    overflow: hidden;
+}
+
 .quote-small {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
     color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 
 .quote-text {
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: 700;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
     margin: 20px;
     line-height: 1;
@@ -461,7 +425,6 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
 }
 
 .login-box {
@@ -488,9 +451,11 @@ input[type="email"] {
 }
 
 input[type="text"]::placeholder,
-input[type="password"]::placeholder {
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
     color: #292929;
 }
+
 
 .login-btn {
     display: flex;
@@ -688,26 +653,31 @@ img {
         color: white;
         z-index: 1;
     }
-}
 
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
-    .about-us-container {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-        backdrop-filter: blur(10px);
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-        width: 100%;
-        overflow: auto;
-        font-size: 12px;
-        margin-top: 1rem;
-        z-index: 1;
+    .copyright {
+        display: flex;
+        align-items: center;
     }
 
-    .about-us {
-        font-size: 14px;
-        text-align: left;
-        color: white;
-        z-index: 1;
+    @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+        .about-us-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            width: 100%;
+            overflow: auto;
+            font-size: 12px;
+            margin-top: 1rem;
+            z-index: 1;
+        }
+
+        .about-us {
+            font-size: 14px;
+            text-align: left;
+            color: white;
+            z-index: 1;
+        }
     }
 }

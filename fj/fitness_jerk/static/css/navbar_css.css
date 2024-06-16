@@ -2,18 +2,15 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+    align-content: center;
+    padding: 1rem;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
     color: white;
-}
+    background: transparent;
 
-.navbar-left {
-    display: flex;
-    align-items: center;
 }
 
 .navbar-left .main-logo {
@@ -24,14 +21,12 @@
 }
 
 .navbar-right {
-    display: flex;
-    align-items: center;
+    align-content: center;
     justify-content: space-evenly;
 }
 
 .nav-item {
     color: white;
-    font-size: 16px;
     text-decoration: none;
     transition: color 0.3s;
     margin: 12px;
@@ -49,7 +44,6 @@
     text-decoration: none;
     color: #fff;
     font-weight: bold;
-    padding-inline: 8px;
     padding-block: 4px;
 }
 
