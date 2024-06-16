@@ -1,35 +1,31 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}base{% endblock %}</title>
     <script src="{% static 'timer_js.js' %}"></script>
+    <script src="{% static 'navbar_js.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
     {% endblock %}
 </head>
-
 <body>
-    <div class="navbar">
+    <header class="navbar">
         {% include 'fitness_jerk/navbar_profile.html' %}
-    </div>
-    <div class="container">
+    </header>
+    <main class="container">
         {% block content %}
         {% endblock %}
-    </div>
-    <div class="footer">
+    </main>
+    <footer>
         <p class="copyright">
             © 2024-2024 FITNESS software that rocks!
             <a href="#">Impressum</a>
             <a href="#">Datenschutz</a>
         </p>
-    </div>
-
+    </footer>
 </body>
-
 </html>

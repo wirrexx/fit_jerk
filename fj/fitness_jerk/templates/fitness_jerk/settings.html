@@ -5,17 +5,17 @@
 {% block content %}
 
 
-<div class="profile">
+<div class="profile_settings">
     <form action="" method=POST enctype="multipart/form-data">
         {% if context.member.image %}
-        <img src="{{context.member.image.url}}" alt="profile-image" style="width: 150px;">
+        <img src="{{context.member.image.url}}" alt="profile-image" style="width: 300px;">
         {% endif %}
-        <p>Username: {{ context.member.username }}</p>
+        <p>Username: {{ user.username }}</p>
         {% csrf_token %}
         {{ profile_form.as_p }}
         <br>
         <p>BMI: {{ context.BMI }}</p>
-        <p>Progress: {{ context.progress }}</p><br>
+        <p>Workouts: {{ context.member.progress }}</p><br>
         {% csrf_token %}
         {{ profile_pic.as_p }}
         <br><br>

@@ -20,6 +20,7 @@ class PictureChangeForm(UserChangeForm):
     class Meta:
         model = Members
         fields = ['image']
+    
 
 
 class FitUserForm(forms.Form):

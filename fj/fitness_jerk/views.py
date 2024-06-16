@@ -15,6 +15,7 @@ from django.urls import reverse_lazy
 from pathlib import Path
 from .forms import FitUserForm, ProfileChangeForm, PictureChangeForm
 from .models import Members, Posts, TrainingSchedule
+from pathlib import Path
 
 
 # Create your views here.
@@ -98,21 +99,42 @@ def delete_user_func(request):
     return render(request, "fitness_jerk/delete.html", {'member': username})
 
 
-#TODO FIGURE IT OUT HOW TO ACCESS AND RETRIEVE INFO
 @login_required
 def profile_view(request):
     user = request.user
     member_info = Members.objects.get(user=user)
-    member_posts = Posts.objects.filter(member=member_info)
-    progress = member_info.progress/10*100
+    member_posts = Posts.objects.filter(member=member_info).last()
     BMI = user.members.bmi
+
     if BMI == 0:
         BMI = "Please complete your profile"
+
+    if member_info.progress < 50:
+        level = "Newbie Bastard"
+        progress = member_info.progress/50*100
+
+    elif 50 <= member_info.progress < 100:
+        level = "Fit Bastard"
+        progress = (member_info.progress-50)/50*100
+
+    elif 100 <= member_info.progress < 150:
+        level = "Master Bastard"
+        progress = (member_info.progress-100)/50*100
+
+    elif 150 <= member_info.progress < 200:
+        level = "Supreme Bastard"
+        progress = (member_info.progress-150)/50*100
+
+    elif 200 <= member_info.progress < 250:
+        level = "God Bastard"
+        progress = (member_info.progress-200)/50*100
+
     context = {
         'member': member_info,
         'BMI': BMI,
         'progress': f"{progress:.0f}%",
-        'posts': member_posts
+        'posts': member_posts,
+        'level': level
     }
     return render(request, 'fitness_jerk/profile.html', context)
 
@@ -121,7 +143,6 @@ def settings_view(request):
     """settings page where member can update and delete account"""
     user = request.user
     member_info = Members.objects.get(user=user)
-    progress = member_info.progress/10*100
     profile_form = ProfileChangeForm(request.POST or None, instance=member_info)
     profile_pic = PictureChangeForm(request.POST or None, request.FILES, instance=member_info)
     if profile_form.is_valid() and profile_pic.is_valid():
@@ -132,10 +153,10 @@ def settings_view(request):
     BMI = user.members.bmi
     if BMI == 0:
         BMI = "Please complete your profile"
+    
     context = {
         'member': member_info,
         'BMI': BMI,
-        'progress': f"{progress:.0f}%"
     } 
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
 
@@ -153,7 +174,7 @@ def get_all_replies(path_to_response_file: str) -> list:
 @login_required
 def workout_finish(request):
     """"""
-    BASE_DIR = Path(__file__).resolve().parent
+    BASE_DIR = Path(__file__).resolve().parent 
     path_to_response_file = BASE_DIR / "templates/tough_responses.txt" 
     posts_list = get_all_replies(path_to_response_file) #TODO: Store this in a different way/generate GPT
     user = request.user
@@ -209,15 +230,15 @@ def tone_down(request):
 def build_muscles(request):
     """"""
     exercises = [
-        {'name': 'Overhead Crunch', 'duration': 30},
-        {'name': 'Pistol Squat', 'duration': 30},
-        {'name': 'Dips', 'duration': 30},
-        {'name': 'Sit Ups', 'duration': 30},
-        {'name': 'Burpees', 'duration': 30},
-        {'name': 'Mountain Climbers', 'duration': 30},
-        {'name': 'Bench Dips', 'duration': 30},
-        {'name': 'Push Ups', 'duration': 30},
-        {'name': 'Plank', 'duration': 60},
+        {'name': 'Overhead Crunch', 'duration': 5},
+        # {'name': 'Pistol Squat', 'duration': 30},
+        # {'name': 'Dips', 'duration': 30},
+        # {'name': 'Sit Ups', 'duration': 30},
+        # {'name': 'Burpees', 'duration': 30},
+        # {'name': 'Mountain Climbers', 'duration': 30},
+        # {'name': 'Bench Dips', 'duration': 30},
+        # {'name': 'Push Ups', 'duration': 30},
+        # {'name': 'Plank', 'duration': 60},
         
 
     ]
