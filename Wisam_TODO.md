@@ -36,3 +36,8 @@ Man and Woman
 0. Slide out
 1. Button layout
 2. responsive
+
+## profile setting
+0. Copy paste anas code
+1. css 
+2. settings

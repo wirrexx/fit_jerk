@@ -81,7 +81,6 @@ body p {
     position: relative;
     width: 100%;
     height: 85vh;
-    /* Full viewport height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,7 +96,6 @@ body p {
     position: relative;
     z-index: 1;
     top: 5%;
-    /* Ensure it is behind the landing page */
 }
 
 
@@ -170,7 +168,54 @@ body p {
 
 
 
-/*------------settings/profile---------*/
+/*------------Anas Changes profile---------*/
+/*------------profile page---------*/
+
+/* Flex container for the intro section */
+.row {
+    display: flex;
+    padding: 5px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.leftcolumn {
+    float: left;
+
+
+
+}
+
+.rightcolumn {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: fit-content;
+    padding: 5px;
+    border-color: #cccccc00;
+    border-style: solid;
+    border-radius: 10px;
+    margin-right: 10px;
+    align-items: center;
+    text-align: center;
+
+}
+
+.centercolumn {
+    text-transform: uppercase;
+    /* Make the text uppercase */
+    text-align: center;
+    font-size: calc(0.5em + 1vw);
+
+}
+
+/* Clear floats after the columns */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .profile {
     background-color: #2929294f;
     border-radius: 30px;
@@ -338,30 +383,7 @@ img {
     /* transform: translateY(-2rem) translateZ(-10px); */
 }
 
-
-
-/*------------------------Progress Bar--------------------*/
-
-.message {
-    background-color: #dff0d8;
-    border: 1px solid #d6e9c6;
-    color: #3c763d;
-    padding: 10px;
-    margin-bottom: 10px;
-    position: relative;
-    animation: message 2s forwards;
-}
-
-@keyframes message {
-    100% {
-        display: none;
-    }
-}
-
-
-.profile {
-    padding: 10px;
-}
+/*Progress Bar*/
 
 .member-progress {
     display: block;
@@ -443,6 +465,24 @@ img {
     }
 }
 
+/*------------settings---------------------*/
+
+.profile_settings {
+    background-color: #2929294f;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.profile_settings a {
+    text-decoration: none;
+    color: rgba(4, 30, 42, 1)
+}
+
+#image-clear_id,
+label {
+    display: none;
+}
+
 
 
 
@@ -457,7 +497,7 @@ img {
     width: 100%;
     height: 100%;
     z-index: 0;
-    margin-top: 50px;
+    margin-top: 80px;
     overflow: hidden;
 }
 
@@ -558,33 +598,138 @@ button {
 }
 
 
+/*------------profile page---------*/
 
-
-/*------------settings/profile---------*/
-.profile {
-    outline: 3px solid limegreen;
-    padding: 10px;
+/* Flex container for the intro section */
+.row {
+    display: flex;
+    padding: 5px;
+    flex-direction: row;
+    align-items: center;
 }
 
-/*--------------------------Card css------------------------*/
+.leftcolumn {
+    float: left;
+
+
+
+}
+
+.rightcolumn {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: fit-content;
+    padding: 5px;
+    border-color: #cccccc00;
+    border-style: solid;
+    border-radius: 10px;
+    margin-right: 10px;
+    align-items: center;
+    text-align: center;
+
+}
+
+.centercolumn {
+    text-transform: uppercase;
+    /* Make the text uppercase */
+    text-align: center;
+    font-size: calc(0.5em + 1vw);
+
+}
+
+/* Clear floats after the columns */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.profile {
+    background-color: #2929294f;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.profile_pic img {
+    width: 150px;
+    height: 150px;
+    /* Ensure the image is square */
+    border-radius: 15px;
+    /* Make the image round */
+    object-fit: cover;
+    /* Ensure the image covers the dimensions without distortion */
+}
+
+
+.details {
+    display: flex;
+    padding: 10px;
+    margin-bottom: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: center;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.post {
+    width: 100%;
+    padding: 50px;
+    margin-bottom: 50px;
+    background-color: #2929294f;
+    border-radius: 30px;
+    height: fit-content;
+    align-content: center;
+    text-align: center;
+}
+
+#id_height,
+#id_weight {
+    color: black;
+}
+
+input[type="submit"] {
+    color: black;
+}
+
+.message {
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    color: #3c763d;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    animation: message 2s forwards;
+}
+
+@keyframes message {
+    100% {
+        display: none;
+    }
+}
+
 .workout {
     flex-direction: row;
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
+    background-color: #2929294f;
+    border-radius: 30px;
+
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
 
 }
 
+
 .muscles {
     margin: 20px;
+    margin-top: 40px;
     width: 300px;
     aspect-ratio: 9 / 12;
-    /* background-image: url("/static/bg_chubby.jpeg"); */
-
     position: relative;
     transform-style: preserve-3d;
     transition: rotate var(--timing) ease;
@@ -645,17 +790,13 @@ img {
 .logo {
     z-index: 1000;
     filter: invert(0);
-    width: 70%;
+    width: 100%;
     margin-inline: auto;
     /* transform: translateY(0rem) translateZ(20px); */
     inset: auto 0 2rem;
     transition: var(--timing);
 }
 
-/* .youda:hover .logo {
-    transform: translateY(-2rem) translateZ(20px);
-    rotate: x -30deg;
-} */
 
 .front-image {
     scale: 1.5;
@@ -663,7 +804,7 @@ img {
     opacity: 0;
     z-index: 100;
     transition: var(--timing);
-    rotate: x -25;
+    rotate: x -35deg;
 }
 
 .muscles:hover .front-image {
@@ -671,8 +812,106 @@ img {
     /* transform: translateY(-2rem) translateZ(-10px); */
 }
 
+/*Progress Bar*/
+
+.member-progress {
+    display: block;
+    width: 50%;
+    height: 100px;
+    text-align: left;
+    background-color: #2929294f;
+    border-radius: 30px;
+    padding: 15px;
+    margin-bottom: 20px;
+
+}
+
+.member-progress h2 {
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    color: #ffffff;
+    font-size: 16px;
+
+}
+
+.progress-bar {
+    background: white;
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+
+}
+
+.progress-bar div {
+    height: 25px;
+    border-radius: 5px;
+    width: 0%;
+
+}
+
+.progress-bar div span {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: #fff;
+    float: right;
+    margin-top: -10px;
+    margin-right: -30px;
+    margin-left: 30px;
+    color: #959595;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(100, 248, 1);
+
+}
+
+.progress {
+
+    background: rgb(100, 248, 1);
+    animation: progress 1s linear forwards;
+}
+
+@keyframes progress {
+    100% {
+        width: var(--width);
+    }
+}
 
 
+@media (max-width: 768px) {
+    .progress-bar {
+        width: 100%;
+        /* Adjust width for smaller screens */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .progress-bar div span {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/*------------settings---------------------*/
+
+.profile_settings {
+    background-color: #2929294f;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+.profile_settings a {
+    text-decoration: none;
+    color: rgba(4, 30, 42, 1)
+}
+
+#image-clear_id,
+label {
+    display: none;
+}
 
 /*------------------learn_more/about_us-----------*/
 .about-us-container {
@@ -682,7 +921,7 @@ img {
     margin: 0 auto;
     padding: .5rem;
     width: 50%;
-    margin-top: 1rem;
+    margin-top: 80px;
 }
 
 .about-us {

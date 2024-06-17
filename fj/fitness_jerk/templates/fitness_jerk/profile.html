@@ -12,9 +12,10 @@
     <div class="rightcolumn">
         <div class="intro">
             <div class="post">
-                <h1>Hello</h1><h1 style="text-transform: capitalize;">{{user.username}}</h1><br>
+                <h1>Hello</h1>
+                <h1 style="text-transform: capitalize;">{{user.username}}</h1><br>
                 <p>{{ posts.post }}</p>
-                
+
             </div>
             <div class="profile">
                 <h3 style="text-align: left; margin-bottom: 10px;">Profile</h3>
@@ -25,10 +26,22 @@
                 </div>
                 <hr>
                 <div class="details">
-                    <div class="height" style="padding: 10px;"><p>{{ user.members.height }} m<br></p><p style="color: rgb(170, 167, 167);">Height</p></div>
-                    <div class="weight" style="padding: 10px;"><p>{{ user.members.weight }} kg<br></p><p style="color: rgb(170, 167, 167);">Current<br>Weight</p></div>
-                    <div class="bmi" style="padding: 10px;"><p>{{ BMI }}<br></p><p style="color: rgb(170, 167, 167);">Current<br>BMI</p></div>
-                    <div class="progress_workouts" style="padding: 10px;"><p>{{ user.members.progress }}<br></p><p style="color: rgb(170, 167, 167);">Current<br>Workouts</p></div>
+                    <div class="height" style="padding: 10px;">
+                        <p>{{ user.members.height }} m<br></p>
+                        <p style="color: rgb(170, 167, 167);">Height</p>
+                    </div>
+                    <div class="weight" style="padding: 10px;">
+                        <p>{{ user.members.weight }} kg<br></p>
+                        <p style="color: rgb(170, 167, 167);">Current<br>Weight</p>
+                    </div>
+                    <div class="bmi" style="padding: 10px;">
+                        <p>{{ BMI }}<br></p>
+                        <p style="color: rgb(170, 167, 167);">Current<br>BMI</p>
+                    </div>
+                    <div class="progress_workouts" style="padding: 10px;">
+                        <p>{{ user.members.progress }}<br></p>
+                        <p style="color: rgb(170, 167, 167);">Current<br>Workouts</p>
+                    </div>
                 </div>
             </div>
         </div>
