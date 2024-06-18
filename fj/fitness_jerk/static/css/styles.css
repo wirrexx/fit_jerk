@@ -30,6 +30,7 @@ body {
     align-items: center;
     padding: 2px;
     background-image: linear-gradient(rgba(4, 30, 42, 1), rgb(30, 3, 14, .50));
+    position: fixed;
     background-repeat: no-repeat;
 }
 
