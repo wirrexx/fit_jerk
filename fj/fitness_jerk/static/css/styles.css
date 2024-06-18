@@ -76,19 +76,7 @@ footer {
     color: black;
 }
 
-/*------------Exercise Container -------*/
-.exercise-container {
-    flex-direction: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 80px;
-}
 
-.exercise-container h1,
-h2,
-p {
-    color: whitesmoke;
-}
 
 /*------------Landing Page ------------*/
 .image-container {
@@ -154,10 +142,13 @@ p {
     margin-left: .5rem;
     width: 128px;
     margin-top: 1rem;
+    transition: all .55s ease;
 }
 
 .join-us-btn:hover {
+    background: limegreen;
     color: #292929;
+    transform: translateX(8px)
 }
 
 
@@ -174,11 +165,15 @@ p {
     margin-left: .5rem;
     width: 128px;
     margin-top: 6rem;
+    transition: all .55s ease;
 }
 
 .learn-more-btn:hover {
+    background: transparent;
     color: #292929;
+    transform: translateX(8px)
 }
+
 
 
 
@@ -564,7 +559,6 @@ button {
     border-radius: 30px;
     cursor: pointer;
     margin: auto;
-    /* Center the button horizontally */
 }
 
 .links {

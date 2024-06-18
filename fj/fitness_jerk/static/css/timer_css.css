@@ -1,10 +1,27 @@
-/* Define a simple, clean style for the timer and buttons */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
-    text-align: center;
     padding: 20px;
+    position: absolute;
+    width: 100%;
+}
+
+/*------------Exercise Container -------*/
+.exercise-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 80px auto 0;
+    height: 70%;
+    width: 50%;
+    border-radius: 5%;
+}
+
+.exercise-container h1,
+h2,
+p {
+    color: whitesmoke;
 }
 
 h1 {
@@ -25,6 +42,15 @@ h1 {
     font-weight: bold;
 }
 
+.button-layout {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-direction: row;
+    font-weight: 700;
+    text-decoration: none;
+}
+
 button {
     font-size: 16px;
     padding: 8px 16px;
@@ -35,27 +61,27 @@ button {
 }
 
 #start-btn {
-    background-color: green;
+    width: 128px;
+    height: 128px;
     color: white;
+    background: transparent;
 }
 
 #pause-resume-btn {
-    background-color: #5bc0de;
+    width: 128px;
+    height: 128px;
     color: white;
-}
-
-#pause-resume-btn:hover {
-    background-color: #31b0d5;
+    background: transparent;
 }
 
 #finish-btn {
-    background-color: #d9534f;
+    width: 128px;
+    height: 128px;
     color: white;
+    color: white;
+    background: purple;
 }
 
-#finish-btn:hover {
-    background-color: #c9302c;
-}
 
 /* Responsive Design for iPhone */
 @media only screen and (max-width: 480px) {

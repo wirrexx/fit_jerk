@@ -6,11 +6,6 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/timer_css.css' %}">
 <div class="exercise-container">
-    <h1>FitBastards Timer</h1>
-
-    <button id="start-btn">Start</button>
-    <button id="pause-resume-btn">Pause</button>
-    <button id="finish-btn" style="display:none;"><a href="{% url 'finish' %}">Finish</a></button>
 
     <h1>Exercise List</h1>
     <h2>Exercises</h2>
@@ -26,8 +21,15 @@
     </ul>
     <div id="message">Start</div>
     <div id="timer"></div> <!-- Initialize with 30 seconds -->
+    <div class="button-layout">
+        <button id="start-btn">
+            <img src="../../static/play.svg" alt="Play"></button>
+        <button id="finish-btn"><a href="{% url 'finish' %}">Finish</a></button>
+        <button id="pause-resume-btn"><img src="../../static/pause.svg" alt="Play"></button>
+        <!-- <button id="finish-btn" style="display:none;"><a href="{% url 'finish' %}">Finish</a></button> -->
 
-    <script src="{% static 'timer_js.js' %}"></script>
-    <script src="{% static 'navbar_js.js' %}"></script>
+        <script src="{% static 'timer_js.js' %}"></script>
+        <script src="{% static 'navbar_js.js' %}"></script>
+    </div>
 </div>
 {% endblock %}
