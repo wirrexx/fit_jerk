@@ -8,7 +8,7 @@ Make sure buttons fit style
 Possible Animations
 
 
-## Landing page
+## Landing page 
 0. Ease in animation
 
 ## Design Elements. PNG VECTOR
@@ -37,7 +37,14 @@ Man and Woman
 1. Button layout
 2. responsive
 
-## profile setting
+## profile setting []
 0. Copy paste anas code
 1. css 
 2. settings
+
+## Timer Design
+0. Find a Design
+1. Stick to it
+2. Make it work
+
+## CSS QUERY!

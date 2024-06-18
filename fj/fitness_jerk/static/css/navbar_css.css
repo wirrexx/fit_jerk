@@ -2,16 +2,13 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-<<<<<<< HEAD
-    align-content: center;
+    <<<<<<< HEAD align-content: center;
     padding: 1rem;
     position: fixed;
-=======
-    align-items: center;
+    =======align-items: center;
     padding: 20px;
     /* position: fixed; */
->>>>>>> 1a9d8ac00b72f8935346129e0676f82a52f7e323
-    top: 0;
+    >>>>>>>1a9d8ac00b72f8935346129e0676f82a52f7e323 top: 0;
     left: 0;
     z-index: 1000;
     color: white;

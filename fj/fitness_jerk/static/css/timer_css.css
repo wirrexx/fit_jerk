@@ -15,23 +15,19 @@ h1 {
 #message {
     font-size: 1.5em;
     margin-top: 10px;
-    color: green;
+    color: whitesmoke;
 }
 
 #timer {
     font-size: 36px;
-    /* Decrease font size for smaller screens */
     margin-bottom: 15px;
-    /* Reduce bottom margin for smaller screens */
-    color: green;
+    color: whitesmoke;
     font-weight: bold;
 }
 
 button {
     font-size: 16px;
-    /* Decrease font size for smaller screens */
     padding: 8px 16px;
-    /* Decrease padding for smaller screens */
     margin: 5px;
     border: none;
     border-radius: 5px;
@@ -65,15 +61,11 @@ button {
 @media only screen and (max-width: 480px) {
     #timer {
         font-size: 24px;
-        /* Further decrease font size for iPhone */
         margin-bottom: 10px;
-        /* Further reduce bottom margin for iPhone */
     }
 
     button {
         font-size: 14px;
-        /* Further decrease font size for iPhone */
         padding: 6px 12px;
-        /* Further decrease padding for iPhone */
     }
 }
