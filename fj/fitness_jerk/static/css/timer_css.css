@@ -16,12 +16,14 @@ body {
     height: 70%;
     width: 50%;
     border-radius: 5%;
+    background: whitesmoke;
+    box-shadow: 0px 5px 12px #292929;
 }
 
 .exercise-container h1,
 h2,
 p {
-    color: whitesmoke;
+    color: black;
 }
 
 h1 {
@@ -32,13 +34,13 @@ h1 {
 #message {
     font-size: 1.5em;
     margin-top: 10px;
-    color: whitesmoke;
+    color: black;
 }
 
 #timer {
     font-size: 36px;
     margin-bottom: 15px;
-    color: whitesmoke;
+    color: black;
     font-weight: bold;
 }
 
@@ -63,22 +65,21 @@ button {
 #start-btn {
     width: 128px;
     height: 128px;
-    color: white;
+    color: black;
     background: transparent;
 }
 
 #pause-resume-btn {
     width: 128px;
     height: 128px;
-    color: white;
+    color: black;
     background: transparent;
 }
 
 #finish-btn {
     width: 128px;
     height: 128px;
-    color: white;
-    color: white;
+    color: black;
     background: purple;
 }
 
