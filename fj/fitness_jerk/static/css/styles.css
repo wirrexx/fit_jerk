@@ -277,11 +277,6 @@ footer {
     text-align: center;
 }
 
-#id_height,
-#id_weight {
-    color: black;
-}
-
 input[type="submit"] {
     color: black;
 }
@@ -642,6 +637,8 @@ button {
 
 .profile_img {
     display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .custom-dropdown {
@@ -665,13 +662,15 @@ button {
 }
 
 .dropdown-label {
-    padding: 5px;
+    padding: 3px;
     border: 1px solid #2929294f;
-    background-color:  #2929294f;
+    background-color:  whitesmoke;
     cursor: pointer;
     width: fit-content;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     margin-left: 5px;
+    color: black;
+    font-size: 13px;
 }
 
 .dropdown-checkbox:checked + .dropdown-label + .dropdown-selected-avatar + .dropdown-options,
@@ -684,15 +683,16 @@ button {
     display: none;
     position: absolute;
     top: 0;
-    left: 45%;
+    left: 41%;
     right: 0;
     z-index: 10;
-    background-color:  #292929e5;
+    background-color:  whitesmoke;
     border: 1px solid  #2929294f;
     max-height: fit-content; 
     overflow-y: auto;
     width: fit-content;
-    border-radius: 10px;
+    /* border-radius: 10px; */
+    color: black;
 }
 
 .option {
@@ -727,6 +727,10 @@ label[for="id_image"] {
 
 #id_image {
     margin-left: 5px;
+    margin-right: 5px;
+    width:fit-content;
+
+    
 }
 
 .dropdown-selected-avatar {
@@ -745,10 +749,18 @@ label[for="id_image"] {
     
 }
 
-/* .option input[type="radio"]:checked ~ .dropdown-selected-avatar img {
-    display: inline;
-} */
+#id_height {
+    width: fit-content;
+    /* border-radius: 10px; */
+    padding: 5px;
+}
 
+#id_weight {
+    width: fit-content;
+    margin-top: 5px;
+    /* border-radius: 10px; */
+    padding: 5px;
+}
 
 /* -----------Delete page--------------- */
 

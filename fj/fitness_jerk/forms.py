@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.contrib.auth.password_validation import validate_password
 from django import forms 
 from django.forms import ModelForm
@@ -13,9 +14,25 @@ class ProfileChangeForm(UserChangeForm):
     class Meta:
         model = Members 
         fields = ['height', 'weight']
+    
+    height = forms.FloatField(
+        required=False,
+        validators=[
+            RegexValidator(
+                regex=r'[0-9]{1}[.][0-9]{2}',
+            )
+        ],
+        widget=forms.NumberInput(attrs={'pattern': r'[0-9]{1}[.][0-9]{2}', 'title': 'Please add your height in the format X.XX'})
+    )
+
+    weight = forms.FloatField(
+        required=False,
+        widget=forms.NumberInput(attrs={'title': 'Please enter your weight number'})
+    )
+
 
 class PictureChangeForm(forms.Form):
-    image = forms.ImageField(required=False)
+    image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'title': 'Upload your picture', 'placeholder': 'Choose your file'}))
     class Meta:
         model = Members
         fields = ['image']
