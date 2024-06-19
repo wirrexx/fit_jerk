@@ -148,12 +148,35 @@ def settings_view(request):
     user = request.user
     member_info = Members.objects.get(user=user)
     profile_form = ProfileChangeForm(request.POST or None, instance=member_info)
-    profile_pic = PictureChangeForm(request.POST or None, request.FILES, instance=member_info)
-    if profile_form.is_valid() and profile_pic.is_valid():
-        profile_form.save()
-        profile_pic.save()
-        messages.success(request, "Profile updated successfully")
-        return redirect('profile')
+    profile_pic = PictureChangeForm(request.POST or None, request.FILES)
+    
+    if request.method == 'POST':
+        avatar = request.POST.get('avatar')  # Retrieve selected avatar option
+    
+        if profile_form.is_valid() and profile_pic.is_valid():
+            profile_form.save()
+
+            image = profile_pic.cleaned_data['image']
+
+            if image:
+                member_info.image = image
+                member_info.save()
+            
+            if avatar:
+                if avatar == 'batman':
+                    member_info.image = 'static/batman.jpeg'
+                if avatar == 'catwoman':
+                    member_info.image = 'static/catwoman-lego.png'
+                if avatar == 'superman':
+                    member_info.image = 'static/superman_lego.jpeg'
+                if avatar == 'wonderwoman':
+                    member_info.image = 'static/wonderwoman_lego.jpg'
+                 
+                member_info.save()
+
+            messages.success(request, "Profile updated successfully")
+            return redirect('profile')
+        
     BMI = user.members.bmi
     if BMI == 0:
         BMI = "Please complete your profile"

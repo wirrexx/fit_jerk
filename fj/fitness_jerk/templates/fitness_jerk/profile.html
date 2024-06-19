@@ -12,7 +12,11 @@
     <div class="rightcolumn">
         <div class="intro">
             <div class="post">
-                <h1>Hello</h1><h1 style="text-transform: capitalize;">{{user.username}}</h1><br>
+                <div class="hello">
+                    <h1>Hello</h1>
+                    <h1 style="text-transform: capitalize; margin-left: 10px;">{{user.username}}</h1>
+                </div>
+                <br>
                 {% if posts.post %}
                 <p>{{ posts.post }}</p>
                 {% else %}

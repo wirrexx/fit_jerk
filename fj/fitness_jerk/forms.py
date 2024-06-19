@@ -14,14 +14,11 @@ class ProfileChangeForm(UserChangeForm):
         model = Members 
         fields = ['height', 'weight']
 
-class PictureChangeForm(UserChangeForm):
-    #hide password change message
-    password = None
+class PictureChangeForm(forms.Form):
+    image = forms.ImageField(required=False)
     class Meta:
         model = Members
         fields = ['image']
-    
-
 
 class FitUserForm(forms.Form):
     username = forms.CharField(max_length=50)
