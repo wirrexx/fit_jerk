@@ -13,7 +13,7 @@ Languages:
 - HTML 
 - CSS
    
-Webframework: [Django](https://www.djangoproject.com/)
+Webframework: [Django](https://www.djangoproject.com/) with django-allauth
 
 Database: 
 - Development: [Sqlite3](https://sqlite.org/)
@@ -26,7 +26,7 @@ Hosting: [pythonanywhere](https://www.pythonanywhere.com/)
 ## Features 
 
 - Authenticication System
-	[Logout, Login, ChangePassword, ResetPassword, Signup]
+	[Logout, Login, ChangePassword, ResetPassword, Signup, OAuth with Google]
 - Profile
 	[BMI, weight, height, progress, picture, completion posts, choose exercise]
 - Workouts
@@ -37,11 +37,8 @@ Hosting: [pythonanywhere](https://www.pythonanywhere.com/)
 
 - Create an Avatar
 - Audio 
-- Oauth
 - AppStore Implementationn
 - Host our own server
-- ChatBot for auto generation of messages 
-
 
 ## Roles
 
