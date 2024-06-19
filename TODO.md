@@ -1,9 +1,16 @@
-## TODO: 12.06.2024
+## TODO
 
-2. Checkout Oauth [x]
+1. Checkout Oauth [x]
 
+1.1 Implement Google OAuth [x]
+1.2. Stylize login.html
+	-> templates/socialaccount
+1.3. Change CLIENT_ID and CLIENT_SECRET in google console
 
-https://www.codeunderscored.com/django-authentication-with-google/
+2. Deploy to python anywhere
+3. Write Tests
+4. Write documentation
+
 
 DEADLINE: 19.06 for testingphase
 
@@ -44,13 +51,6 @@ PASSWORD_HASHERS =
 	
 ## Tests
 	Write tests for views, functions etc..
-
-## Integrate a ChatBot
-	Research: 
-		Chatter
-		Google Bard
-		ChatGPT
-		Other
 
 ## Password Reset
 	Force HTTPS
