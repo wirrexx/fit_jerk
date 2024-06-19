@@ -1,9 +1,6 @@
 ## TODO: 12.06.2024
 
-1. Fix http://localhost:8000/settings/ -> path to picture gets displayed (ANA)
-2. Checkout Oauth
-3. Refactor profile_view
-
+2. Checkout Oauth [x]
 
 
 https://www.codeunderscored.com/django-authentication-with-google/
