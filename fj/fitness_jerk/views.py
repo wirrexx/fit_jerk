@@ -210,15 +210,13 @@ def weight_loose(request):
 def tone_down(request):
     """"""
     exercises = [
-        {'name': 'Squats', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rMvwVtlqjTE?si=8Kd99ihni_Eri4Ob;controls=0', 'start_time':7, 'end_time':37},
         {'name': 'Plank', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/sZxrs3C209k?si=2Uo2QT83dF03zKoS&amp;controls=0', 'start_time':0, 'end_time':16},
         {'name': 'Glute Bridge', 'duration': 30, 'video_url':'https://www.youtube.com/embed/Xp33YgPZgns?si=oJP96xGUVvAWmDba&amp;controls=0', 'start_time':0, 'end_time':30},
         {'name': 'Jumping Jacks', 'duration': 60, 'video_url':'https://www.youtube.com/embed/PBHUfBzxczU?si=fPZdKm8ncoHfnr5e', 'start_time':0, 'end_time':4},
         {'name': 'Side Lunges', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rvqLVxYqEvo?si=2UD1ozdmB4KGNAlY&amp;controls=0', 'start_time':15, 'end_time':45},
         {'name': 'Lunge Jumps', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/iJMsF7fzrOM?si=TWn2jsC6DF6YXk8c', 'start_time':0, 'end_time':16},
         {'name': 'Squats', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rMvwVtlqjTE?si=8Kd99ihni_Eri4Ob;controls=0', 'start_time':7, 'end_time':37},
-        # {'name': 'Sumo Squat Hammer Curl', 'duration': 30},
-        # {'name': 'Triceps Extension', 'duration': 30},
+        {'name': 'Squats', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rMvwVtlqjTE?si=8Kd99ihni_Eri4Ob;controls=0', 'start_time':7, 'end_time':37},
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_tone.html', {'exercises': exercises, 'training_schedules': training_schedules})

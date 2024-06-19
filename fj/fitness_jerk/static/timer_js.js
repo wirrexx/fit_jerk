@@ -115,15 +115,17 @@ function startBreakTimer(duration, display, message, callback) {
 function playPause() {
     var button = document.getElementById('start-btn');
     var icon = button.querySelector('img');
+    var playIcon = button.getAttribute('data-play-icon');
+    var pauseIcon = button.getAttribute('data-pause-icon');
 
     if (isPaused) {
-        icon.src = "{% static 'pause.svg' %}";
+        icon.src = pauseIcon;
         isPaused = false;
         if (!interval) { // If interval is not defined, start the workout
             startWorkout();
         }
     } else {
-        icon.src = "{% static 'play.svg' %}";
+        icon.src = playIcon;
         isPaused = true;
     }
 }
