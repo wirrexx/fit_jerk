@@ -1,23 +1,14 @@
 ## TODO: 12.06.2024
 
-0. Refactor: Posts stored in Members
-1. Research how chatterbot works
-[Resource Chatterbot]:(https://chatterbot.readthedocs.io/en/stable/)
-	Process flow: 
-		Get input ([1,2,3] workout finished)
-		Process input
-			Questions: what is the highest confidence
-					   value?
-		Return response (string)
+2. Checkout Oauth [x]
 
-0. Installation
 
-```sh
-pip install chatterbot
-```
+https://www.codeunderscored.com/django-authentication-with-google/
 
-3. Integration wisam_dev to main
-4. Integration xtn_dev to main
+DEADLINE: 19.06 for testingphase
+
+<hr>
+
 
 ## DRY!!!!
 

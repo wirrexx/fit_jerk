@@ -1,5 +1,6 @@
 {% extends 'fitness_jerk/base.html' %}
 {% load static %}
+{% load socialaccount %}
 
 {% block title %}SIGNIN{% endblock %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -27,12 +28,22 @@
         <button type="submit">Log In</button>
       </div>
     </form>
+  <!--OAuth-->
+  <div class="google_auth">
+    <p>Or</p>
+    
+    <a href="{% provider_login_url 'google' %}">Sign up with Google</a>
+  </div>
+
     <div class="links">
       <div class="password-reset">
         <a href="{% url 'password_reset' %}">Forgot your password?</a>
       </div>
       <div class="join-us">
         <a href="{% url 'signup' %}" class="">Join us</a>
+      
+    
+      
       </div>
     </div>
   </div>
