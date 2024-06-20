@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, DecimalValidator
 from django.contrib.auth.password_validation import validate_password
 from django import forms 
 from django.forms import ModelForm
@@ -17,9 +17,11 @@ class ProfileChangeForm(UserChangeForm):
     
     height = forms.FloatField(
         required=False,
+        error_messages= {'invalid': 'Height format X.XX'},
         validators=[
             RegexValidator(
                 regex=r'[0-9]{1}[.][0-9]{2}',
+                message="Please enter in the correct format"
             )
         ],
         widget=forms.NumberInput(attrs={'pattern': r'[0-9]{1}[.][0-9]{2}', 'title': 'Please add your height in the format X.XX'})
@@ -27,7 +29,7 @@ class ProfileChangeForm(UserChangeForm):
 
     weight = forms.FloatField(
         required=False,
-        widget=forms.NumberInput(attrs={'title': 'Please enter your weight number'})
+        widget=forms.NumberInput(attrs={'title': 'Please enter your weight'})
     )
 
 

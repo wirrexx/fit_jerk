@@ -4,67 +4,68 @@
 {% block title %}User Settings{% endblock %}
 {% block content %}
 
-
-<div class="profile_settings">
-    <form action="" method=POST enctype="multipart/form-data">
-        {% csrf_token %}
-        {% if context.member.image %}
-        <div class="image_top">
-            <img class="image_top" src="{{context.member.image.url}}" alt="profile-image" style="width: 300px; border-radius: 10px;">
-        </div>
-        {% endif %}
-        <div class="user_details">
-            <p style="text-align: center;">User details</p>
-            <br>
-            <p>Username: {{ user.username }}</p>
-            <br>
-            {{ profile_form.as_p }}
-            <br>
-            <p>BMI: {{ context.BMI }}</p>
-            <br>
-            <p>Workouts: {{ context.member.progress }}</p>
-        </div>
-        <div class="profile_pic_settings">
-            <p style="text-align: center;">Profile picture</p><br>
-            <div class="profile_img">
-                <label for="profile_img">Upload image:</label> 
-                {{ profile_pic.as_p }}
+<div class="settings_main">
+    <div class="profile_settings">
+        <form action="" method=POST enctype="multipart/form-data" class="settings_form">
+            {% csrf_token %}
+            {% if context.member.image %}
+            <div class="image_top">
+                <img class="image_top" src="{{context.member.image.url}}" alt="profile-image" style="width: 300px; border-radius: 10px;">
             </div>
-            <p>or</p>
-            <div class="custom-dropdown">
-                <label for="avatar-dropdown">Choose avatar:</label>
-                <input type="checkbox" id="avatar-dropdown" class="dropdown-checkbox">
-                <label for="avatar-dropdown" class="dropdown-label">Avatars</label>
-                <div class="dropdown-selected-avatar" id="selected-avatar"></div>
-                <div class="dropdown-options">
-                    <label class="option">
-                        <input type="radio" name="avatar" value="batman">
-                        <img src="{% static 'static/batman.jpeg' %}" alt="Batman"> 
-                        Batman
-                    </label>
-                    <label class="option">
-                        <input type="radio" name="avatar" value="catwoman">
-                        <img src="{% static 'static/catwoman-lego.png' %}" alt="Cat Woman"> 
-                        Cat Woman
-                    </label>
-                    <label class="option">
-                        <input type="radio" name="avatar" value="superman">
-                        <img src="{% static 'static/superman_lego.jpeg' %}" alt="Superman"> 
-                        Superman
-                    </label>
-                    <label class="option">
-                        <input type="radio" name="avatar" value="wonderwoman">
-                        <img src="{% static 'static/wonderwoman_lego.jpg' %}" alt="Wonder Woman"> 
-                        Wonder Woman
-                    </label>
+            {% endif %}
+            <div class="user_details">
+                <p style="text-align: center;">User details</p>
+                <br>
+                <p>Username: {{ user.username }}</p>
+                <br>
+                {{ profile_form.as_p }}
+                <br>
+                <p>BMI: {{ context.BMI }}</p>
+                <br>
+                <p>Workouts: {{ context.member.progress }}</p>
+            </div>
+            <div class="profile_pic_settings">
+                <p style="text-align: center;">Profile picture</p><br>
+                <div class="profile_img">
+                    <label for="profile_img">Upload image:</label> 
+                    {{ profile_pic.as_p }}
+                </div>
+                <p>or</p>
+                <div class="custom-dropdown">
+                    <label for="avatar-dropdown">Choose avatar:</label>
+                    <input type="checkbox" id="avatar-dropdown" class="dropdown-checkbox">
+                    <label for="avatar-dropdown" class="dropdown-label">Avatars</label>
+                    <div class="dropdown-selected-avatar" id="selected-avatar"></div>
+                    <div class="dropdown-options">
+                        <label class="option">
+                            <input type="radio" name="avatar" value="batman">
+                            <img src="{% static 'static/batman.jpeg' %}" alt="Batman"> 
+                            Batman
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="avatar" value="catwoman">
+                            <img src="{% static 'static/catwoman-lego.png' %}" alt="Cat Woman"> 
+                            Cat Woman
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="avatar" value="superman">
+                            <img src="{% static 'static/superman_lego.jpeg' %}" alt="Superman"> 
+                            Superman
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="avatar" value="wonderwoman">
+                            <img src="{% static 'static/wonderwoman_lego.jpg' %}" alt="Wonder Woman"> 
+                            Wonder Woman
+                        </label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <br><br>
-        <button type="submit" class="update_btn" style="display: flex; align-items: center; justify-content: center;">Update</button>
-        <br><br>
-        <p>Click <a href="{% url 'delete' %}">here</a> if you would to delete your account.</p>
-    </form>
+            <br><br>
+            <button type="submit" class="update_btn" style="display: flex; align-items: center; justify-content: center;">Update</button>
+            <br>
+            <p class="delete_option">Click <a href="{% url 'delete' %}">here</a> if you would to delete your account.</p>
+        </form>
+    </div>
 </div>
 
 

@@ -1,7 +1,6 @@
-
 var interval;
 var remainingTime;
-var isPaused = false;
+var isPaused = true; // Start in paused state
 var currentExerciseIndex = 0;
 var isBreak = false;
 var breakDuration = 10; // 10 seconds break
@@ -19,12 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var timerDisplay = document.querySelector('#timer');
     var message = document.querySelector('#message');
-    var pauseResumeButton = document.getElementById('pause-resume-btn');
-    var finishButton = document.getElementById('finish-btn');
     var startButton = document.getElementById('start-btn');
+    var finishButton = document.getElementById('finish-btn');
 
-    startButton.addEventListener('click', startWorkout);
-    pauseResumeButton.addEventListener('click', togglePauseResume);
+    startButton.addEventListener('click', playPause);
     finishButton.addEventListener('click', finishWorkout);
 
     // Initialize timer display
@@ -52,7 +49,6 @@ function startWorkout() {
         startTimer(firstExercise.duration, document.querySelector('#timer'), document.querySelector('#message'), function () {
             document.querySelector('#message').textContent = "Exercise Finished";
         });
-        hideStartButton();
     }
 }
 
@@ -92,9 +88,7 @@ function startTimer(duration, display, message, callback) {
                                 message.textContent = "Exercise Finished";
                             });
                         } else {
-                            hidePauseButton();
                             message.textContent = "Workout Finished";
-                            document.getElementById('finish-btn').style.display = 'inline';
                         }
                     }
                 }
@@ -118,13 +112,20 @@ function startBreakTimer(duration, display, message, callback) {
     }, 1000);
 }
 
-function togglePauseResume() {
-    var button = document.getElementById('pause-resume-btn');
+function playPause() {
+    var button = document.getElementById('start-btn');
+    var icon = button.querySelector('img');
+    var playIcon = button.getAttribute('data-play-icon');
+    var pauseIcon = button.getAttribute('data-pause-icon');
+
     if (isPaused) {
-        button.textContent = "Pause";
+        icon.src = pauseIcon;
         isPaused = false;
+        if (!interval) { // If interval is not defined, start the workout
+            startWorkout();
+        }
     } else {
-        button.textContent = "Resume";
+        icon.src = playIcon;
         isPaused = true;
     }
 }
@@ -140,10 +141,7 @@ function updateExerciseDisplay(exerciseName) {
     });
 }
 
-function hideStartButton() {
-    document.getElementById('start-btn').style.display = 'none';
-}
-
-function hidePauseButton() {
-    document.getElementById('pause-resume-btn').style.display = 'none';
+function finishWorkout() {
+    clearInterval(interval);
+    document.getElementById('message').textContent = "Workout Finished";
 }

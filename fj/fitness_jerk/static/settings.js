@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.checked = false;
                 selectedAvatarContainer.innerHTML = ''; // Clear the avatar display
                 selectedRadio = null;
-            } else {
+            } 
+            else {
                 selectedRadio = this;
                 const label = option.parentElement.textContent.trim(); // Get text content excluding child elements
                 const imgSrc = option.parentElement.querySelector('img').src;

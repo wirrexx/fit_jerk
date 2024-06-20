@@ -6,15 +6,17 @@
 
 {% block content %}
 <div class="profile_delete">
-    <h1>{{ member }}</h1><br><br>
-    <h2>Are you sure you want to delete your account?</h2><br><br>
-    <form action="" method=POST class="delete_form">
-        {% csrf_token %}
-        <a href="{% url 'profile' %}"><button type="button" class="back_profile">Back to profile</button></a>
-        <br><br>
-        <button type="submit" class="delete">Delete</button>
-    </form>
-    <script src="{% static 'navbar_js.js' %}"></script>
+    <div class="delete_confirmation">
+        <h1>{{ member }}</h1><br><br>
+        <h2>Are you sure you want to delete your account?</h2><br><br>
+        <form action="" method=POST class="delete_form">
+            {% csrf_token %}
+            <a href="{% url 'profile' %}"><button type="button" class="back_profile">Back to profile</button></a>
+            <br><br>
+            <button type="submit" class="delete">Delete</button>
+        </form>
+        <script src="{% static 'navbar_js.js' %}"></script>
+    </div>
 </div>
 
 {% endblock %}

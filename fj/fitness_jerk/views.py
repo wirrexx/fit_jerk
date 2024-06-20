@@ -93,7 +93,7 @@ def index_view(request):
 # ------------------------------------- ANA ----------------------------------------
 
 def delete_user_func(request):
-    """Lets the user delete his profile"""
+    """Let the user delete his profile"""
     username = request.user.username
     if request.method == 'POST':
         user_id = request.user.id
@@ -144,7 +144,7 @@ def profile_view(request):
 
 @login_required
 def settings_view(request):
-    """settings page where member can update and delete account"""
+    """settings page where member can update and go to the delete account page"""
     user = request.user
     member_info = Members.objects.get(user=user)
     profile_form = ProfileChangeForm(request.POST or None, instance=member_info)
@@ -219,15 +219,14 @@ def workout_finish(request):
 def weight_loose(request):
     """"""
     exercises = [
-        {'name': 'Squats', 'duration': 30},
-        {'name': 'Pushups', 'duration': 30},
-        {'name': 'Situps', 'duration': 30},
-        {'name': 'Burpees', 'duration': 30},
-        {'name': 'Mountain Climbers', 'duration': 30},
-        {'name': 'Lunge Jumps', 'duration': 30},
-        {'name': 'Plank', 'duration': 60},
-        {'name': 'Punches non-stop', 'duration': 60},
-        {'name': 'Climbers', 'duration': 30},
+        {'name': 'Squats', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rMvwVtlqjTE?si=8Kd99ihni_Eri4Ob;controls=0', 'start_time':7, 'end_time':37},
+        {'name': 'Pushups', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/_l3ySVKYVJ8?si=R0Ld3dTblJEr03oI;controls=0', 'start_time':0, 'end_time':30},
+        {'name': 'Situps', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/_HDZODOx7Zw?si=w5AzD4vSlKj9zhja;controls=0','start_time':0, 'end_time':30},
+        {'name': 'Burpees', 'duration': 30, 'video_url':'https://www.youtube.com/embed/auBLPXO8Fww?si=DR6KYMtO1-8qIojQ;controls=0','start_time':0, 'end_time':30 },
+        {'name': 'Mountain Climbers', 'duration': 30, 'video_url': 'https://youtu.be/kLh-uczlPLg?si=NoEYNULiKhK0KXL;controls=0_', 'start_time':0, 'end_time':30},
+        {'name': 'Lunge Jumps', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/iJMsF7fzrOM?si=TWn2jsC6DF6YXk8c', 'start_time':0, 'end_time':16},
+        {'name': 'Plank', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/sZxrs3C209k?si=2Uo2QT83dF03zKoS&amp;controls=0', 'start_time':0, 'end_time':16},
+        {'name': 'Punches non-stop', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/8BPuS9uj5c8?si=VGCffZbNHqNUmSXM&amp;controls=0'},
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_loose.html', {'exercises': exercises, 'training_schedules': training_schedules})
@@ -239,15 +238,13 @@ def weight_loose(request):
 def tone_down(request):
     """"""
     exercises = [
-        {'name': 'Push Ups', 'duration': 30},
-        {'name': 'Plank', 'duration': 60},
-        {'name': 'Glute Bridge', 'duration': 30},
-        {'name': 'Jumping Jacks', 'duration': 60},
-        {'name': 'Side Lunges', 'duration': 30},
-        {'name': 'Lunges', 'duration': 30},
-        {'name': 'Chair Squat', 'duration': 30},
-        {'name': 'Sumo Squat Hammer Curl', 'duration': 30},
-        {'name': 'Triceps Extension', 'duration': 30},
+        {'name': 'Plank', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/sZxrs3C209k?si=2Uo2QT83dF03zKoS&amp;controls=0', 'start_time':0, 'end_time':16},
+        {'name': 'Glute Bridge', 'duration': 30, 'video_url':'https://www.youtube.com/embed/Xp33YgPZgns?si=oJP96xGUVvAWmDba&amp;controls=0', 'start_time':0, 'end_time':30},
+        {'name': 'Jumping Jacks', 'duration': 60, 'video_url':'https://www.youtube.com/embed/PBHUfBzxczU?si=fPZdKm8ncoHfnr5e', 'start_time':0, 'end_time':4},
+        {'name': 'Side Lunges', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rvqLVxYqEvo?si=2UD1ozdmB4KGNAlY&amp;controls=0', 'start_time':15, 'end_time':45},
+        {'name': 'Lunge Jumps', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/iJMsF7fzrOM?si=TWn2jsC6DF6YXk8c', 'start_time':0, 'end_time':16},
+        {'name': 'Squats', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rMvwVtlqjTE?si=8Kd99ihni_Eri4Ob;controls=0', 'start_time':7, 'end_time':37},
+        {'name': 'Squats', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rMvwVtlqjTE?si=8Kd99ihni_Eri4Ob;controls=0', 'start_time':7, 'end_time':37},
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_tone.html', {'exercises': exercises, 'training_schedules': training_schedules})
@@ -258,22 +255,19 @@ def tone_down(request):
 def build_muscles(request):
     """"""
     exercises = [
-        {'name': 'Overhead Crunch', 'duration': 5},
-        # {'name': 'Pistol Squat', 'duration': 30},
-        # {'name': 'Dips', 'duration': 30},
-        # {'name': 'Sit Ups', 'duration': 30},
-        # {'name': 'Burpees', 'duration': 30},
-        # {'name': 'Mountain Climbers', 'duration': 30},
-        # {'name': 'Bench Dips', 'duration': 30},
-        # {'name': 'Push Ups', 'duration': 30},
-        # {'name': 'Plank', 'duration': 60},
+        {'name': 'Pistol Squat', 'duration': 30, 'video_url':'https://www.youtube.com/embed/qDcniqddTeE?si=Bspe4SGoNtHRlpkx&amp;controls=0', 'start_time':0, 'end_time':30},
+        {'name': 'Dips', 'duration': 30, 'video_url':'https://www.youtube.com/embed/HCf97NPYeGY?si=6JGCn39zlH0_VUFG&amp;controls=0', 'start_time':0, 'end_time':18},
+        {'name': 'Situps', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/_HDZODOx7Zw?si=w5AzD4vSlKj9zhja;controls=0','start_time':0, 'end_time':30},
+        {'name': 'Burpees', 'duration': 30, 'video_url':'https://www.youtube.com/embed/auBLPXO8Fww?si=DR6KYMtO1-8qIojQ;controls=0','start_time':0, 'end_time':30 },
+        {'name': 'Mountain Climbers', 'duration': 30, 'video_url': 'https://youtu.be/kLh-uczlPLg?si=NoEYNULiKhK0KXL;controls=0_', 'start_time':0, 'end_time':30},
+        {'name': 'Pushups', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/_l3ySVKYVJ8?si=R0Ld3dTblJEr03oI;controls=0', 'start_time':0, 'end_time':30},
+        {'name': 'Overhead Crunch', 'duration': 30, 'video_url':'https://www.youtube.com/embed/f02JON8c4J0?si=UVTjPYqemKsLQ91L&amp;controls=0', 'start_time':0, 'end_time':20},
+        {'name': 'Plank', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/sZxrs3C209k?si=2Uo2QT83dF03zKoS&amp;controls=0', 'start_time':0, 'end_time':16},
         
 
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_muscles.html', {'exercises': exercises, 'training_schedules': training_schedules})
-
-
 
 
 #---------------------Landing Page --------------------
