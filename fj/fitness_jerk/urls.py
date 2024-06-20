@@ -6,7 +6,6 @@ from django.urls import path
 from .views import delete_user_func, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomPasswordResetView, CustomLoginView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView, LandingPage, AboutPage
 from . import views
 
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [    
     ## Auth
