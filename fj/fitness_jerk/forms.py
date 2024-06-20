@@ -56,7 +56,6 @@ class FitUserForm(forms.Form):
     def clean_email(self):
         """Checks if email is valid"""
         email = self.cleaned_data.get("email")
-
         # Check if email is already taken
         if User.objects.filter(email=email).exists():
             raise ValidationError("Email already taken") 

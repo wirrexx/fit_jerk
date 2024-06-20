@@ -1,5 +1,7 @@
 from allauth.socialaccount.providers.google.views import oauth2_login as google_login
 from allauth.socialaccount.providers.google.views import oauth2_callback as google_callback
+from allauth.socialaccount.views import signup as socialaccount_signup
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
@@ -24,7 +26,8 @@ urlpatterns = [
 
     # OAuth 
     path('accounts/google/login/', google_login, name='google_login'),
-    path('accounts/google/login/callback/', google_callback, name='google_callback'),  
+    path('accounts/google/login/callback/', google_callback, name='google_callback'),
+    path('accounts/social/signup/', socialaccount_signup, name='socialaccount_signup'),  
     
     
     #Training Functions

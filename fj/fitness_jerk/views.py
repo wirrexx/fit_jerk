@@ -27,14 +27,14 @@ from pathlib import Path
 
 ## Password Reset
 class CustomPasswordResetView(PasswordResetView):
-    """"""
+    """Allows user to reset password if forgotten"""
     template_name = "registration/custom_password_reset_form.html"
     email_template_name = "registration/custom_password_reset_email.html"
     success_url = reverse_lazy("password_reset_done")
 
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
-    """"""
+    """Informs the user if password reset was successfull"""
     template_name = "registration/custom_password_reset_done.html"
 
 
@@ -62,7 +62,7 @@ class CustomLoginView(LoginView):
     """"""
     template_name = "registration/login.html"
 
-#TODO: Finish cleaning functions in forms.py
+#TODO: Finish cleaning functions in forms.py [x]
 #TODO: User gets created no matter what...
 ## Signup
 def signup_view(request):
