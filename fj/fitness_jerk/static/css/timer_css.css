@@ -174,8 +174,7 @@ p {
 
     .button-layout {
         display: flex;
-        align-content: center;
-        justify-content: space-between;
+        gap: 3rem;
     }
 
     #finish-btn {
@@ -190,6 +189,7 @@ p {
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        width: 75px;
     }
 
     #return-btn {
@@ -205,6 +205,7 @@ p {
         align-items: center;
         cursor: pointer;
         white-space: nowrap;
+        width: 75px;
     }
 
     .video_url {
@@ -213,6 +214,16 @@ p {
     }
 
     #start-btn {
-        width: 0;
+        background: transparent;
+        width: 75px;
+    }
+
+    img {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        scale: 135%;
     }
 }
