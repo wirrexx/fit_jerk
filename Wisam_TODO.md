@@ -8,10 +8,10 @@ Make sure buttons fit style
 Possible Animations
 
 
-## Landing page 
+## Landing page [x]
 0. Ease in animation
 
-## Design Elements. PNG VECTOR
+## Design Elements. PNG VECTOR[x]
 1. Vector for landing Page
 2. Vector for Card BG 
 3. Vector for Card FG
@@ -22,29 +22,31 @@ Man and Woman
 1. fix responsivness
 
 
-## Learn more
+## Learn more[x]
 0. Overflow fix
 1. responsivness
 
 
-## Animations
+## Animations[x]
 0. Add PNG files to each training
 1. Maybe repeat an animation 2 frames
 2. when done. PNG thumbs up?
 
-## Burger Menu fix
+## Burger Menu fix[]
 0. Slide out
 1. Button layout
 2. responsive
 
-## profile setting []
+## profile setting [x]
 0. Copy paste anas code
 1. css 
 2. settings
 
-## Timer Design
+## Timer Design[]
 0. Find a Design
 1. Stick to it
 2. Make it work
 
-## CSS QUERY!
+## CSS QUERY![]
+
+## Add Google Icon

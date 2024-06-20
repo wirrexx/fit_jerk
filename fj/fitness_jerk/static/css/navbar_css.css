@@ -78,8 +78,8 @@
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 35px;
-        right: 0px;
+        top: 55px;
+        right: 20px;
         background-color: rgb(3, 19, 26);
         border: 1px solid #333;
         padding: 10px;
@@ -90,11 +90,20 @@
         margin: 10px 0;
     }
 
+    #joinus-btn,
+    #profile-btn {
+        background-color: #d19b4e;
+        border-radius: 18px;
+        width: 95%;
+        text-align: center;
+
+    }
+
     .nav-menu.active {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border-radius: 12px;
+        border-radius: 6px;
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
         display: flex;

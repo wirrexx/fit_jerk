@@ -20,13 +20,33 @@ body {
     border-radius: 16px;
     background: whitesmoke;
     box-shadow: 0px 5px 12px #292929;
+    text-decoration: none;
+
+
 }
 
 .exercise-container h2,
 li,
 p {
     font-weight: 500;
+    text-decoration: none;
 }
+
+#exercise-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 2rem;
+    list-style-type: none;
+}
+
+.exercise-item {
+    text-align: center;
+    font-size: 3vw;
+    font-weight: 700;
+}
+
 
 .button-layout {
     display: flex;
@@ -41,7 +61,7 @@ p {
 }
 
 #start-btn {
-    width: 6.5rem;
+    width: 8rem;
     background: none;
     cursor: pointer;
     transition: all .55s ease;
@@ -121,13 +141,19 @@ p {
 
 
 #pause-resume-btn {
-    width: 6.5rem;
+    width: 8rem;
     background: none;
     cursor: pointer;
 
 }
 
 #timer {
+    font-size: 3vw;
+    font-weight: 700;
+}
+
+#message {
+    font-size: 2vw;
     font-weight: 700;
 }
 
