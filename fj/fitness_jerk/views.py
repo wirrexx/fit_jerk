@@ -22,35 +22,43 @@ from pathlib import Path
 
 ## Password Reset
 class CustomPasswordResetView(PasswordResetView):
+    """"""
     template_name = "registration/custom_password_reset_form.html"
     email_template_name = "registration/custom_password_reset_email.html"
     success_url = reverse_lazy("password_reset_done")
 
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
+    """"""
     template_name = "registration/custom_password_reset_done.html"
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    """"""
     template_name = "registration/custom_password_reset_confirm.html"
 
 
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    """"""
     template_name = "registration/custom_password_reset_complete.html"
 
 
 class CustomPasswordChangeView(PasswordChangeView):
+    """"""
     template_name = "registration/change_password.html"
 
 
 class CustomPasswordChangeDoneView(PasswordChangeDoneView):
+    """"""
     template_name = "registration/change_password_done.html"
 
 
 class CustomLoginView(LoginView):
+    """"""
     template_name = "registration/login.html"
 
-
+#TODO: Finish cleaning functions in forms.py
+#TODO: User gets created no matter what...
 ## Signup
 def signup_view(request):
     """View that lets the user signup to the page. Sends a welcome mail upon successfull signup"""
@@ -68,7 +76,8 @@ def signup_view(request):
                 message="You finally made it. You choose to better yourself. Well, good luck with that!",
                 from_email="fitbastards.team@gmail.com",
                 recipient_list=[email],
-            ) 
+            )
+            user.backend = "django.contrib.auth.backends.ModelBackend"
             login(request, user)
             return redirect("profile")
     else: 
@@ -81,13 +90,6 @@ def logout_endpoint(request):
     """Logs out the user"""
     logout(request)
     return redirect('/')
-
-#login view
-def login_view(request):
-    pass
-
-def index_view(request):
-    return render(request, "fitness_jerk/index.html")
 
 
 # ------------------------------------- ANA ----------------------------------------
