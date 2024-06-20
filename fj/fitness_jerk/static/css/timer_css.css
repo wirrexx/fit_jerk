@@ -209,7 +209,7 @@ p {
     }
 
     .video_url {
-        width: 90%;
+        width: 100%;
         height: 50%;
     }
 
@@ -225,5 +225,21 @@ p {
         align-items: center;
         text-align: center;
         scale: 135%;
+    }
+
+    .exercise-item {
+        text-align: center;
+        font-size: 8vw;
+    }
+
+    #timer {
+        font-weight: 700;
+        font-size: 12vw;
+    }
+
+    #message {
+        font-size: 6vw;
+        font-weight: 700;
+        text-wrap: nowrap;
     }
 }
