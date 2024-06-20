@@ -14,7 +14,8 @@
             </div>
             {% endif %}
             <div class="user_details">
-                <p style="text-align: center;">User details</p>
+                <p style="text-align: center;">User details</p><br>
+                <hr>
                 <br>
                 <p>Username: {{ user.username }}</p>
                 <br>
@@ -26,6 +27,8 @@
             </div>
             <div class="profile_pic_settings">
                 <p style="text-align: center;">Profile picture</p><br>
+                <hr>
+                <br>
                 <div class="profile_img">
                     <label for="profile_img">Upload image:</label> 
                     {{ profile_pic.as_p }}
