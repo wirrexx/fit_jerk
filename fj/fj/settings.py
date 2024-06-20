@@ -21,6 +21,8 @@ dotenv_path = BASE_DIR / ".env"
 dotenv.read_dotenv(dotenv_path)
 
 
+dotenv_path = BASE_DIR / ".env"
+dotenv.read_dotenv(dotenv_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -37,12 +39,23 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # The following apps are required for OAuth
+    'django.contrib.auth',
+    'django.contrib.messages',
+    'allauth',
+    'allauth.account',
+    # Optional -- requires install using `django-allauth[socialaccount]`.
+    'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    "allauth.socialaccount.providers.google",
+    
+
     "django.contrib.admin",
-    "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # app
     "fitness_jerk",
 ]
 
@@ -54,6 +67,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    # OAuth
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "fj.urls"
@@ -64,7 +80,7 @@ template_base = BASE_DIR / "templates"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [template_base],
+        "DIRS": [BASE_DIR / "templates", ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -151,8 +167,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 
 # # PRODUCTION SETTINGS
-# dotenv_path = BASE_DIR / ".env"
-# dotenv.read_dotenv(dotenv_path)
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # The backend to use for sending emails
 # EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
@@ -171,3 +185,31 @@ PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
     "django.contrib.auth.hashers.ScryptPasswordHasher",
 ]
+
+# Auth Backends
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        'APP': {
+            'client_id': os.getenv("GOOGLE_CLIENT_ID"),
+            'secret': os.getenv("GOOGLE_CLIENT_SECRET"),
+            'key': ''
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type":"online"
+        }, 
+    }
+}
+
