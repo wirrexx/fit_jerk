@@ -169,7 +169,7 @@ def settings_view(request):
             image = profile_pic.cleaned_data['image']
 
             if noimage:
-                member_info.image = None
+                member_info.image = None # this is if the member want to change his profile to no picture after
                 member_info.save()
 
             if image:
