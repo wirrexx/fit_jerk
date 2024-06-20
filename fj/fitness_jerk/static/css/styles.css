@@ -129,6 +129,31 @@ footer {
     padding-left: .5rem;
 }
 
+.login-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.google-lgn {
+    border-radius: 16px;
+    text-align: center;
+    font-size: .8rem;
+    margin-left: .5rem;
+    width: 128px;
+    margin-top: 1rem;
+    background: black;
+    align-items: center;
+    align-content: center;
+}
+
+.google-icon {
+    width: 12px;
+    height: 12px;
+}
+
+
 .join-us-btn {
     display: flex;
     justify-content: center;
@@ -148,7 +173,7 @@ footer {
 .join-us-btn:hover {
     background: limegreen;
     color: #292929;
-    transform: translateX(8px)
+    transform: translateX(4px)
 }
 
 
@@ -171,7 +196,7 @@ footer {
 .learn-more-btn:hover {
     background: transparent;
     color: #292929;
-    transform: translateX(8px)
+    transform: translateX(4px)
 }
 
 
@@ -567,6 +592,7 @@ button {
 
 .links a {
     color: white;
+    font-weight: 500;
 }
 
 .password-reset {
