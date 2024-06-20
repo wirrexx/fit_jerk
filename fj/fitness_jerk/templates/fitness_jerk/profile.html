@@ -5,10 +5,13 @@
 
 {% block content %}
 
-{% for message in messages %}
-<p class="message">{{ message }}</p>
-{% endfor %}
+
 <div class="row">
+    <div class="success_message">
+        {% for message in messages %}
+        <p class="message">{{ message }}</p>
+        {% endfor %}
+    </div>
     <div class="rightcolumn">
         <div class="intro">
             <div class="post">

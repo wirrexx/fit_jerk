@@ -10,7 +10,7 @@
             {% csrf_token %}
             {% if context.member.image %}
             <div class="image_top">
-                <img class="image_top" src="{{context.member.image.url}}" alt="profile-image" style="width: 300px; border-radius: 10px;">
+                <img class="image_top" src="{{context.member.image.url}}" alt="profile-image" style="width: 300px; border-radius: 10px; text-align: center;">
             </div>
             {% endif %}
             <div class="user_details">
@@ -60,10 +60,12 @@
                     </div>
                 </div>
             </div>
-            <br><br>
-            <button type="submit" class="update_btn" style="display: flex; align-items: center; justify-content: center;">Update</button>
             <br>
-            <p class="delete_option">Click <a href="{% url 'delete' %}">here</a> if you would to delete your account.</p>
+            <div class="update_delete_btn">
+                <button type="submit" class="update_btn" style="display: flex; align-items: center; justify-content: center;">Update</button>
+                <br>
+                <p class="delete_option">Click <a href="{% url 'delete' %}" style="color: #D19B4E;">here</a> if you would to delete your account.</p>
+            </div>
         </form>
     </div>
 </div>

@@ -8,7 +8,17 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserChangeForm
 from .models import Members
 
+def validate_height(value):
+    """THIS FUNCTION IS TO VALIDATE THE HIGHT FORMAT AS THE DEFAULT VALUE IS 0. I HAD TO ADD AN IF STATEMENT"""
+    if value != 0:
+        regex_validator = RegexValidator(
+            regex=r'^\d{1}\.\d{2}$',
+            message="Please enter in the correct format"
+        )
+        regex_validator(value)
+
 class ProfileChangeForm(UserChangeForm):
+    """FORM TO UPDATE THE HIGHT AND WEIGHT"""
     #hide password change message
     password = None
     class Meta:
@@ -17,23 +27,14 @@ class ProfileChangeForm(UserChangeForm):
     
     height = forms.FloatField(
         required=False,
-        error_messages= {'invalid': 'Height format X.XX'},
-        validators=[
-            RegexValidator(
-                regex=r'[0-9]{1}[.][0-9]{2}',
-                message="Please enter in the correct format"
-            )
-        ],
+        error_messages={'invalid': 'Height format X.XX'},
+        validators=[validate_height],
         widget=forms.NumberInput(attrs={'pattern': r'[0-9]{1}[.][0-9]{2}', 'title': 'Please add your height in the format X.XX'})
-    )
-
-    weight = forms.FloatField(
-        required=False,
-        widget=forms.NumberInput(attrs={'title': 'Please enter your weight'})
     )
 
 
 class PictureChangeForm(forms.Form):
+    """A SEPARATED FORM FOR THE PICTURE SO I COULD PLACE AT THE BOTTOM OF THE SETTINGS PAGE AND STYLE IT BETTER"""
     image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'title': 'Upload your picture', 'placeholder': 'Choose your file'}))
     class Meta:
         model = Members

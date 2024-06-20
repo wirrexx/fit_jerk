@@ -105,6 +105,7 @@ def delete_user_func(request):
 
 @login_required
 def profile_view(request):
+    """here the user information is displayed in the profile page and depending on the member's workouts number it recognizes his bastard level and calculate the percentage of that level progress"""
     user = request.user
     member_info = Members.objects.get(user=user)
     member_posts = Posts.objects.filter(member=member_info).last()
@@ -150,18 +151,19 @@ def settings_view(request):
     profile_form = ProfileChangeForm(request.POST or None, instance=member_info)
     profile_pic = PictureChangeForm(request.POST or None, request.FILES)
     
+    """THIS PART IS SO THE MEMBER CAN CHOOSE BETWEEN UPLOAD HIS OWN PICTURE OR GET AN AVATAR"""
     if request.method == 'POST':
         avatar = request.POST.get('avatar')  # Retrieve selected avatar option
     
         if profile_form.is_valid() and profile_pic.is_valid():
             profile_form.save()
-
             image = profile_pic.cleaned_data['image']
 
             if image:
                 member_info.image = image
                 member_info.save()
             
+            """here the POST request get the avatar name and save the image accordingly"""
             if avatar:
                 if avatar == 'batman':
                     member_info.image = 'static/batman.jpeg'
@@ -200,7 +202,7 @@ def get_all_replies(path_to_response_file: str) -> list:
 
 @login_required
 def workout_finish(request):
-    """"""
+    """once the member hit the button done in the workout page this function is triggered"""
     
     BASE_DIR = Path(__file__).resolve().parent
     path_to_response_file = BASE_DIR / "templates/tough_responses.txt" 
