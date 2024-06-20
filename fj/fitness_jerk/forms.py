@@ -16,7 +16,7 @@ def validate_height(value):
     if value != 0:
         regex_validator = RegexValidator(
             regex=r'[0-9]{1}[.][0-9]{2}',
-            message="Please enter in the correct format"
+            message="Please enter in the correct format",
         )
         regex_validator(value)
 
@@ -33,7 +33,7 @@ class ProfileChangeForm(UserChangeForm):
         required=False,
         error_messages={'invalid': 'Height format X.XX'},
         validators=[validate_height],
-        widget=forms.NumberInput(attrs={'pattern': r'[0-9]{1}[.][0-9]{2}', 'title': 'Please add your height in the format X.XX'})
+        widget=forms.NumberInput(attrs={'pattern':r'[0-9]{1}[.][0-9]{2}', 'title': 'Please add your height in the format X.XX'})
     )
 
 
