@@ -7,44 +7,42 @@
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 {% block content %}
-
-<div class="quote-small">
-  <p>NOTHING IS IMPOSSIBLE</p>
-</div>
-<div class="quote-text">
-  <h2>REACH YOUR<br>GOALS</h2>
-</div>
-
-<div class="login-menu" id="login-menu">
-  <div class="login-box">
-    <form action="" method="post">
-      {% csrf_token %}
-      <div class="form-group">
-        <input type="text" name="username" placeholder="Username">
-      </div>
-      <div class="form-group">
-        <input type="password" name="password" placeholder="Password">
-      </div>
-      <div class="login-btn">
-        <button type="submit">Log In</button>
-      </div>
-    </form>
-  <!--OAuth-->
-  <div class="google_auth">
-    <p>Or</p>
-    
-    <a href="{% provider_login_url 'google' %}">Sign up with Google</a>
+<div class="login-main">
+  <div class="quote-small">
+    <p>NOTHING IS IMPOSSIBLE</p>
+  </div>
+  <div class="quote-text">
+    <h2>REACH YOUR<br>GOALS</h2>
   </div>
 
-    <div class="links">
-      <div class="password-reset">
-        <a href="{% url 'password_reset' %}">Forgot your password?</a>
-      </div>
-      <div class="join-us">
-        <a href="{% url 'signup' %}" class="">Join us</a>
-      
-    
-      
+
+  <div class="login-menu" id="login-menu">
+    <div class="login-box">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" placeholder="Password">
+        </div>
+        <div class="login-btn">
+          <button type="submit">Log In</button>
+        </div>
+      </form>
+      <div class="links">
+        <div class="password-reset">
+          <a href="{% url 'password_reset' %}">Forgot your password?</a>
+        </div>
+        <div class="login-bottom">
+          <div class="join-us-btn">
+            <a href="{% url 'about' %}">Join us</a>
+          </div>
+          <div class="google-lgn">
+            <a href="#"><img src="../../static/google.png" alt="google" class="google-icon">oogle login</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

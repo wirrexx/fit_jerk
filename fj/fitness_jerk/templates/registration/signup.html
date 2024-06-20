@@ -4,22 +4,56 @@
 {% block title %}SIGNUP{% endblock %}
 
 {% block content %}
-<h2>SIGNUP</h2>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
 
-    {% if form.errors %}
-    <div class="alert alert-danger">
-        <ul>
-            {% for error in field.errors %}
-            <li>{{ field.label }}: {{ error }}</li>
-            {% endfor %}
-        </ul>
+<div class="login-main">
+    <div class="quote-small">
+        <p>SIGN UP</p>
     </div>
-    {% endif %}
-    <input type="submit" value="Signup">
-</form>
-<a href="{% url 'login' %}">Sign In</a>
+    <div class="quote-text">
+        <h2>BEAT YOUR<br>GOALS</h2>
+    </div>
+    <div class="login-menu" id="login-menu">
+        <div class="login-box">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password2" placeholder="Confirm Password">
+                </div>
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                <div class="links">
+                    <div class="login-btn">
+                        <button type="submit" value="Sign up">Sign up</button>
+                    </div>
+            </form>
+            <div class="password-reset">
+                <a href="{% url 'login' %}" value="Sign in">Sign In</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
 
 {% endblock %}

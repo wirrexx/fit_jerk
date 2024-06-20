@@ -6,20 +6,20 @@
 {% block content %}
 
 <div class="image-container">
-    <img class="landing-page" src="{% static 'landing_page.png' %}" alt="">
-    <div class="land-text">
-        <h1>FITBASTARDS</h1>
-    </div>
-
     <div class="outer-box"></div>
-    <p class="about-text">
-        A Message from Your Fit Future Self: Welcome To FitBastards, Your Ultimate Personal Trainer App.
-        Hey there,
+    <img class="landing-page" src="{% static 'landing_page.png' %}" alt="">
+    <div class="h1">FITBASTARDS</h1>
+        <p class="about-text">
+            A Message from Your Fit Future Self: Welcome To FitBastards, Your Ultimate Personal Trainer App.
+            Hey there,
 
-        I know this might sound a bit unusual...
-        <br></b><a href="{% url 'about' %}" class="learn-more-btn">Learn More ></a>
-    </p>
+            I know this might sound a bit unusual...
 
+        </p>
+        <br><a href="{% url 'about' %}" class="learn-more-btn">Read More ></a>
+        <a href="{% url 'signup' %}" class="join-us-btn"> Join us </a>
+    </div>
+</div>
 </div>
 
 {% endblock%}

@@ -2,22 +2,31 @@
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<title>Settings</title>
+<title>Delete</title>
 
 {% block content %}
-<div class="profile">
-    <form action="" method=POST>
-        {% csrf_token %}
-        <h1>{{ member.username }}</h1><br><br>
-        <h1>Are you sure you want to delete your
-            account?</h1>
-        <br><br>
-        <button><a href=" {% url 'profile' %}">Back to profile</a></button>
-        <div class="delete">
-            <input type="submit" value="Delete">
+<div class="login-main">
+    <div class="quote-small">
+      <p>ALREADY GIVING UP?</p>
+    </div>
+    <div class="quote-text">
+      <h2>DELETE<br>CONFIRMATION</h2>
+    </div>
+    <div class="login-menu" id="login-menu">
+        <div class="login-box">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <h3 style="text-align: center;">User: {{ member }}</h3>
+                </div>
+                <div class="login-btn">
+                    <a href="{% url 'profile' %}"><button type="button" class="back_profile">Back to profile</button></a>
+                </div>
+                <div class="delete-btn" style="text-align: center; margin-top: 10px;">
+                    <button type="submit" class="delete">DELETE</button>
+                </div>
+            </form>
         </div>
-    </form>
-    <script src="{% static 'navbar_js.js' %}"></script>
+    </div>
 </div>
-
 {% endblock %}

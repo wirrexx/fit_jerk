@@ -26,8 +26,9 @@ urlpatterns = [
 
     # OAuth 
     path('accounts/google/login/', google_login, name='google_login'),
-    path('accounts/google/login/callback/', google_callback, name='google_callback'),
+    path('accounts/google/login/callback/', google_callback, name='google_callback'),    
     path('accounts/social/signup/', socialaccount_signup, name='socialaccount_signup'),  
+
     
     
     #Training Functions
@@ -46,4 +47,3 @@ urlpatterns = [
     path('finish', workout_finish, name='finish'),
     path('delete', delete_user_func, name='delete'),
  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
