@@ -1,5 +1,7 @@
 {% extends 'fitness_jerk/base.html' %}
 {% load static %}
+{% load socialaccount %}
+
 
 {% block title %}SIGNIN{% endblock %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -12,6 +14,7 @@
   <div class="quote-text">
     <h2>REACH YOUR<br>GOALS</h2>
   </div>
+
 
   <div class="login-menu" id="login-menu">
     <div class="login-box">
@@ -39,6 +42,7 @@
             <a href="#"><img src="../../static/google.png" alt="google" class="google-icon">oogle login</a>
           </div>
         </div>
+
       </div>
     </div>
   </div>

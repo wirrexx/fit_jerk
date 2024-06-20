@@ -52,25 +52,30 @@ class FitUserForm(forms.Form):
 
     def clean_username(self):
         """Checks if username is: empty, invalid or already exists and if so, raises ValidationError"""
-        #TODO: Rexex: " @*=#`´!|><" are not supposed to be in the username
-        #   check if username is valid
-        #       empty 
-        #       with special characters
-        #   check if username is taken
-        if " " in self.cleaned_data.get("username"):
-            raise ValidationError("Space in username")
         username = self.cleaned_data.get("username")
         
+        # Check if username is empty
+        if username == None:
+            raise ValidationError("Username cannot be empty")
+        
+        # Check for special characters
+        forbidden_chars = ["[","!","@","#","$","%","^","&","*","(", ")",",",",",".","?","\\",":","{","}","|","<",">","/","'","\""]
+        for forbidden_char in forbidden_chars:
+            if forbidden_char in username:
+                raise ValidationError("Username can't contain special characters")
+        
+        # Check if username is taken
         if User.objects.filter(username=username).exists():
-            raise ValidationError("Username taken")
+            raise ValidationError("Username already taken")
         return username              
 
 
     def clean_email(self):
         """Checks if email is valid"""
         email = self.cleaned_data.get("email")
-        #   check if email is valid
-        #   check if email is taken
+        # Check if email is already taken
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("Email already taken") 
         return email
     
     def clean_password1(self):

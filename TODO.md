@@ -1,23 +1,21 @@
-## TODO: 12.06.2024
+## TODO
 
-0. Refactor: Posts stored in Members
-1. Research how chatterbot works
-[Resource Chatterbot]:(https://chatterbot.readthedocs.io/en/stable/)
-	Process flow: 
-		Get input ([1,2,3] workout finished)
-		Process input
-			Questions: what is the highest confidence
-					   value?
-		Return response (string)
+1. Checkout Oauth [x]
 
-0. Installation
+1.1 Implement Google OAuth [x]
+1.2. Stylize login.html
+	-> templates/socialaccount
+1.3. Change CLIENT_ID and CLIENT_SECRET in google console
 
-```sh
-pip install chatterbot
-```
+2. Deploy to python anywhere
+3. Write Tests
+4. Write documentation
 
-3. Integration wisam_dev to main
-4. Integration xtn_dev to main
+
+DEADLINE: 19.06 for testingphase
+
+<hr>
+
 
 ## DRY!!!!
 
@@ -53,13 +51,6 @@ PASSWORD_HASHERS =
 	
 ## Tests
 	Write tests for views, functions etc..
-
-## Integrate a ChatBot
-	Research: 
-		Chatter
-		Google Bard
-		ChatGPT
-		Other
 
 ## Password Reset
 	Force HTTPS

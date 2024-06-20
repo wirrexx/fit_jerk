@@ -1,4 +1,5 @@
 import random
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
@@ -11,10 +12,14 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 from django.urls import reverse_lazy
+from pathlib import Path
 from .forms import FitUserForm, ProfileChangeForm, PictureChangeForm
 from .models import Members, Posts, TrainingSchedule
 from pathlib import Path
 
+##TODO: 
+#+  1. Refactor
+#+  2. Add docstrings
 
 # Create your views here.
 
@@ -22,14 +27,14 @@ from pathlib import Path
 
 ## Password Reset
 class CustomPasswordResetView(PasswordResetView):
-    """"""
+    """Allows user to reset password if forgotten"""
     template_name = "registration/custom_password_reset_form.html"
     email_template_name = "registration/custom_password_reset_email.html"
     success_url = reverse_lazy("password_reset_done")
 
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
-    """"""
+    """Informs the user if password reset was successfull"""
     template_name = "registration/custom_password_reset_done.html"
 
 
@@ -57,8 +62,6 @@ class CustomLoginView(LoginView):
     """"""
     template_name = "registration/login.html"
 
-#TODO: Finish cleaning functions in forms.py
-#TODO: User gets created no matter what...
 ## Signup
 def signup_view(request):
     """View that lets the user signup to the page. Sends a welcome mail upon successfull signup"""
@@ -94,6 +97,7 @@ def logout_endpoint(request):
 
 # ------------------------------------- ANA ----------------------------------------
 
+@login_required
 def delete_user_func(request):
     """Let the user delete his profile"""
     username = request.user.username
@@ -116,6 +120,7 @@ def profile_view(request):
     if BMI == 0:
         BMI = "Please complete your profile"
 
+    #TODO: Think of a smarter way to store this to make the code more readable
     if member_info.progress < 50:
         level = "Newbie Bastard"
         progress = member_info.progress/50*100
@@ -181,6 +186,7 @@ def settings_view(request):
             messages.success(request, "Profile updated successfully")
             return redirect('profile')
         
+
     BMI = user.members.bmi
     if BMI == 0:
         BMI = "Please complete your profile"
@@ -192,6 +198,7 @@ def settings_view(request):
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
 
 
+#TODO: rename
 def get_all_replies(path_to_response_file: str) -> list:
     """Returns content of a file as a list of strings one string per line"""
     try:
@@ -202,13 +209,14 @@ def get_all_replies(path_to_response_file: str) -> list:
     return content    
 
 
+#TODO: BASE_DIR and path to response file are constants that can be defined at the beginning of views.py
+
 @login_required
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
-    
-    BASE_DIR = Path(__file__).resolve().parent
+    BASE_DIR = Path(__file__).resolve().parent 
     path_to_response_file = BASE_DIR / "templates/tough_responses.txt" 
-    posts_list = get_all_replies(path_to_response_file)
+    posts_list = get_all_replies(path_to_response_file) 
     user = request.user
     member_info = Members.objects.get(user=user)
     msg = random.choice(posts_list)
@@ -218,6 +226,9 @@ def workout_finish(request):
 
 
 # ---------------------------------------- WISAM --------------------------------------
+
+##TODO: weight_loose, tone_down, build muscles can be more generic
+#+      Exercises can be passed to one single function
 
 @login_required
 def weight_loose(request):
