@@ -21,8 +21,9 @@ from pathlib import Path
 #+  1. Refactor
 #+  2. Add docstrings
 
-# Create your views here.
+# Create Constants here
 
+# Create your views here.
 # ---------------------------------- XTIAN ---------------------------------------
 
 ## Password Reset
@@ -210,7 +211,6 @@ def get_all_replies(path_to_response_file: str) -> list:
 
 
 #TODO: BASE_DIR and path to response file are constants that can be defined at the beginning of views.py
-
 @login_required
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
@@ -245,8 +245,6 @@ def weight_loose(request):
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_loose.html', {'exercises': exercises, 'training_schedules': training_schedules})
-
-
 
 
 @login_required
@@ -292,4 +290,10 @@ class LandingPage(TemplateView):
     
 class AboutPage(TemplateView):
     template_name = "fitness_jerk/learn_more.html"
+
+class ImprintView(TemplateView):
+    template_name = "fitness_jerk/imprint.html"
+
+class PrivacyPolicyView(TemplateView):
+    template_name = "fitness_jerk/privacy_policy.html"
 

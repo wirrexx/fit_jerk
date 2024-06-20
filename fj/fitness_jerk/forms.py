@@ -8,14 +8,18 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserChangeForm
 from .models import Members
 
+
+# ----------------------------- Ana ----------------------------- #
+
 def validate_height(value):
     """THIS FUNCTION IS TO VALIDATE THE HIGHT FORMAT AS THE DEFAULT VALUE IS 0. I HAD TO ADD AN IF STATEMENT"""
     if value != 0:
         regex_validator = RegexValidator(
-            regex=r'^\d{1}\.\d{2}$',
+            regex=r'[0-9]{1}[.][0-9]{2}',
             message="Please enter in the correct format"
         )
         regex_validator(value)
+
 
 class ProfileChangeForm(UserChangeForm):
     """FORM TO UPDATE THE HIGHT AND WEIGHT"""
@@ -40,7 +44,11 @@ class PictureChangeForm(forms.Form):
         model = Members
         fields = ['image']
 
+
+# ---------------------------- Xtn ---------------------------- #
+
 class FitUserForm(forms.Form):
+    """"""
     username = forms.CharField(max_length=50)
     email = forms.EmailField()
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
@@ -59,6 +67,7 @@ class FitUserForm(forms.Form):
             raise ValidationError("Username cannot be empty")
         
         # Check for special characters
+        #TODO: make forbidden chars regex
         forbidden_chars = ["[","!","@","#","$","%","^","&","*","(", ")",",",",",".","?","\\",":","{","}","|","<",">","/","'","\""]
         for forbidden_char in forbidden_chars:
             if forbidden_char in username:
@@ -75,7 +84,8 @@ class FitUserForm(forms.Form):
         email = self.cleaned_data.get("email")
         # Check if email is already taken
         if User.objects.filter(email=email).exists():
-            raise ValidationError("Email already taken") 
+            raise ValidationError("Email already taken")
+        #TODO: Add check: regex validation of email format
         return email
     
     def clean_password1(self):
