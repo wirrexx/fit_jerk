@@ -32,7 +32,7 @@ Man and Woman
 1. Maybe repeat an animation 2 frames
 2. when done. PNG thumbs up?
 
-## Burger Menu fix[]
+## Burger Menu fix[x]
 0. Slide out
 1. Button layout
 2. responsive
@@ -42,11 +42,11 @@ Man and Woman
 1. css 
 2. settings
 
-## Timer Design[]
+## Timer Design[x]
 0. Find a Design
 1. Stick to it
 2. Make it work
 
 ## CSS QUERY![]
 
-## Add Google Icon
+## Add Google Icon[x]
