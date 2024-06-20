@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.core.validators import RegexValidator, DecimalValidator
+from django.core.validators import RegexValidator
 from django.contrib.auth.password_validation import validate_password
 from django import forms 
 from django.forms import ModelForm
@@ -12,7 +12,7 @@ def validate_height(value):
     """THIS FUNCTION IS TO VALIDATE THE HIGHT FORMAT AS THE DEFAULT VALUE IS 0. I HAD TO ADD AN IF STATEMENT"""
     if value != 0:
         regex_validator = RegexValidator(
-            regex=r'^\d{1}\.\d{2}$',
+            regex=r'[0-9]{1}[.][0-9]{2}',
             message="Please enter in the correct format"
         )
         regex_validator(value)
