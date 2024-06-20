@@ -17,6 +17,9 @@ from .forms import FitUserForm, ProfileChangeForm, PictureChangeForm
 from .models import Members, Posts, TrainingSchedule
 from pathlib import Path
 
+##TODO: 
+#+  1. Refactor
+#+  2. Add docstrings
 
 # Create your views here.
 
@@ -24,35 +27,43 @@ from pathlib import Path
 
 ## Password Reset
 class CustomPasswordResetView(PasswordResetView):
+    """"""
     template_name = "registration/custom_password_reset_form.html"
     email_template_name = "registration/custom_password_reset_email.html"
     success_url = reverse_lazy("password_reset_done")
 
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
+    """"""
     template_name = "registration/custom_password_reset_done.html"
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    """"""
     template_name = "registration/custom_password_reset_confirm.html"
 
 
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    """"""
     template_name = "registration/custom_password_reset_complete.html"
 
 
 class CustomPasswordChangeView(PasswordChangeView):
+    """"""
     template_name = "registration/change_password.html"
 
 
 class CustomPasswordChangeDoneView(PasswordChangeDoneView):
+    """"""
     template_name = "registration/change_password_done.html"
 
 
 class CustomLoginView(LoginView):
+    """"""
     template_name = "registration/login.html"
 
-
+#TODO: Finish cleaning functions in forms.py
+#TODO: User gets created no matter what...
 ## Signup
 def signup_view(request):
     """View that lets the user signup to the page. Sends a welcome mail upon successfull signup"""
@@ -70,7 +81,8 @@ def signup_view(request):
                 message="You finally made it. You choose to better yourself. Well, good luck with that!",
                 from_email="fitbastards.team@gmail.com",
                 recipient_list=[email],
-            ) 
+            )
+            user.backend = "django.contrib.auth.backends.ModelBackend"
             login(request, user)
             return redirect("profile")
     else: 
@@ -85,9 +97,9 @@ def logout_endpoint(request):
     return redirect('/')
 
 
-
 # ------------------------------------- ANA ----------------------------------------
 
+@login_required
 def delete_user_func(request):
     """Lets the user delete his profile"""
     username = request.user.username
@@ -109,6 +121,7 @@ def profile_view(request):
     if BMI == 0:
         BMI = "Please complete your profile"
 
+    #TODO: Think of a smarter way to store this to make the code more readable
     if member_info.progress < 50:
         level = "Newbie Bastard"
         progress = member_info.progress/50*100
@@ -143,9 +156,9 @@ def settings_view(request):
     """settings page where member can update and delete account"""
     user = request.user
     member_info = Members.objects.get(user=user)
-    profile_form = ProfileChangeForm(request.POST or None, instance=member_info)
-    profile_pic = PictureChangeForm(request.POST or None, request.FILES, instance=member_info)
-    if profile_form.is_valid() and profile_pic.is_valid():
+    profile_form = ProfileChangeForm(request.POST or None, instance=member_info) # Wtf is this
+    profile_pic = PictureChangeForm(request.POST or None, request.FILES, instance=member_info) # Wtf is this
+    if profile_form.is_valid() and profile_pic.is_valid(): # Whats happening here?
         profile_form.save()
         profile_pic.save()
         messages.success(request, "Profile updated successfully")
@@ -161,6 +174,7 @@ def settings_view(request):
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
 
 
+#TODO: rename
 def get_all_replies(path_to_response_file: str) -> list:
     """Returns content of a file as a list of strings one string per line"""
     try:
@@ -171,12 +185,14 @@ def get_all_replies(path_to_response_file: str) -> list:
     return content    
 
 
+#TODO: BASE_DIR and path to response file are constants that can be defined at the beginning of views.py
+
 @login_required
 def workout_finish(request):
     """"""
     BASE_DIR = Path(__file__).resolve().parent 
     path_to_response_file = BASE_DIR / "templates/tough_responses.txt" 
-    posts_list = get_all_replies(path_to_response_file) #TODO: Store this in a different way/generate GPT
+    posts_list = get_all_replies(path_to_response_file) 
     user = request.user
     member_info = Members.objects.get(user=user)
     msg = random.choice(posts_list)
@@ -186,6 +202,9 @@ def workout_finish(request):
 
 
 # ---------------------------------------- WISAM --------------------------------------
+
+##TODO: weight_loose, tone_down, build muscles can be more generic
+#+      Exercises can be passed to one single function
 
 @login_required
 def weight_loose(request):
