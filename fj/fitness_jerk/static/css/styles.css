@@ -155,6 +155,22 @@ footer {
     height: 12px;
 }
 
+.join-us-btn {
+    display: flex;
+    justify-content: center;
+    color: whitesmoke;
+    background: #d19b4e;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 16px;
+    text-align: center;
+    font-size: .8rem;
+    margin-left: .5rem;
+    width: 128px;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all .55s ease;
+}
 
 .join-us-btn:hover {
     background: limegreen;
