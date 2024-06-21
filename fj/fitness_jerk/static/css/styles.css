@@ -721,6 +721,15 @@ form.settings_form {
     
 }
 
+.noimage {
+    display: flex;
+}
+
+.noimage_check {
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
 .custom-dropdown {
     position: relative;
     display: flex;
@@ -728,6 +737,7 @@ form.settings_form {
     align-items: center;
     justify-content: flex-start;
     z-index: 10;
+    margin-top: 5px;
 }
 
 .dropdown-checkbox {
@@ -736,7 +746,7 @@ form.settings_form {
 
 .profile_pic_settings {
     padding: 10px;
-    padding-top: 0px;
+    padding-top: 5px;
 }
 
 .dropdown-label {
@@ -749,6 +759,7 @@ form.settings_form {
     color: black;
     font-size: 13px;
     overflow: visible;
+    border-radius: 3px;
 }
 
 .dropdown-checkbox:checked + .dropdown-label + .dropdown-selected-avatar + .dropdown-options,
