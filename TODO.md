@@ -7,12 +7,12 @@
 ### Xtn
 
 1. Refactor code and improve code quality:
-	DRY!
- 	make code self documenting
-	make variable names more concise and on point
-	add docstrings
-	Remove dead code
-	=> refactor code
+	- DRY!
+ 	- make code self documenting
+	- make variable names more concise and on point
+	- add docstrings
+	- Remove dead code
+	- => refactor code
 
 3. Write Tests
 4. Deploy to python anywhere
