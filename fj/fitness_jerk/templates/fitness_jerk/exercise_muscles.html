@@ -1,8 +1,6 @@
 {% extends 'fitness_jerk/base.html' %}
 {% load static %}
-
 {% block title %}Training Build it Up!{% endblock %}
-
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/timer_css.css' %}">
 <div class="exercise-container">
@@ -25,6 +23,7 @@
     </ul>
 
     <div id="message">
+
         <p>Start</p>
     </div>
 
@@ -34,6 +33,7 @@
 
     <div class="button-layout">
         <button id="start-btn" data-play-icon="{% static 'play.svg' %}" data-pause-icon="{% static 'pause.svg' %}">
+
             <img src="{% static 'play.svg' %}" alt="Play">
         </button>
         <button id="finish-btn">
@@ -43,7 +43,6 @@
             <a href="{% url 'profile' %}">Give up!</a>
         </button>
     </div>
-
     <script src="{% static 'timer_js.js' %}"></script>
     <script src="{% static 'navbar_js.js' %}"></script>
 </div>
