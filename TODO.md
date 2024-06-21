@@ -1,10 +1,8 @@
 ### All
 
-Fill with content
-    Imprint
-    Privacy Policy
-Upload/Create Logo
-Git Tutorial
+- Fill with content: [Imprint, Privacy Policy]
+- Upload/Create Logo
+- Git Tutorial
 
 ### Xtn
 
@@ -32,15 +30,8 @@ def save_user_profile(sender, instance, **kwargs):
 ```
 
 ## Documentation
-	HOWTO Blogposts
-		LoginView
-		LogoutView
-		SignupForm
-		PasswordReset 
-		CustomUser
-		using dotenv
-		Deployment
-		Implementation of OAuth
+
+What did we do and how did we do it?
 
 ## Prospects
 
