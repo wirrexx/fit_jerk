@@ -9,9 +9,11 @@
 1. Refactor code and improve code quality:
 	DRY!
  	make code self documenting
+	make variable names more concise and on point
 	add docstrings
-	refactor code
 	Remove dead code
+	=> refactor code
+
 3. Write Tests
 4. Deploy to python anywhere
 5. Write documentation
@@ -31,7 +33,8 @@ def save_user_profile(sender, instance, **kwargs):
 
 ## Documentation
 
-What did we do and how did we do it?
+- What did we do and how did we do it?
+- Obstacles and Lessons learned
 
 ## Prospects
 
