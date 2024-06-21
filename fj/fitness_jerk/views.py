@@ -21,20 +21,21 @@ from pathlib import Path
 #+  1. Refactor
 #+  2. Add docstrings
 
-# Create your views here.
+# Create Constants here
 
+# Create your views here.
 # ---------------------------------- XTIAN ---------------------------------------
 
 ## Password Reset
 class CustomPasswordResetView(PasswordResetView):
-    """"""
+    """Allows user to reset password if forgotten"""
     template_name = "registration/custom_password_reset_form.html"
     email_template_name = "registration/custom_password_reset_email.html"
     success_url = reverse_lazy("password_reset_done")
 
 
 class CustomPasswordResetDoneView(PasswordResetDoneView):
-    """"""
+    """Informs the user if password reset was successfull"""
     template_name = "registration/custom_password_reset_done.html"
 
 
@@ -62,8 +63,6 @@ class CustomLoginView(LoginView):
     """"""
     template_name = "registration/login.html"
 
-#TODO: Finish cleaning functions in forms.py
-#TODO: User gets created no matter what...
 ## Signup
 def signup_view(request):
     """View that lets the user signup to the page. Sends a welcome mail upon successfull signup"""
@@ -101,7 +100,7 @@ def logout_endpoint(request):
 
 @login_required
 def delete_user_func(request):
-    """Lets the user delete his profile"""
+    """Let the user delete his profile"""
     username = request.user.username
     if request.method == 'POST':
         user_id = request.user.id
@@ -113,6 +112,7 @@ def delete_user_func(request):
 
 @login_required
 def profile_view(request):
+    """here the user information is displayed in the profile page and depending on the member's workouts number it recognizes his bastard level and calculate the percentage of that level progress"""
     user = request.user
     member_info = Members.objects.get(user=user)
     member_posts = Posts.objects.filter(member=member_info).last()
@@ -153,16 +153,46 @@ def profile_view(request):
 
 @login_required
 def settings_view(request):
-    """settings page where member can update and delete account"""
+    """settings page where member can update and go to the delete account page"""
     user = request.user
     member_info = Members.objects.get(user=user)
-    profile_form = ProfileChangeForm(request.POST or None, instance=member_info) # Wtf is this
-    profile_pic = PictureChangeForm(request.POST or None, request.FILES, instance=member_info) # Wtf is this
-    if profile_form.is_valid() and profile_pic.is_valid(): # Whats happening here?
-        profile_form.save()
-        profile_pic.save()
-        messages.success(request, "Profile updated successfully")
-        return redirect('profile')
+    profile_form = ProfileChangeForm(request.POST or None, instance=member_info)
+    profile_pic = PictureChangeForm(request.POST or None, request.FILES)
+    
+    """THIS PART IS SO THE MEMBER CAN CHOOSE BETWEEN UPLOAD HIS OWN PICTURE OR GET AN AVATAR"""
+    if request.method == 'POST':
+        avatar = request.POST.get('avatar')  # Retrieve selected avatar option
+        noimage = request.POST.get('noimage')
+
+        if profile_form.is_valid() and profile_pic.is_valid():
+            profile_form.save()
+            image = profile_pic.cleaned_data['image']
+
+            if noimage:
+                member_info.image = None # this is if the member want to change his profile to no picture after
+                member_info.save()
+
+            if image:
+                member_info.image = image
+                member_info.save()
+            
+            """here the POST request get the avatar name and save the image accordingly"""
+            if avatar:
+                if avatar == 'batman':
+                    member_info.image = 'static/batman.jpeg'
+                if avatar == 'catwoman':
+                    member_info.image = 'static/catwoman-lego.png'
+                if avatar == 'superman':
+                    member_info.image = 'static/superman_lego.jpeg'
+                if avatar == 'wonderwoman':
+                    member_info.image = 'static/wonderwoman_lego.jpg'
+                 
+                member_info.save()
+
+            messages.success(request, "Profile updated successfully")
+            return redirect('profile')
+        
+
     BMI = user.members.bmi
     if BMI == 0:
         BMI = "Please complete your profile"
@@ -186,10 +216,9 @@ def get_all_replies(path_to_response_file: str) -> list:
 
 
 #TODO: BASE_DIR and path to response file are constants that can be defined at the beginning of views.py
-
 @login_required
 def workout_finish(request):
-    """"""
+    """once the member hit the button done in the workout page this function is triggered"""
     BASE_DIR = Path(__file__).resolve().parent 
     path_to_response_file = BASE_DIR / "templates/tough_responses.txt" 
     posts_list = get_all_replies(path_to_response_file) 
@@ -223,8 +252,6 @@ def weight_loose(request):
     return render(request, 'fitness_jerk/exercise_loose.html', {'exercises': exercises, 'training_schedules': training_schedules})
 
 
-
-
 @login_required
 def tone_down(request):
     """"""
@@ -254,13 +281,9 @@ def build_muscles(request):
         {'name': 'Pushups', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/_l3ySVKYVJ8?si=R0Ld3dTblJEr03oI;controls=0', 'start_time':0, 'end_time':30},
         {'name': 'Overhead Crunch', 'duration': 30, 'video_url':'https://www.youtube.com/embed/f02JON8c4J0?si=UVTjPYqemKsLQ91L&amp;controls=0', 'start_time':0, 'end_time':20},
         {'name': 'Plank', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/sZxrs3C209k?si=2Uo2QT83dF03zKoS&amp;controls=0', 'start_time':0, 'end_time':16},
-        
-
     ]
     training_schedules = TrainingSchedule.objects.all()
     return render(request, 'fitness_jerk/exercise_muscles.html', {'exercises': exercises, 'training_schedules': training_schedules})
-
-
 
 
 #---------------------Landing Page --------------------
@@ -270,4 +293,10 @@ class LandingPage(TemplateView):
     
 class AboutPage(TemplateView):
     template_name = "fitness_jerk/learn_more.html"
+
+class ImprintView(TemplateView):
+    template_name = "fitness_jerk/imprint.html"
+
+class PrivacyPolicyView(TemplateView):
+    template_name = "fitness_jerk/privacy_policy.html"
 

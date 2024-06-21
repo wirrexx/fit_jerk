@@ -10,12 +10,11 @@
             {% csrf_token %}
             {% if context.member.image %}
             <div class="image_top">
-                <img class="image_top" src="{{context.member.image.url}}" alt="profile-image"
-                    style="width: 300px; text-align: center;">
+                <img class="image_top" src="{{context.member.image.url}}" alt="profile-image" style="width: 300px; border-radius: 10px; text-align: center;">
             </div>
             {% endif %}
             <div class="user_details">
-                <p style="text-align: center;" class="details-txt">Details</p><br>
+                <p style="text-align: center;">User details</p><br>
                 <hr>
                 <br>
                 <p>Username: {{ user.username }}</p>
@@ -27,14 +26,18 @@
                 <p>Workouts: {{ context.member.progress }}</p>
             </div>
             <div class="profile_pic_settings">
-                <p style="text-align: center;" class="profile-txt">Profile picture</p><br>
+
+                <p style="text-align: center;">Profile picture</p><br>
                 <hr>
                 <br>
+                <div class="noimage">
+                    <label for="noimage">No picture:</label>
+                    <input type="checkbox" name="noimage" value="noimage" class="noimage_check">
+                </div>
                 <div class="profile_img">
-                    <label for="profile_img">Upload image:</label>
+                    <label for="profile_img">Upload picture:</label> 
                     {{ profile_pic.as_p }}
                 </div>
-                <p>or</p>
                 <div class="custom-dropdown">
                     <label for="avatar-dropdown">Choose avatar:</label>
                     <input type="checkbox" id="avatar-dropdown" class="dropdown-checkbox">
@@ -43,22 +46,22 @@
                     <div class="dropdown-options">
                         <label class="option">
                             <input type="radio" name="avatar" value="batman">
-                            <img src="{% static 'static/batman.jpeg' %}" alt="Batman">
+                            <img src="{% static 'static/batman.jpeg' %}" alt="Batman"> 
                             Batman
                         </label>
                         <label class="option">
                             <input type="radio" name="avatar" value="catwoman">
-                            <img src="{% static 'static/catwoman-lego.png' %}" alt="Cat Woman">
+                            <img src="{% static 'static/catwoman-lego.png' %}" alt="Cat Woman"> 
                             Cat Woman
                         </label>
                         <label class="option">
                             <input type="radio" name="avatar" value="superman">
-                            <img src="{% static 'static/superman_lego.jpeg' %}" alt="Superman">
+                            <img src="{% static 'static/superman_lego.jpeg' %}" alt="Superman"> 
                             Superman
                         </label>
                         <label class="option">
                             <input type="radio" name="avatar" value="wonderwoman">
-                            <img src="{% static 'static/wonderwoman_lego.jpg' %}" alt="Wonder Woman">
+                            <img src="{% static 'static/wonderwoman_lego.jpg' %}" alt="Wonder Woman"> 
                             Wonder Woman
                         </label>
                     </div>
@@ -66,18 +69,13 @@
             </div>
             <br>
             <div class="update_delete_btn">
-                <button type="submit" class="update_btn"
-                    style="display: flex; align-items: center; justify-content: center;">Update</button>
+                <button type="submit" class="update_btn" style="display: flex; align-items: center; justify-content: center;">Update</button>
                 <br>
-                <p class="delete_option">Click <a href="{% url 'delete' %}" style="color: #D19B4E;">here</a> if you
-                    would to delete your account.</p>
+                <p class="delete_option">Click <a href="{% url 'delete' %}" style="color: #D19B4E;">here</a> if you would to delete your account.</p>
             </div>
         </form>
     </div>
 </div>
-
-
-
 <script src="{% static 'settings.js' %}"></script>
 
 {% endblock %}

@@ -4,7 +4,7 @@ from allauth.socialaccount.views import signup as socialaccount_signup
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from .views import delete_user_func, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomPasswordResetView, CustomLoginView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView, LandingPage, AboutPage
+from .views import delete_user_func, logout_endpoint, profile_view, settings_view, signup_view, LoginView, workout_finish, CustomPasswordResetView, CustomLoginView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView, CustomPasswordChangeDoneView, CustomPasswordChangeView, LandingPage, AboutPage, PrivacyPolicyView, ImprintView
 from . import views
 
 
@@ -26,8 +26,8 @@ urlpatterns = [
 
     # OAuth 
     path('accounts/google/login/', google_login, name='google_login'),
-    path('accounts/google/login/callback/', google_callback, name='google_callback'),  
-    
+    path('accounts/google/login/callback/', google_callback, name='google_callback'),    
+    path('accounts/social/signup/', socialaccount_signup, name='socialaccount_signup'),  
     
     #Training Functions
     path("exercise-loose/", views.weight_loose, name="exercise_loose"),
@@ -36,7 +36,6 @@ urlpatterns = [
     
     path('accounts/social/signup/', socialaccount_signup, name='socialaccount_signup'),
 
-
     #Main pages
     path('', LandingPage.as_view(), name="welcome"),
     path('about/', AboutPage.as_view(), name="about"),
@@ -44,5 +43,7 @@ urlpatterns = [
     path('settings/', settings_view, name='settings'),
     path('finish', workout_finish, name='finish'),
     path('delete', delete_user_func, name='delete'),
- ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Get rid of that
+    path("imprint.html", ImprintView.as_view(), name="imprint"),
+    path("privacy-policy.html", PrivacyPolicyView.as_view(), name="privacy_policy"),
+ ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

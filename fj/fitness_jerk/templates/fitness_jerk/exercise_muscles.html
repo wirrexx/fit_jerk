@@ -1,8 +1,6 @@
 {% extends 'fitness_jerk/base.html' %}
 {% load static %}
-
-{% block title %}Training Loose it all!{% endblock %}
-
+{% block title %}Training Build it Up!{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/timer_css.css' %}">
 <div class="exercise-container">
@@ -13,19 +11,20 @@
         {% for exercise in exercises %}
         <li class="exercise-item" data-duration="{{ exercise.duration }}" data-name="{{ exercise.name }}"
             style="display: none;">
-            <iframe class='video_url' width="500" height="340"
+            <span class="exercise-name">{{ exercise.name }}</span>
+            <iframe class='video_url' width="400" height="240"
                 src="{{ exercise.video_url }}?start={{ exercise.start_time }}&end={{ exercise.end_time }}"
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
-            </iframe><br>
-            <span class="exercise-name">{{ exercise.name }}</span>
+            </iframe>
         </li>
         {% endfor %}
         {% endif %}
     </ul>
 
     <div id="message">
-        <p>TIMER:</p>
+
+        <p>Start</p>
     </div>
 
     <div id="timer">
@@ -34,7 +33,8 @@
 
     <div class="button-layout">
         <button id="start-btn" data-play-icon="{% static 'play.svg' %}" data-pause-icon="{% static 'pause.svg' %}">
-            <img src="{% static 'play.svg' %}" alt="PlayPause" fill="red">
+
+            <img src="{% static 'play.svg' %}" alt="Play">
         </button>
         <button id="finish-btn">
             <a href="{% url 'finish' %}">Done!</a>
@@ -43,7 +43,7 @@
             <a href="{% url 'profile' %}">Give up!</a>
         </button>
     </div>
-
     <script src="{% static 'timer_js.js' %}"></script>
+    <script src="{% static 'navbar_js.js' %}"></script>
 </div>
 {% endblock %}
