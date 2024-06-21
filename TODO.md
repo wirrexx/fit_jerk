@@ -44,8 +44,8 @@ def save_user_profile(sender, instance, **kwargs):
 
 ## Prospects
 
-Chat between members
-E-commerce
-Nutrician plan
-Personalized trainnings
-AI-driven feedback
+- Chat between members
+- E-commerce
+- Nutrician plan
+- Personalized trainnings
+- AI-driven feedback
