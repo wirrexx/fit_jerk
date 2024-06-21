@@ -207,16 +207,18 @@ footer {
 /* Flex container for the intro section */
 .row {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
     align-items: flex-start;
     width: 100%;
     height: 100%;
     z-index: 0;
     margin-top: 80px;
     flex-wrap: wrap;
-    align-content: center;
+    align-content: flex-start;
     color: black;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
 }
 
 .leftcolumn {   
@@ -227,12 +229,11 @@ footer {
 }
   
 .rightcolumn {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: fit-content;
-    padding: 5px;
-    border-color:#cccccc00;
+    border-color: #cccccc00;
     border-style: solid;
     border-radius: 10px;
     margin-right: 10px;
@@ -308,6 +309,11 @@ input[type="submit"] {
     color: black;
 }
 
+div.success_message {
+    z-index: 9999;
+    overflow: visible;
+}
+
 .message {
     background-color: #dff0d8;
     border: 1px solid #d6e9c6;
@@ -316,6 +322,11 @@ input[type="submit"] {
     margin-bottom: 10px;
     position: relative;
     animation: message 2s forwards;
+    z-index: 9999;
+    overflow: visible;
+    position: absolute;
+    width: 100%;
+    text-align: center;
 }
 
 @keyframes message {
