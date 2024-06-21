@@ -8,14 +8,18 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserChangeForm
 from .models import Members
 
+
+# ----------------------------- Ana ----------------------------- #
+
 def validate_height(value):
     """THIS FUNCTION IS TO VALIDATE THE HIGHT FORMAT AS THE DEFAULT VALUE IS 0. I HAD TO ADD AN IF STATEMENT"""
     if value != 0:
         regex_validator = RegexValidator(
             regex=r'[0-9]{1}[.][0-9]{2}',
-            message="Please enter in the correct format"
+            message="Please enter in the correct format",
         )
         regex_validator(value)
+
 
 class ProfileChangeForm(UserChangeForm):
     """FORM TO UPDATE THE HIGHT AND WEIGHT"""
@@ -29,7 +33,7 @@ class ProfileChangeForm(UserChangeForm):
         required=False,
         error_messages={'invalid': 'Height format X.XX'},
         validators=[validate_height],
-        widget=forms.NumberInput(attrs={'pattern': r'[0-9]{1}[.][0-9]{2}', 'title': 'Please add your height in the format X.XX'})
+        widget=forms.NumberInput(attrs={'pattern':r'[0-9]{1}[.][0-9]{2}', 'title': 'Please add your height in the format X.XX'})
     )
 
 
@@ -40,7 +44,11 @@ class PictureChangeForm(forms.Form):
         model = Members
         fields = ['image']
 
+
+# ---------------------------- Xtn ---------------------------- #
+
 class FitUserForm(forms.Form):
+    """"""
     username = forms.CharField(max_length=50)
     email = forms.EmailField()
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
@@ -52,25 +60,32 @@ class FitUserForm(forms.Form):
 
     def clean_username(self):
         """Checks if username is: empty, invalid or already exists and if so, raises ValidationError"""
-        #TODO: Rexex: " @*=#`´!|><" are not supposed to be in the username
-        #   check if username is valid
-        #       empty 
-        #       with special characters
-        #   check if username is taken
-        if " " in self.cleaned_data.get("username"):
-            raise ValidationError("Space in username")
         username = self.cleaned_data.get("username")
         
+        # Check if username is empty
+        if username == None:
+            raise ValidationError("Username cannot be empty")
+        
+        # Check for special characters
+        #TODO: make forbidden chars regex
+        forbidden_chars = ["[","!","@","#","$","%","^","&","*","(", ")",",",",",".","?","\\",":","{","}","|","<",">","/","'","\""]
+        for forbidden_char in forbidden_chars:
+            if forbidden_char in username:
+                raise ValidationError("Username can't contain special characters")
+        
+        # Check if username is taken
         if User.objects.filter(username=username).exists():
-            raise ValidationError("Username taken")
+            raise ValidationError("Username already taken")
         return username              
 
 
     def clean_email(self):
         """Checks if email is valid"""
         email = self.cleaned_data.get("email")
-        #   check if email is valid
-        #   check if email is taken
+        # Check if email is already taken
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("Email already taken")
+        #TODO: Add check: regex validation of email format
         return email
     
     def clean_password1(self):

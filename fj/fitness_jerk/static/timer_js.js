@@ -145,3 +145,4 @@ function finishWorkout() {
     clearInterval(interval);
     document.getElementById('message').textContent = "Workout Finished";
 }
+

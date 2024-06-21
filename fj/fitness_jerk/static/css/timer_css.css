@@ -20,28 +20,47 @@ body {
     border-radius: 16px;
     background: whitesmoke;
     box-shadow: 0px 5px 12px #292929;
+    text-decoration: none;
+
+
 }
 
 .exercise-container h2,
 li,
 p {
     font-weight: 500;
+    text-decoration: none;
 }
+
+#exercise-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 2rem;
+    list-style-type: none;
+}
+
+.exercise-item {
+    text-align: center;
+    font-size: 3vw;
+    font-weight: 700;
+}
+
 
 .button-layout {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     align-content: center;
     height: 20%;
-    width: 70%;
     padding: 2% 2%;
     margin-top: auto;
     gap: 1rem;
 }
 
 #start-btn {
-    width: 6.5rem;
+    width: 8rem;
     background: none;
     cursor: pointer;
     transition: all .55s ease;
@@ -55,8 +74,6 @@ p {
 
 #start-btn:active {
     border: none;
-
-
 
 }
 
@@ -97,6 +114,7 @@ p {
     border: none;
     border-radius: 35px;
     text-align: center;
+    white-space: nowrap;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -121,18 +139,29 @@ p {
 
 
 #pause-resume-btn {
-    width: 6.5rem;
+    width: 8rem;
     background: none;
     cursor: pointer;
 
 }
 
 #timer {
+    font-size: 3vw;
+    font-weight: 700;
+}
+
+#message {
+    font-size: 2vw;
     font-weight: 700;
 }
 
 /* Responsive Design for iPhone */
-@media only screen and (max-width: 480px) {
+@media (max-width: 430px) {
+    .exercise-container {
+        display: flex;
+        width: 100%;
+    }
+
     #timer {
         font-size: 24px;
         margin-bottom: 10px;
@@ -143,9 +172,74 @@ p {
         padding: 6px 12px;
     }
 
+    .button-layout {
+        display: flex;
+        gap: 3rem;
+    }
+
     #finish-btn {
-        width: 80%;
-        padding: 0.5rem 1rem;
-        font-size: 14px;
+        color: whitesmoke;
+        background: green;
+        border: none;
+        border-radius: 35px;
+        text-align: center;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 75px;
+    }
+
+    #return-btn {
+        color: whitesmoke;
+        background: red;
+        border: none;
+        border-radius: 35px;
+        text-align: center;
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        white-space: nowrap;
+        width: 75px;
+    }
+
+    .video_url {
+        width: 100%;
+        height: 50%;
+    }
+
+    #start-btn {
+        background: transparent;
+        width: 75px;
+    }
+
+    img {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        scale: 135%;
+    }
+
+    .exercise-item {
+        text-align: center;
+        font-size: 8vw;
+    }
+
+    #timer {
+        font-weight: 700;
+        font-size: 12vw;
+    }
+
+    #message {
+        font-size: 6vw;
+        font-weight: 700;
+        text-wrap: nowrap;
     }
 }
