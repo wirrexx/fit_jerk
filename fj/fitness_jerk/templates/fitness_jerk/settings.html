@@ -26,14 +26,18 @@
                 <p>Workouts: {{ context.member.progress }}</p>
             </div>
             <div class="profile_pic_settings">
+
                 <p style="text-align: center;">Profile picture</p><br>
                 <hr>
                 <br>
+                <div class="noimage">
+                    <label for="noimage">No picture:</label>
+                    <input type="checkbox" name="noimage" value="noimage" class="noimage_check">
+                </div>
                 <div class="profile_img">
-                    <label for="profile_img">Upload image:</label> 
+                    <label for="profile_img">Upload picture:</label> 
                     {{ profile_pic.as_p }}
                 </div>
-                <p>or</p>
                 <div class="custom-dropdown">
                     <label for="avatar-dropdown">Choose avatar:</label>
                     <input type="checkbox" id="avatar-dropdown" class="dropdown-checkbox">
@@ -72,10 +76,6 @@
         </form>
     </div>
 </div>
-
-
-
-<script src="{% static 'navbar_js.js' %}"></script>
 <script src="{% static 'settings.js' %}"></script>
 
 {% endblock %}

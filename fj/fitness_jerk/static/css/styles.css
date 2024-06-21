@@ -696,6 +696,7 @@ form.settings_form {
 
 .user_details {
     padding: 10px;
+    padding-top: 3px;
     margin-top: 5px;
 }
 
@@ -735,6 +736,7 @@ form.settings_form {
 
 .profile_pic_settings {
     padding: 10px;
+    padding-top: 0px;
 }
 
 .dropdown-label {
@@ -838,9 +840,8 @@ label[for="id_image"] {
 
 .errorlist {
     color: whitesmoke;
-    margin: 5px;
     list-style-type: none;
-    background-color: #fa03034f;
+    background-color: red;
     width:fit-content;
     padding: 2px;
 }

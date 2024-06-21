@@ -156,10 +156,15 @@ def settings_view(request):
     """THIS PART IS SO THE MEMBER CAN CHOOSE BETWEEN UPLOAD HIS OWN PICTURE OR GET AN AVATAR"""
     if request.method == 'POST':
         avatar = request.POST.get('avatar')  # Retrieve selected avatar option
-    
+        noimage = request.POST.get('noimage')
+
         if profile_form.is_valid() and profile_pic.is_valid():
             profile_form.save()
             image = profile_pic.cleaned_data['image']
+
+            if noimage:
+                member_info.image = None # this is if the member want to change his profile to no picture after
+                member_info.save()
 
             if image:
                 member_info.image = image
