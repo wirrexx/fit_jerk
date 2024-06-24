@@ -65,15 +65,16 @@
         </div>
         <div class="workout">
             <h3 style="margin-top: 15px; margin-left: 15px;">Workouts</h3>
+
             <div class="muscles">
-                <a href="{% url 'exercise_muscles' %}">
+                <a href="{% url 'workout' exercise_type='build-muscle' %}">
                     <img class="logo" src="{% static 't_build_muscles.png' %}" alt="">
                     <img class="front-image" src="" alt="">
                     <img class="bg-muscles" src="{% static 'fitpeople.jpg' %}" alt="">
                 </a>
             </div>
             <div class="muscles">
-                <a href="{% url 'exercise_loose' %}">
+                <a href="{% url 'workout' exercise_type='loose-weight'%}">
                     <img class="logo" src="{% static 't_weight_loss.png' %}" alt="">
                     <img class="front-image" src="" alt="">
                     <img class="bg-muscles" src="{% static 'fitpeople.jpg' %}" alt="">
@@ -81,7 +82,7 @@
             </div>
 
             <div class="muscles">
-                <a href="{% url 'exercise_tone' %}">
+                <a href="{% url 'workout' exercise_type='tone-down' %}">
                     <img class="logo" src="{% static 't_tone_down.png' %}" alt="">
                     <img class="front-image" src="" alt="">
                     <img class="bg-muscles" src="{% static 'fitpeople.jpg' %}" alt="">

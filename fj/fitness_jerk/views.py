@@ -16,12 +16,17 @@ from pathlib import Path
 from .forms import FitUserForm, ProfileChangeForm, PictureChangeForm
 from .models import Members, Posts, TrainingSchedule
 from pathlib import Path
+from .static import exercise_static
 
 ##TODO: 
 #+  1. Refactor
 #+  2. Add docstrings
 
 # Create Constants here
+BASE_DIR = Path(__file__).resolve().parent 
+RESPONSE_FILE = BASE_DIR / "templates/tough_responses.txt"
+EXERCISES = exercise_static.EXERCISES
+
 
 # Create your views here.
 # ---------------------------------- XTIAN ---------------------------------------
@@ -219,9 +224,7 @@ def get_all_replies(path_to_response_file: str) -> list:
 @login_required
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
-    BASE_DIR = Path(__file__).resolve().parent 
-    path_to_response_file = BASE_DIR / "templates/tough_responses.txt" 
-    posts_list = get_all_replies(path_to_response_file) 
+    posts_list = get_all_replies(RESPONSE_FILE) 
     user = request.user
     member_info = Members.objects.get(user=user)
     msg = random.choice(posts_list)
@@ -232,58 +235,13 @@ def workout_finish(request):
 
 # ---------------------------------------- WISAM --------------------------------------
 
-##TODO: weight_loose, tone_down, build muscles can be more generic
-#+      Exercises can be passed to one single function
 
 @login_required
-def weight_loose(request):
-    """"""
-    exercises = [
-        {'name': 'Squats', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rMvwVtlqjTE?si=8Kd99ihni_Eri4Ob;controls=0', 'start_time':7, 'end_time':37},
-        {'name': 'Pushups', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/_l3ySVKYVJ8?si=R0Ld3dTblJEr03oI;controls=0', 'start_time':0, 'end_time':30},
-        {'name': 'Situps', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/_HDZODOx7Zw?si=w5AzD4vSlKj9zhja;controls=0','start_time':0, 'end_time':30},
-        {'name': 'Burpees', 'duration': 30, 'video_url':'https://www.youtube.com/embed/auBLPXO8Fww?si=DR6KYMtO1-8qIojQ;controls=0','start_time':0, 'end_time':30 },
-        {'name': 'Mountain Climbers', 'duration': 30, 'video_url': 'https://youtu.be/kLh-uczlPLg?si=NoEYNULiKhK0KXL;controls=0', 'start_time':0, 'end_time':30},
-        {'name': 'Lunge Jumps', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/iJMsF7fzrOM?si=TWn2jsC6DF6YXk8c', 'start_time':0, 'end_time':16},
-        {'name': 'Plank', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/sZxrs3C209k?si=2Uo2QT83dF03zKoS&amp;controls=0', 'start_time':0, 'end_time':16},
-        {'name': 'Punches non-stop', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/8BPuS9uj5c8?si=VGCffZbNHqNUmSXM&amp;controls=0'},
-    ]
+def workout_view(request, exercise_type):
+    exercise = EXERCISES[exercise_type]["exercise"]
+    template = EXERCISES[exercise_type]["template"]
     training_schedules = TrainingSchedule.objects.all()
-    return render(request, 'fitness_jerk/exercise_loose.html', {'exercises': exercises, 'training_schedules': training_schedules})
-
-
-@login_required
-def tone_down(request):
-    """"""
-    exercises = [
-        {'name': 'Plank', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/sZxrs3C209k?si=2Uo2QT83dF03zKoS&amp;controls=0', 'start_time':0, 'end_time':16},
-        {'name': 'Glute Bridge', 'duration': 30, 'video_url':'https://www.youtube.com/embed/Xp33YgPZgns?si=oJP96xGUVvAWmDba&amp;controls=0', 'start_time':0, 'end_time':30},
-        {'name': 'Jumping Jacks', 'duration': 60, 'video_url':'https://www.youtube.com/embed/PBHUfBzxczU?si=fPZdKm8ncoHfnr5e', 'start_time':0, 'end_time':4},
-        {'name': 'Side Lunges', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rvqLVxYqEvo?si=2UD1ozdmB4KGNAlY&amp;controls=0', 'start_time':15, 'end_time':45},
-        {'name': 'Lunge Jumps', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/iJMsF7fzrOM?si=TWn2jsC6DF6YXk8c', 'start_time':0, 'end_time':16},
-        {'name': 'Squats', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rMvwVtlqjTE?si=8Kd99ihni_Eri4Ob;controls=0', 'start_time':7, 'end_time':37},
-        {'name': 'Squats', 'duration': 30, 'video_url':'https://www.youtube.com/embed/rMvwVtlqjTE?si=8Kd99ihni_Eri4Ob;controls=0', 'start_time':7, 'end_time':37},
-    ]
-    training_schedules = TrainingSchedule.objects.all()
-    return render(request, 'fitness_jerk/exercise_tone.html', {'exercises': exercises, 'training_schedules': training_schedules})
-
-
-
-@login_required
-def build_muscles(request):
-    """"""
-    exercises = [
-        {'name': 'Pistol Squat', 'duration': 30, 'video_url':'https://www.youtube.com/embed/qDcniqddTeE?si=Bspe4SGoNtHRlpkx&amp;controls=0', 'start_time':0, 'end_time':30},
-        {'name': 'Dips', 'duration': 30, 'video_url':'https://www.youtube.com/embed/HCf97NPYeGY?si=6JGCn39zlH0_VUFG&amp;controls=0', 'start_time':0, 'end_time':18},
-        {'name': 'Situps', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/_HDZODOx7Zw?si=w5AzD4vSlKj9zhja;controls=0','start_time':0, 'end_time':30},
-        {'name': 'Burpees', 'duration': 30, 'video_url':'https://www.youtube.com/embed/auBLPXO8Fww?si=DR6KYMtO1-8qIojQ;controls=0','start_time':0, 'end_time':30 },
-        {'name': 'Mountain Climbers', 'duration': 30, 'video_url': 'https://youtu.be/kLh-uczlPLg?si=NoEYNULiKhK0KXL;controls=0', 'start_time':0, 'end_time':30},
-        {'name': 'Pushups', 'duration': 30, 'video_url': 'https://www.youtube.com/embed/_l3ySVKYVJ8?si=R0Ld3dTblJEr03oI;controls=0', 'start_time':0, 'end_time':30},
-        {'name': 'Overhead Crunch', 'duration': 30, 'video_url':'https://www.youtube.com/embed/f02JON8c4J0?si=UVTjPYqemKsLQ91L&amp;controls=0', 'start_time':0, 'end_time':20},
-        {'name': 'Plank', 'duration': 60, 'video_url': 'https://www.youtube.com/embed/sZxrs3C209k?si=2Uo2QT83dF03zKoS&amp;controls=0', 'start_time':0, 'end_time':16},
-    ]
-    training_schedules = TrainingSchedule.objects.all()
-    return render(request, 'fitness_jerk/exercise_muscles.html', {'exercises': exercises, 'training_schedules': training_schedules})
+    return render(request, template, {'exercises': exercise, 'training_schedules': training_schedules})
 
 
 #---------------------Landing Page --------------------
