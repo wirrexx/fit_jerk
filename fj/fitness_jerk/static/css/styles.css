@@ -215,7 +215,6 @@ footer {
     z-index: 0;
     margin-top: 80px;
     flex-wrap: wrap;
-    align-content: flex-start;
     color: black;
     margin-left: auto;
     margin-right: auto;
@@ -233,7 +232,6 @@ footer {
     flex-wrap: nowrap;
     width: fit-content;
     border-color: #cccccc00;
-    border-style: solid;
     border-radius: 10px;
     margin-right: 10px;
     align-items: center;
@@ -273,6 +271,7 @@ footer {
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0px 5px 12px #292929;
+    height: 500px;
 }
 
 .profile_pic img {
@@ -299,14 +298,15 @@ footer {
 .post {
     width: 100%;
     padding: 50px;
-    margin-bottom: 50px;
     background-color: whitesmoke;
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0px 5px 12px #292929;
-    height: fit-content;
+    height: 100px;
     align-content: center;
     text-align: center;
+    margin-bottom: 20px;
+    line-height: 15px;
 }
 
 input[type="submit"] {
@@ -1221,5 +1221,13 @@ label[for="id_image"] {
 
 }
 
+/*--profile media querries--*/
+@media (max-width: 430px) {
+    .row {
+        box-sizing: none;
+    }
+
+
+}
 
 /*-------------------Exercise---------*/
