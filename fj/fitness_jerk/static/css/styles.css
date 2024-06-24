@@ -111,7 +111,7 @@ footer {
     z-index: 1;
     padding: 20px;
     border-radius: 10px;
-    width: 40%;
+    width: 39.5%;
 }
 
 .h1 {
@@ -147,7 +147,7 @@ footer {
     background: black;
     align-items: center;
     align-content: center;
-  
+
 }
 
 .google-icon {
@@ -276,9 +276,10 @@ footer {
 
 .profile_pic img {
     width: 150px;
-    height: 150px; 
-    border-radius: 15px; 
-    object-fit: cover; /* Ensure the image covers the dimensions without distortion */
+    height: 150px;
+    border-radius: 15px;
+    object-fit: cover;
+    /* Ensure the image covers the dimensions without distortion */
 }
 
 
@@ -675,7 +676,7 @@ input[type="email"]::placeholder {
     align-items: center;
 }
 
-div.google-login-btn button{
+div.google-login-btn button {
     width: fit-content;
 }
 
@@ -728,7 +729,7 @@ button {
 
 /*------------settings---------------------*/
 
-.settings_main{
+.settings_main {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -736,12 +737,12 @@ button {
     width: 100%;
     height: 100%;
     margin-top: 10px;
-    overflow: visible; 
+    overflow: visible;
     flex-wrap: wrap;
     align-content: center;
     border-radius: 30px;
     padding: 20px;
-    margin-bottom: 70px; 
+    margin-bottom: 70px;
     color: whitesmoke;
 }
 
@@ -750,13 +751,13 @@ button {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    overflow: visible; 
+    overflow: visible;
     flex-wrap: wrap;
     align-content: center;
     border-radius: 30px;
     padding: 15px;
-    margin-bottom: 70px; 
-    
+    margin-bottom: 70px;
+
 }
 
 form.settings_form {
@@ -765,15 +766,19 @@ form.settings_form {
     border-radius: 16px;
     padding: 15px;
     box-shadow: 0px 5px 12px #292929;
-    color:black;
+    color: black;
 }
 
 .image_top {
     display: block;
-    margin:auto;
+    margin: auto;
+    margin-bottom: 3px;
     text-align: center;
     width: fit-content;
     height: 150px;
+    aspect-ratio: 1;
+    transform: translateY(5px);
+    border-radius: 8px;
 }
 
 
@@ -844,7 +849,7 @@ form.settings_form {
 
 .update_btn {
     display: block;
-    margin:auto;
+    margin: auto;
 }
 
 .delete_option {
@@ -879,7 +884,7 @@ form.settings_form {
 }
 
 .dropdown-checkbox {
-    display: none; 
+    display: none;
 }
 
 .profile_pic_settings {
@@ -888,9 +893,9 @@ form.settings_form {
 }
 
 .dropdown-label {
-    padding: 5px; 
+    padding: 5px;
     border: 1px solid #7a7a7a;
-    background-color:  rgb(237 237 237);
+    background-color: rgb(237 237 237);
     cursor: pointer;
     width: fit-content;
     margin-left: 5px;
@@ -900,8 +905,8 @@ form.settings_form {
     border-radius: 3px;
 }
 
-.dropdown-checkbox:checked + .dropdown-label + .dropdown-selected-avatar + .dropdown-options,
-.dropdown-label:hover + .dropdown-selected-avatar + .dropdown-options,
+.dropdown-checkbox:checked+.dropdown-label+.dropdown-selected-avatar+.dropdown-options,
+.dropdown-label:hover+.dropdown-selected-avatar+.dropdown-options,
 .dropdown-options:hover {
     display: block;
 }
@@ -913,9 +918,9 @@ form.settings_form {
     left: 41%;
     right: 0;
     z-index: 9999;
-    background-color:  whitesmoke;
-    border: 1px solid  #2929294f;
-    height: fit-content; 
+    background-color: whitesmoke;
+    border: 1px solid #2929294f;
+    height: fit-content;
     overflow: visible;
     width: fit-content;
     color: black;
@@ -930,21 +935,21 @@ form.settings_form {
 }
 
 .option img {
-    width: 40px; 
-    height: 30px; 
+    width: 40px;
+    height: 30px;
     margin-right: 10px;
     border-radius: 10px;
 }
 
 .option:hover {
-    background-color:  #7a7a7a3b;
+    background-color: #7a7a7a3b;
 }
 
 .option input[type="radio"] {
     display: none;
 }
 
-.option input[type="radio"]:checked + img {
+.option input[type="radio"]:checked+img {
     outline: 2px solid #D19B4E;
 }
 
@@ -955,7 +960,7 @@ label[for="id_image"] {
 #id_image {
     margin-left: 5px;
     margin-right: 5px;
-    width:fit-content;
+    width: fit-content;
 }
 
 .dropdown-selected-avatar {
@@ -968,8 +973,8 @@ label[for="id_image"] {
 }
 
 .dropdown-selected-avatar img {
-    width: 30px; 
-    height: 20px; 
+    width: 30px;
+    height: 20px;
     margin-right: 5px;
 }
 
@@ -988,7 +993,7 @@ label[for="id_image"] {
     color: whitesmoke;
     list-style-type: none;
     background-color: red;
-    width:fit-content;
+    width: fit-content;
     padding: 2px;
 }
 
@@ -1001,18 +1006,18 @@ label[for="id_image"] {
 /* SOME OF THE DELETE PAGE IS FOLLOWING THE LOGIN PAGE CONFIGURATION...CHECK HTML TO DOUBLE CHECK */
 
 .back_profile {
-    width:fit-content;
+    width: fit-content;
 }
 
 .delete {
-    width:fit-content;
+    width: fit-content;
     font-size: 15px;
     font-weight: 600;
     background-color: red;
     border-radius: 10px;
     padding: 5px;
     color: whitesmoke;
-} 
+}
 
 
 
