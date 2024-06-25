@@ -12,16 +12,13 @@ from .models import Members
 # ----------------------------- Ana ----------------------------- #
 
 def validate_height(value):
+    """THIS FUNCTION IS TO VALIDATE THE HIGHT FORMAT AS THE DEFAULT VALUE IS 0. I HAD TO ADD AN IF STATEMENT"""
     if value != 0:
-        value_str = f"{value:.2f}"
         regex_validator = RegexValidator(
-            regex=r'^[0-9]\.[0-9]{2}$',
-            message="Please enter in the correct format X.XX",
+            regex=r'[0-9]{1}[.]\d{1}\d?',
+            message="Please enter in the correct format",
         )
-        try:
-            regex_validator(value_str)
-        except ValidationError:
-            raise ValidationError("Please enter in the correct format X.XX")
+        regex_validator(value)
 
 
 class ProfileChangeForm(UserChangeForm):
@@ -36,7 +33,7 @@ class ProfileChangeForm(UserChangeForm):
         required=False,
         error_messages={'invalid': 'Height format X.XX'},
         validators=[validate_height],
-        widget=forms.NumberInput(attrs={'pattern':r'[0-9]{1}[.]\d+{2}', 'title': 'Please add your height in the format X.XX'})
+        widget=forms.NumberInput(attrs={'pattern':r'[0-9]{1}[.]\d{1}\d?', 'title': 'Please add your height in the format X.XX'})
     )
 
 
