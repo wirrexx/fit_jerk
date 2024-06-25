@@ -203,6 +203,7 @@ def workout_finish(request):
     user = request.user
     member_info = Members.objects.get(user=user)
     member_info.progress += 1
+    member_info.workouts_done += 1
     if member_info.progress == 101:
         member_info.progress = 0
     member_info.save()
