@@ -12,8 +12,6 @@ class Members(models.Model):
     height = models.FloatField(default=0)
     progress = models.IntegerField(default=0)
     level = models.CharField(default="Newbie Bastard", max_length=100)
-
-    # TODO:ImageField Path: It's generally not a good practice to upload user files to the static/ directory. It's better to use a directory like media/ for user-uploaded files and configure your project to serve them properly.
     image = models.ImageField(null=True, blank=True, upload_to="static/")
 
     def calculate_BMI(self):
@@ -64,7 +62,6 @@ class Posts(models.Model):
 
 
 # timer needs datetime 
-
 class TrainingSchedule(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
