@@ -3,8 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-#TODO: Write __str__ for UserInfo
-
+#TODO: Test 
 # Create your models here.
 class Members(models.Model):
     """Representation of the secondary attributes of a User"""
@@ -12,6 +11,7 @@ class Members(models.Model):
     weight = models.FloatField(default=0)
     height = models.FloatField(default=0)
     progress = models.IntegerField(default=0)
+    level = models.CharField(default="Newbie Bastard", max_length=100)
 
     # TODO:ImageField Path: It's generally not a good practice to upload user files to the static/ directory. It's better to use a directory like media/ for user-uploaded files and configure your project to serve them properly.
     image = models.ImageField(null=True, blank=True, upload_to="static/")
@@ -22,9 +22,30 @@ class Members(models.Model):
             return round(self.weight / (self.height ** 2), 2)
         return 0
     
+    def determine_user_level(self):
+        """Determines the current level of a user: Newbie -> God Bastard"""
+        if self.progress < 50:
+            level = "Newbie Bastard"
+        elif 50 <= self.progress < 100:
+            level = "Fit Bastard"
+        elif 100 <= self.progress < 150:
+            level = "Master Bastard"
+        elif 150 <= self.progress < 200:
+            level = "Supreme Bastard"
+        elif 200 <= self.progress < 250:
+            level = "Ultra Bastard"
+        elif self.progress > 250:
+            level = "God Bastard"
+        return level
+
     @property
     def bmi(self):
         return self.calculate_BMI()
+    
+    @property
+    def level(self):
+        return self.determine_user_level()
+
 
 ## TODO: Investigate!
 @receiver(post_save, sender=User)

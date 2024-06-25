@@ -74,20 +74,20 @@ def signup_view(request):
     if request.method == "POST":
         form = FitUserForm(request.POST)
         if form.is_valid():
-            # create the new user
-            username = form.cleaned_data.get("username")
+            
+            username = form.cleaned_data.get("username")                # create the new user
             password = form.cleaned_data.get("password1")
             email = form.cleaned_data.get("email")
             user = User.objects.create_user(username=username, email=email, password=password)
-            # send welcome email
-            send_mail(
+            
+            send_mail(                                                  # send welcome email to user
                 subject=f"Welcome to FitBastard",
                 message="You finally made it. You choose to better yourself. Well, good luck with that!",
                 from_email="fitbastards.team@gmail.com",
                 recipient_list=[email],
             )
-            user.backend = "django.contrib.auth.backends.ModelBackend"
-            login(request, user)
+            user.backend = "django.contrib.auth.backends.ModelBackend"  # Choose correct backend for user creation -> settings/AUTHENTICATION_BACKENDS
+            login(request, user)    
             return redirect("profile")
     else: 
         form = FitUserForm()
@@ -122,37 +122,15 @@ def profile_view(request):
     member_info = Members.objects.get(user=user)
     member_posts = Posts.objects.filter(member=member_info).last()
     BMI = user.members.bmi
-
     if BMI == 0:
         BMI = "Please complete your profile"
-
-    #TODO: Think of a smarter way to store this to make the code more readable
-    if member_info.progress < 50:
-        level = "Newbie Bastard"
-        progress = member_info.progress/50*100
-
-    elif 50 <= member_info.progress < 100:
-        level = "Fit Bastard"
-        progress = (member_info.progress-50)/50*100
-
-    elif 100 <= member_info.progress < 150:
-        level = "Master Bastard"
-        progress = (member_info.progress-100)/50*100
-
-    elif 150 <= member_info.progress < 200:
-        level = "Supreme Bastard"
-        progress = (member_info.progress-150)/50*100
-
-    elif 200 <= member_info.progress < 250:
-        level = "God Bastard"
-        progress = (member_info.progress-200)/50*100
-
+    progress = member_info.progress
     context = {
         'member': member_info,
         'BMI': BMI,
         'progress': f"{progress:.0f}%",
         'posts': member_posts,
-        'level': level
+        'level': member_info.level
     }
     return render(request, 'fitness_jerk/profile.html', context)
 
