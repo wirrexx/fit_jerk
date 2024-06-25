@@ -11,6 +11,7 @@ class Members(models.Model):
     weight = models.FloatField(default=0)
     height = models.FloatField(default=0)
     progress = models.IntegerField(default=0)
+    workouts_done = models.IntegerField(default=0)
     level = models.CharField(default="Newbie Bastard", max_length=100)
     image = models.ImageField(null=True, blank=True, upload_to="static/")
 
@@ -22,17 +23,17 @@ class Members(models.Model):
     
     def determine_user_level(self):
         """Determines the current level of a user: Newbie -> God Bastard"""
-        if self.progress < 50:
+        if self.workouts_done < 50:
             level = "Newbie Bastard"
-        elif 50 <= self.progress < 100:
+        elif 50 <= self.workouts_done < 100:
             level = "Fit Bastard"
-        elif 100 <= self.progress < 150:
+        elif 100 <= self.workouts_done < 150:
             level = "Master Bastard"
-        elif 150 <= self.progress < 200:
+        elif 150 <= self.workouts_done < 200:
             level = "Supreme Bastard"
-        elif 200 <= self.progress < 250:
+        elif 200 <= self.workouts_done < 250:
             level = "Ultra Bastard"
-        elif self.progress > 250:
+        elif self.workouts_done > 250:
             level = "God Bastard"
         return level
 

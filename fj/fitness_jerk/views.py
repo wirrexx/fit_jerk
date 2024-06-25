@@ -199,15 +199,16 @@ def get_all_replies(path_to_response_file: str) -> list:
 @login_required
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
-    posts_list = get_all_replies(RESPONSE_FILE) 
+    posts_list = get_all_replies(RESPONSE_FILE)
     user = request.user
     member_info = Members.objects.get(user=user)
+    member_info.progress += 1
+    if member_info.progress == 101:
+        member_info.progress = 0
+    member_info.save()
     msg = random.choice(posts_list)
     Posts.objects.create(member=member_info, post=msg)
-    Members.objects.update(progress=(member_info.progress+1))
-    
     return redirect('profile')
-
 
 # ---------------------------------------- WISAM --------------------------------------
 
