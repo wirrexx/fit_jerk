@@ -45,27 +45,27 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
-    """"""
+    """This view uses a custom template to display the password reset confirmation form."""
     template_name = "registration/custom_password_reset_confirm.html"
 
 
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
-    """"""
+    """This view uses a custom template to display the password reset completion message."""
     template_name = "registration/custom_password_reset_complete.html"
 
 
 class CustomPasswordChangeView(PasswordChangeView):
-    """"""
+    """This view uses a custom template to display the password change form."""
     template_name = "registration/change_password.html"
 
 
 class CustomPasswordChangeDoneView(PasswordChangeDoneView):
-    """"""
+    """This view uses a custom template to display the password change success message."""
     template_name = "registration/change_password_done.html"
 
 
 class CustomLoginView(LoginView):
-    """"""
+    """This view uses a custom template to display the login form."""
     template_name = "registration/login.html"
 
 ## Signup
@@ -73,21 +73,19 @@ def signup_view(request):
     """View that lets the user signup to the page. Sends a welcome mail upon successfull signup"""
     if request.method == "POST":
         form = FitUserForm(request.POST)
-        if form.is_valid():
-            # create the new user
-            username = form.cleaned_data.get("username")
+        if form.is_valid():  
+            username = form.cleaned_data.get("username")                # create the new user
             password = form.cleaned_data.get("password1")
             email = form.cleaned_data.get("email")
-            user = User.objects.create_user(username=username, email=email, password=password)
-            # send welcome email
-            send_mail(
+            user = User.objects.create_user(username=username, email=email, password=password)  
+            send_mail(                                                  # send welcome email to user
                 subject=f"Welcome to FitBastard",
                 message="You finally made it. You choose to better yourself. Well, good luck with that!",
                 from_email="fitbastards.team@gmail.com",
                 recipient_list=[email],
             )
-            user.backend = "django.contrib.auth.backends.ModelBackend"
-            login(request, user)
+            user.backend = "django.contrib.auth.backends.ModelBackend"  # Choose correct backend for user creation -> settings/AUTHENTICATION_BACKENDS
+            login(request, user)    
             return redirect("profile")
     else: 
         form = FitUserForm()
@@ -122,37 +120,16 @@ def profile_view(request):
     member_info = Members.objects.get(user=user)
     member_posts = Posts.objects.filter(member=member_info).last()
     BMI = user.members.bmi
-
+    
     if BMI == 0:
         BMI = "Please complete your profile"
-
-    #TODO: Think of a smarter way to store this to make the code more readable
-    if member_info.progress < 50:
-        level = "Newbie Bastard"
-        progress = member_info.progress/50*100
-
-    elif 50 <= member_info.progress < 100:
-        level = "Fit Bastard"
-        progress = (member_info.progress-50)/50*100
-
-    elif 100 <= member_info.progress < 150:
-        level = "Master Bastard"
-        progress = (member_info.progress-100)/50*100
-
-    elif 150 <= member_info.progress < 200:
-        level = "Supreme Bastard"
-        progress = (member_info.progress-150)/50*100
-
-    elif 200 <= member_info.progress < 250:
-        level = "God Bastard"
-        progress = (member_info.progress-200)/50*100
-
+    progress = member_info.progress
     context = {
         'member': member_info,
         'BMI': BMI,
         'progress': f"{progress:.0f}%",
         'posts': member_posts,
-        'level': level
+        'level': member_info.level
     }
     return render(request, 'fitness_jerk/profile.html', context)
 
@@ -209,7 +186,6 @@ def settings_view(request):
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
 
 
-#TODO: rename
 def get_all_replies(path_to_response_file: str) -> list:
     """Returns content of a file as a list of strings one string per line"""
     try:
@@ -220,18 +196,20 @@ def get_all_replies(path_to_response_file: str) -> list:
     return content    
 
 
-#TODO: BASE_DIR and path to response file are constants that can be defined at the beginning of views.py
 @login_required
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
-    posts_list = get_all_replies(RESPONSE_FILE) 
+    posts_list = get_all_replies(RESPONSE_FILE)
     user = request.user
     member_info = Members.objects.get(user=user)
+    member_info.progress += 1
+    member_info.workouts_done += 1
+    if member_info.progress == 101:
+        member_info.progress = 0
+    member_info.save()
     msg = random.choice(posts_list)
     Posts.objects.create(member=member_info, post=msg)
-    Members.objects.update(progress=(member_info.progress+1))
     return redirect('profile')
-
 
 # ---------------------------------------- WISAM --------------------------------------
 
