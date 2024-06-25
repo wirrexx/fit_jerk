@@ -45,27 +45,27 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
-    """"""
+    """This view uses a custom template to display the password reset confirmation form."""
     template_name = "registration/custom_password_reset_confirm.html"
 
 
 class CustomPasswordResetCompleteView(PasswordResetCompleteView):
-    """"""
+    """This view uses a custom template to display the password reset completion message."""
     template_name = "registration/custom_password_reset_complete.html"
 
 
 class CustomPasswordChangeView(PasswordChangeView):
-    """"""
+    """This view uses a custom template to display the password change form."""
     template_name = "registration/change_password.html"
 
 
 class CustomPasswordChangeDoneView(PasswordChangeDoneView):
-    """"""
+    """This view uses a custom template to display the password change success message."""
     template_name = "registration/change_password_done.html"
 
 
 class CustomLoginView(LoginView):
-    """"""
+    """This view uses a custom template to display the login form."""
     template_name = "registration/login.html"
 
 ## Signup
