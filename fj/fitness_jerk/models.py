@@ -45,6 +45,10 @@ class Members(models.Model):
     def level(self):
         return self.determine_user_level()
 
+    def __str__(self):
+        """Returns string repr of profile"""
+        return None
+
 
 class Posts(models.Model):
     member = models.ForeignKey(Members, on_delete=models.CASCADE, null=True)
