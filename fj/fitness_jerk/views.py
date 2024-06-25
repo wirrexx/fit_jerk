@@ -73,13 +73,11 @@ def signup_view(request):
     """View that lets the user signup to the page. Sends a welcome mail upon successfull signup"""
     if request.method == "POST":
         form = FitUserForm(request.POST)
-        if form.is_valid():
-            
+        if form.is_valid():  
             username = form.cleaned_data.get("username")                # create the new user
             password = form.cleaned_data.get("password1")
             email = form.cleaned_data.get("email")
-            user = User.objects.create_user(username=username, email=email, password=password)
-            
+            user = User.objects.create_user(username=username, email=email, password=password)  
             send_mail(                                                  # send welcome email to user
                 subject=f"Welcome to FitBastard",
                 message="You finally made it. You choose to better yourself. Well, good luck with that!",
@@ -122,6 +120,7 @@ def profile_view(request):
     member_info = Members.objects.get(user=user)
     member_posts = Posts.objects.filter(member=member_info).last()
     BMI = user.members.bmi
+    
     if BMI == 0:
         BMI = "Please complete your profile"
     progress = member_info.progress
