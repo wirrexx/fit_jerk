@@ -1142,8 +1142,6 @@ label[for="id_image"] {
     }
 }
 
-
-
 @media (max-width: 430px) {
     .about-us-container {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
@@ -1186,7 +1184,6 @@ label[for="id_image"] {
         align-items: center;
     }
 
-
     .profile_settings {
         display: flex;
         flex-direction: column;
@@ -1205,7 +1202,6 @@ label[for="id_image"] {
         transform: translateY(40px);
     }
 
-
     .user_details {
         padding: 0;
         margin-top: -50px;
@@ -1219,15 +1215,125 @@ label[for="id_image"] {
         transform: translateY(5px);
     }
 
-}
-
-/*--profile media querries--*/
-@media (max-width: 430px) {
-    .row {
-        box-sizing: none;
+    .carousal {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 24px;
+        width: 100%;
     }
 
+    .carousal .muscles {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        width: 50%;
+        background: none;
+        height: 300px;
+    }
 
+    .row {
+        display: block;
+        align-content: center;
+        background: whitesmoke;
+        border-radius: 18px;
+        height: 83.25%;
+        width: 92%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .rightcolumn {
+        display: block;
+        padding: 0;
+    }
+
+    .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .post {
+        position: absolute;
+        display: block;
+        align-content: center;
+        background: none;
+        box-shadow: none;
+        text-align-last: center;
+        font-weight: 700;
+        margin-top: -100px;
+    }
+
+    .profile {
+        display: block;
+        background: none;
+        box-shadow: none;
+        text-align-last: center;
+        margin-top: -15px;
+        width: 100%;
+    }
+
+    .profile_pic img {
+        width: 100px;
+        height: auto;
+    }
+
+    .member-progress {
+        background: none;
+        box-shadow: none;
+        position: relative;
+        display: inline-block;
+    }
+
+    .member-progress h2 {
+        margin-bottom: 0px;
+        margin-left: 100px;
+        margin-top: -10px;
+        width: 100%;
+    }
+
+    .progress-bar {
+        position: fixed;
+        justify-content: center;
+        align-content: center;
+        width: 85%;
+        margin-top: -80px;
+    }
+
+    .progress {
+        position: relative;
+        margin-left: 30px;
+    }
+
+    .leftcolumn {
+        width: 100%;
+        margin-top: -170px;
+    }
+
+    .workout {
+        display: flex;
+        align-content: center;
+        box-shadow: none;
+        width: auto;
+        cursor: pointer;
+        margin-top: -65px;
+    }
+
+    .workout h3 {
+        position: absolute;
+        display: flex;
+        margin-left: 0;
+        background: none;
+        box-shadow: none;
+        border-bottom: 2px solid black;
+
+    }
+
+    .details {
+        display: flex;
+        background: none;
+        box-shadow: none;
+        margin-top: 50px;
+    }
 }
-
-/*-------------------Exercise---------*/
