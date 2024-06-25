@@ -78,6 +78,7 @@ def signup_view(request):
             password = form.cleaned_data.get("password1")
             email = form.cleaned_data.get("email")
             user = User.objects.create_user(username=username, email=email, password=password)  
+            user_info = Members.objects.create(user=user)               # create userinfo related to new user
             send_mail(                                                  # send welcome email to user
                 subject=f"Welcome to FitBastard",
                 message="You finally made it. You choose to better yourself. Well, good luck with that!",
@@ -120,7 +121,6 @@ def profile_view(request):
     member_info = Members.objects.get(user=user)
     member_posts = Posts.objects.filter(member=member_info).last()
     BMI = user.members.bmi
-    
     if BMI == 0:
         BMI = "Please complete your profile"
     progress = member_info.progress

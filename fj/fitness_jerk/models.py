@@ -46,15 +46,15 @@ class Members(models.Model):
         return self.determine_user_level()
 
 
-## TODO: Investigate!
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Members.objects.create(user=instance)
+# ## TODO: Investigate!
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Members.objects.create(user=instance)
 
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.members.save()
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.members.save()
 
 
 class Posts(models.Model):
