@@ -186,7 +186,6 @@ def settings_view(request):
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
 
 
-#TODO: rename
 def get_all_replies(path_to_response_file: str) -> list:
     """Returns content of a file as a list of strings one string per line"""
     try:
@@ -197,7 +196,6 @@ def get_all_replies(path_to_response_file: str) -> list:
     return content    
 
 
-#TODO: BASE_DIR and path to response file are constants that can be defined at the beginning of views.py
 @login_required
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
@@ -207,6 +205,7 @@ def workout_finish(request):
     msg = random.choice(posts_list)
     Posts.objects.create(member=member_info, post=msg)
     Members.objects.update(progress=(member_info.progress+1))
+    
     return redirect('profile')
 
 

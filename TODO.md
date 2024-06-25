@@ -5,7 +5,7 @@
 - Git Tutorial
 
 ### Xtn
-
+0. No error messages upon signup
 1. Refactor code and improve code quality:
 	- DRY!
  	- make code self documenting
@@ -13,6 +13,7 @@
 	- add docstrings
 	- Remove dead code
 	- => refactor code
+		- profile view: progress
 	- What happens when user (google login) deletes profile?
 
 3. Write Tests 
