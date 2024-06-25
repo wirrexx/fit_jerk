@@ -47,7 +47,6 @@ p {
     font-weight: 700;
 }
 
-
 .button-layout {
     display: flex;
     justify-content: space-between;
@@ -58,6 +57,7 @@ p {
     margin-top: auto;
     gap: 1rem;
 }
+
 
 #start-btn {
     width: 8rem;
