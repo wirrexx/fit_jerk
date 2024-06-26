@@ -6,7 +6,7 @@ from django.contrib.auth.password_validation import validate_password
 from django import forms 
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserChangeForm
-from .models import Members
+from .models import UserProfile
 
 
 # ----------------------------- Ana ----------------------------- #
@@ -26,7 +26,7 @@ class ProfileChangeForm(UserChangeForm):
     #hide password change message
     password = None
     class Meta:
-        model = Members 
+        model = UserProfile
         fields = ['height', 'weight']
     
     height = forms.FloatField(
@@ -42,7 +42,7 @@ class PictureChangeForm(forms.Form):
     """A SEPARATED FORM FOR THE PICTURE SO I COULD PLACE AT THE BOTTOM OF THE SETTINGS PAGE AND STYLE IT BETTER"""
     image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'title': 'Upload your picture', 'placeholder': 'Choose your file'}))
     class Meta:
-        model = Members
+        model = UserProfile
         fields = ['image']
 
 

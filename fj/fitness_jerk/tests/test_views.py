@@ -16,7 +16,8 @@ class TestSignupView(TestCase):
 
     def test_signup_view_POST_with_valid_user(self):
         # simulate post request with valid form data
-        response = self.client.post(reverse("signup"), {"username":"testuser", "email":"testuser@example.com", "password1":"test238(89&%$)", "password2":"test238(89&%$)", "id":"3000000000000"}) # id is set so high because otherwise Uniq constraint might be triggered in Members.objects.create(user=user)
+        #+ id is set is set so because otherwise Uniq constraint might be triggered in Members.objects.create(user=user)
+        response = self.client.post(reverse("signup"), {"username":"testuser", "email":"testuser@example.com", "password1":"test238(89&%$)", "password2":"test238(89&%$)", "id":"3000000000000"}) # id 
         
         # check that response redirects
         self.assertEqual(response.status_code, 302)

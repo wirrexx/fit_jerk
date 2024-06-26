@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 #TODO: Write string representation
 # Create your models here.
-class Members(models.Model):
+class UserProfile(models.Model):
     """Representation of the secondary attributes of a User"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     weight = models.FloatField(default=0)
@@ -49,16 +49,16 @@ class Members(models.Model):
 
 
 class Posts(models.Model):
-    member = models.ForeignKey(Members, on_delete=models.CASCADE, null=True)
+    member = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     post = models.CharField(max_length=255, default="Welcome")
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Members.objects.create(user=instance)
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.members.save()
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Members.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.members.save()
 
 
 # timer needs datetime 
