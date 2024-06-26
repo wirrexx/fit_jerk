@@ -119,13 +119,15 @@ def profile_view(request):
     user_profile = UserProfile.objects.get(user=user)
     user_posts = Posts.objects.filter(member=user_profile).last()
     BMI = user.userprofile.bmi
+    
+    progress_percentage = user_profile.progress/90*100
     if BMI == 0:
         BMI = "Please complete your profile"
-    progress = user_profile.progress
+    
     context = {
         'member': user_profile,
         'BMI': BMI,
-        'progress': f"{progress:.0f}%",
+        'progress': f"{progress_percentage:.0f}%",
         'posts': user_posts,
         'level': user_profile.level
     }
@@ -174,6 +176,7 @@ def settings_view(request):
         
 
     BMI = user.userprofile.bmi
+    
     if BMI == 0:
         BMI = "Please complete your profile"
     
@@ -202,8 +205,10 @@ def workout_finish(request):
     member_info = UserProfile.objects.get(user=user)
     member_info.progress += 1
     member_info.workouts_done += 1
-    if member_info.progress == 101:
+
+    if member_info.progress == 90:
         member_info.progress = 0
+
     member_info.save()
     msg = random.choice(posts_list)
     Posts.objects.create(member=member_info, post=msg)
