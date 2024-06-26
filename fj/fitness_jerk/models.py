@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-#TODO: Test 
+#TODO: Write string representation
 # Create your models here.
 class Members(models.Model):
     """Representation of the secondary attributes of a User"""
@@ -17,12 +17,13 @@ class Members(models.Model):
 
     def calculate_BMI(self):
         """calculates the users BMI"""
-        if self.height > 0:
+        if self.height > 0 and self.weight > 0:
             return round(self.weight / (self.height ** 2), 2)
         return 0
     
     def determine_user_level(self):
         """Determines the current level of a user: Newbie -> God Bastard"""
+        level = "Newbie Bastard"
         if self.workouts_done < 50:
             level = "Newbie Bastard"
         elif 50 <= self.workouts_done < 100:
@@ -33,7 +34,7 @@ class Members(models.Model):
             level = "Supreme Bastard"
         elif 200 <= self.workouts_done < 250:
             level = "Ultra Bastard"
-        elif self.workouts_done > 250:
+        elif self.workouts_done >= 250:
             level = "God Bastard"
         return level
 
@@ -45,9 +46,6 @@ class Members(models.Model):
     def level(self):
         return self.determine_user_level()
 
-    def __str__(self):
-        """Returns string repr of profile"""
-        return None
 
 
 class Posts(models.Model):
