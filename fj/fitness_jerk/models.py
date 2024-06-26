@@ -36,6 +36,9 @@ class Members(models.Model):
         elif self.workouts_done > 250:
             level = "God Bastard"
         return level
+    
+    
+
 
     @property
     def bmi(self):
@@ -44,6 +47,14 @@ class Members(models.Model):
     @property
     def level(self):
         return self.determine_user_level()
+    
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Members.objects.create(user=instance)
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.members.save()
 
 
 class Posts(models.Model):
