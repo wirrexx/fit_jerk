@@ -4,17 +4,13 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView, TemplateView
-# from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import send_mail
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.template import loader
 from django.urls import reverse_lazy
 from pathlib import Path
 from .forms import FitUserForm, ProfileChangeForm, PictureChangeForm
-from .models import Members, Posts, TrainingSchedule
+from .models import UserProfile, Posts, TrainingSchedule
 from pathlib import Path
 from .static import exercise_static
 
@@ -78,7 +74,7 @@ def signup_view(request):
             password = form.cleaned_data.get("password1")
             email = form.cleaned_data.get("email")
             user = User.objects.create_user(username=username, email=email, password=password)  
-            user_info = Members.objects.create(user=user)               # create userinfo related to new user
+            user_profile = UserProfile.objects.create(user=user)               # create userinfo related to new user
             send_mail(                                                  # send welcome email to user
                 subject=f"Welcome to FitBastard",
                 message="You finally made it. You choose to better yourself. Well, good luck with that!",
@@ -88,6 +84,8 @@ def signup_view(request):
             user.backend = "django.contrib.auth.backends.ModelBackend"  # Choose correct backend for user creation -> settings/AUTHENTICATION_BACKENDS
             login(request, user)    
             return redirect("profile")
+        else:
+            return render(request, "registration/signup.html", {"form":form})
     else: 
         form = FitUserForm()
     return render(request, "registration/signup.html", {"form":form})
@@ -118,18 +116,18 @@ def delete_user_func(request):
 def profile_view(request):
     """here the user information is displayed in the profile page and depending on the member's workouts number it recognizes his bastard level and calculate the percentage of that level progress"""
     user = request.user
-    member_info = Members.objects.get(user=user)
-    member_posts = Posts.objects.filter(member=member_info).last()
-    BMI = user.members.bmi
+    user_profile = UserProfile.objects.get(user=user)
+    user_posts = Posts.objects.filter(member=user_profile).last()
+    BMI = user.userprofile.bmi
     if BMI == 0:
         BMI = "Please complete your profile"
-    progress = member_info.progress
+    progress = user_profile.progress
     context = {
-        'member': member_info,
+        'member': user_profile,
         'BMI': BMI,
         'progress': f"{progress:.0f}%",
-        'posts': member_posts,
-        'level': member_info.level
+        'posts': user_posts,
+        'level': user_profile.level
     }
     return render(request, 'fitness_jerk/profile.html', context)
 
@@ -137,8 +135,8 @@ def profile_view(request):
 def settings_view(request):
     """settings page where member can update and go to the delete account page"""
     user = request.user
-    member_info = Members.objects.get(user=user)
-    profile_form = ProfileChangeForm(request.POST or None, instance=member_info)
+    user_profile = UserProfile.objects.get(user=user)
+    profile_form = ProfileChangeForm(request.POST or None, instance=user_profile)
     profile_pic = PictureChangeForm(request.POST or None, request.FILES)
     
     """THIS PART IS SO THE MEMBER CAN CHOOSE BETWEEN UPLOAD HIS OWN PICTURE OR GET AN AVATAR"""
@@ -151,36 +149,36 @@ def settings_view(request):
             image = profile_pic.cleaned_data['image']
 
             if noimage:
-                member_info.image = None # this is if the member want to change his profile to no picture after
-                member_info.save()
+                user_profile.image = None # this is if the member want to change his profile to no picture after
+                user_profile.save()
 
             if image:
-                member_info.image = image
-                member_info.save()
+                user_profile.image = image
+                user_profile.save()
             
             """here the POST request get the avatar name and save the image accordingly"""
             if avatar:
                 if avatar == 'batman':
-                    member_info.image = 'static/batman.jpeg'
+                    user_profile.image = 'static/batman.jpeg'
                 if avatar == 'catwoman':
-                    member_info.image = 'static/catwoman-lego.png'
+                    user_profile.image = 'static/catwoman-lego.png'
                 if avatar == 'superman':
-                    member_info.image = 'static/superman_lego.jpeg'
+                    user_profile.image = 'static/superman_lego.jpeg'
                 if avatar == 'wonderwoman':
-                    member_info.image = 'static/wonderwoman_lego.jpg'
+                    user_profile.image = 'static/wonderwoman_lego.jpg'
                  
-                member_info.save()
+                user_profile.save()
 
             messages.success(request, "Profile updated successfully")
             return redirect('profile')
         
 
-    BMI = user.members.bmi
+    BMI = user.userprofile.bmi
     if BMI == 0:
         BMI = "Please complete your profile"
     
     context = {
-        'member': member_info,
+        'member': user_profile,
         'BMI': BMI,
     } 
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
@@ -201,7 +199,7 @@ def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
     posts_list = get_all_replies(RESPONSE_FILE)
     user = request.user
-    member_info = Members.objects.get(user=user)
+    member_info = UserProfile.objects.get(user=user)
     member_info.progress += 1
     member_info.workouts_done += 1
     if member_info.progress == 101:

@@ -30,18 +30,18 @@
             <div class="profile">
                 <h3 style="text-align: left; margin-bottom: 10px;">Profile</h3>
                 <div class="profile_pic">
-                    {% if user.members.image %}
+                    {% if user.userprofile.image %}
                     <img src="{{member.image.url}}" alt="profile-image">
                     {% endif %}
                 </div>
                 <hr>
                 <div class="details">
                     <div class="height" style="padding: 10px;">
-                        <p>{{ user.members.height }} m<br></p>
+                        <p>{{ user.userprofile.height }} m<br></p>
                         <p style="color: rgb(170, 167, 167);">Height</p>
                     </div>
                     <div class="weight" style="padding: 10px;">
-                        <p>{{ user.members.weight }} kg<br></p>
+                        <p>{{ user.userprofile.weight }} kg<br></p>
                         <p style="color: rgb(170, 167, 167);">Current<br>Weight</p>
                     </div>
                     <div class="bmi" style="padding: 10px;">
@@ -49,7 +49,7 @@
                         <p style="color: rgb(170, 167, 167);">Current<br>BMI</p>
                     </div>
                     <div class="progress_workouts" style="padding: 10px;">
-                        <p>{{ user.members.workouts_done }}<br></p>
+                        <p>{{ user.userprofile.workouts_done }}<br></p>
                         <p style="color: rgb(170, 167, 167);">Current<br>Workouts</p>
                     </div>
                 </div>

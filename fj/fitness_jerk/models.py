@@ -3,9 +3,9 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-#TODO: Test 
+#TODO: Write string representation
 # Create your models here.
-class Members(models.Model):
+class UserProfile(models.Model):
     """Representation of the secondary attributes of a User"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     weight = models.FloatField(default=0)
@@ -17,12 +17,13 @@ class Members(models.Model):
 
     def calculate_BMI(self):
         """calculates the users BMI"""
-        if self.height > 0:
+        if self.height > 0 and self.weight > 0:
             return round(self.weight / (self.height ** 2), 2)
         return 0
     
     def determine_user_level(self):
         """Determines the current level of a user: Newbie -> God Bastard"""
+        level = "Newbie Bastard"
         if self.workouts_done < 50:
             level = "Newbie Bastard"
         elif 50 <= self.workouts_done < 100:
@@ -33,7 +34,7 @@ class Members(models.Model):
             level = "Supreme Bastard"
         elif 200 <= self.workouts_done < 250:
             level = "Ultra Bastard"
-        elif self.workouts_done > 250:
+        elif self.workouts_done >= 250:
             level = "God Bastard"
         return level
 
@@ -46,9 +47,18 @@ class Members(models.Model):
         return self.determine_user_level()
 
 
+
 class Posts(models.Model):
-    member = models.ForeignKey(Members, on_delete=models.CASCADE, null=True)
+    member = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     post = models.CharField(max_length=255, default="Welcome")
+
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Members.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.members.save()
 
 
 # timer needs datetime 
