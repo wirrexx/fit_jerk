@@ -32,3 +32,32 @@ class TestSignupView(TestCase):
         self.assertTemplateUsed(response, "registration/signup.html")
 
 
+class TestPasswordRelatedViews(TestCase):
+    # setup 
+    def setUp(self):
+        testuser = User.objects.create_user(username="testuser", email="testuser@example.com", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+
+    # CustomPasswordResetView
+    def test_CustomPasswordResetView_url_exists_at_right_location(self):
+        response = self.client.get("/password-reset/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_CustomPasswordResetView_url_accessible_by_name(self):
+        response = self.client.get(reverse("password_reset"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_CustomPasswordResetView_uses_correct_template(self):
+        response = self.client.get(reverse("password_reset"))
+        self.assertTemplateUsed(response, "registration/custom_password_reset_form.html") 
+
+    def test_CustomPasswordResetView_succes_url(self):
+        response = self.client.post(reverse("password_reset"), {"email":"testuser@example.com"})
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse("password_reset_done"))
+
+
+    def test_CustomPasswordResetView_confirm(self):
+        # mock link
+        # access link
+        # give two new passwords
+        # assertEquel: user.password password given
