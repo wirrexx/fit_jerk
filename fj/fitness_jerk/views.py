@@ -78,7 +78,7 @@ def signup_view(request):
             password = form.cleaned_data.get("password1")
             email = form.cleaned_data.get("email")
             user = User.objects.create_user(username=username, email=email, password=password)  
-            user_info = Members.objects.create(user=user)               # create userinfo related to new user
+            userinfo = Members.objects.create(user=user)               # create userinfo related to new user
             send_mail(                                                  # send welcome email to user
                 subject=f"Welcome to FitBastard",
                 message="You finally made it. You choose to better yourself. Well, good luck with that!",
@@ -88,6 +88,8 @@ def signup_view(request):
             user.backend = "django.contrib.auth.backends.ModelBackend"  # Choose correct backend for user creation -> settings/AUTHENTICATION_BACKENDS
             login(request, user)    
             return redirect("profile")
+        else:
+            return render(request, "registration/signup.html", {"form":form})
     else: 
         form = FitUserForm()
     return render(request, "registration/signup.html", {"form":form})
