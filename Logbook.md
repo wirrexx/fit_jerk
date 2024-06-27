@@ -24,6 +24,7 @@
 
 ## Next Steps and Prospects
 
+- Playstore implementation
 - Chat between users
 - Online shop implementation
 - Add statistics: activity 
@@ -36,7 +37,7 @@
 ## Lessons learned:
 
 - A good techstack is nice but...
-	-> don not add too much dependencies
+	-> do not add too much dependencies
 - TopDown approach does the trick.
 - Behaviour driven approach does not...
 - Testdriven approach is awesome!
