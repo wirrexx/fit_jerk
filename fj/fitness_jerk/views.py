@@ -120,7 +120,7 @@ def profile_view(request):
     user_posts = Posts.objects.filter(member=user_profile).last()
     BMI = user.userprofile.bmi
     if BMI == 0:
-        BMI = "Please complete your profile"
+        BMI = "Incomplete Profile"
     progress = user_profile.progress
     context = {
         'member': user_profile,
