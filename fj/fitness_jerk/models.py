@@ -3,47 +3,60 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-#TODO: Write __str__ for UserInfo
 
-# Create your models here.
-class Members(models.Model):
+class UserProfile(models.Model):
     """Representation of the secondary attributes of a User"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     weight = models.FloatField(default=0)
     height = models.FloatField(default=0)
     progress = models.IntegerField(default=0)
-
-    # TODO:ImageField Path: It's generally not a good practice to upload user files to the static/ directory. It's better to use a directory like media/ for user-uploaded files and configure your project to serve them properly.
+    workouts_done = models.IntegerField(default=0)
+    latest_post = models.CharField(default="Welcome! You finally choose to better yourself!", max_length=100)
+    level = models.CharField(default="Newbie Bastard", max_length=100)
     image = models.ImageField(null=True, blank=True, upload_to="static/")
 
     def calculate_BMI(self):
         """calculates the users BMI"""
-        if self.height > 0:
+        if self.height > 0 and self.weight > 0:
             return round(self.weight / (self.height ** 2), 2)
         return 0
     
+    def progress_percentage(self):
+        """calculates the percentage of completion of the member's level"""
+        pass
+
+    def determine_user_level(self):
+        """Determines the current level of a user: Newbie -> God Bastard"""
+        level = "Newbie Bastard"
+        if self.workouts_done < 90:
+            level = "Newbie Bastard"
+        elif 90 <= self.workouts_done < 180:
+            level = "Fit Bastard"
+        elif 180 <= self.workouts_done < 270:
+            level = "Master Bastard"
+        elif 270 <= self.workouts_done < 360:
+            level = "Supreme Bastard"
+        elif 360 <= self.workouts_done < 450:
+            level = "Ultra Bastard"
+        elif self.workouts_done >= 450:
+            level = "God Bastard"
+        return level
+    
+    
+
+
     @property
     def bmi(self):
         return self.calculate_BMI()
+    
+    @property
+    def level(self):
+        return self.determine_user_level()
+    
 
-## TODO: Investigate!
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Members.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.members.save()
-
-
-class Posts(models.Model):
-    member = models.ForeignKey(Members, on_delete=models.CASCADE, null=True)
-    post = models.CharField(max_length=255, default="Welcome")
 
 
 # timer needs datetime 
-
 class TrainingSchedule(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()

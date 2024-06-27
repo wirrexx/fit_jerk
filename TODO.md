@@ -5,7 +5,7 @@
 - Git Tutorial
 
 ### Xtn
-
+0. No error messages upon signup
 1. Refactor code and improve code quality:
 	- DRY!
  	- make code self documenting
@@ -13,9 +13,13 @@
 	- add docstrings
 	- Remove dead code
 	- => refactor code
+		- profile view: progress
+	- What happens when user (google login) deletes profile?
 
-3. Write Tests
+3. Write Tests 
 4. Deploy to python anywhere
+
+
 5. Write documentation
 6. Admin Panel: Register Profile and connect it to User
 7. Research:

@@ -154,6 +154,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Custom authenticication settings
 
 # LOGIN/LOGOUT
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile/'
 LOGOUT_REDIRECT_URL = '/login/'
 
@@ -193,6 +194,8 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+SOCIALACCOUNT_ADAPTER = 'fitness_jerk.adapters.CustomSocialAccountAdapter'
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
