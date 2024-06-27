@@ -1,12 +1,32 @@
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
+from django.test import TestCase 
 from django.urls import reverse
-from fitness_jerk.views import signup_view
 from fitness_jerk.forms import FitUserForm, ProfileChangeForm, PictureChangeForm
 from fitness_jerk.models import UserProfile, Posts
-from django.core.files.uploadedfile import SimpleUploadedFile
 
+# -------------------------- XTN ---------------------------------
+
+class TestLogoutView(TestCase):
+    def setUp(self):
+        testuser = User.objects.create_user(username="testuser", email="testuser@example.com", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        testuser.save()
+        
+
+    def test_logout_redirect(self):
+        self.client.login(username="testuser", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        
+        # make sure user is logged in
+        response = self.client.get(reverse('logout'))
+        
+        # check if redirecting
+        self.assertEqual(response.status_code, 302)
+        
+        # check response redirects to correct url
+        self.assertRedirects(response, reverse("welcome"))
+
+        # check if user is infact logged out
+        response = self.client.get(reverse("profile"))
+        self.assertRedirects(response, '/login/?next=/profile/')
 
 class TestSignupView(TestCase):
     
@@ -39,6 +59,7 @@ class TestPasswordRelatedViews(TestCase):
     # setup 
     def setUp(self):
         testuser = User.objects.create_user(username="testuser", email="testuser@example.com", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        testuser.save()
 
     # CustomPasswordResetView
     def test_CustomPasswordResetView_url_exists_at_right_location(self):
@@ -66,6 +87,47 @@ class TestPasswordRelatedViews(TestCase):
         # assertEquel: user.password password given
         pass
 
+
+class TestDeleteUserView(TestCase):
+    def setUp(self):
+        testuser = User.objects.create_user(username="testuser", email="testuser@example.com", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        testuser.save()
+
+    def test_delete_user_view_with_logged_in_user_GET(self):
+        login = self.client.login(username="testuser", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        response = self.client.get(reverse("delete"))
+
+        # check if user is logged in
+        self.assertEqual(str(response.context["user"]), "testuser")
+        
+        # Check if response is a success
+        self.assertEqual(response.status_code, 200)
+
+        # Check if correct template is used
+        self.assertTemplateUsed(response, "fitness_jerk/delete.html")
+    
+    def test_delete_user_view_with_logged_in_user_POST(self):
+        login = self.client.login(username="testuser", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        response = self.client.post(reverse("delete"))
+
+        # check if redirected
+        self.assertEqual(response.status_code, 302)
+
+        # check if redirect is correct
+        # template use is tested in TestCustomLoginView
+        self.assertRedirects(response, reverse("login"))
+
+        # check if user is infact deleted
+        self.assertFalse(User.objects.filter(username="testuser").exists())
+    
+    # 
+    def test_delete_view_redirect_with_user_not_logged_in(self):
+        response = self.client.get(reverse('delete'))
+        self.assertRedirects(response, '/login/?next=/delete/')
+
+
+# -------------------------------- ANA --------------------------------
+    
 class ProfileSettingsViewTest(TestCase):
 
     def setUp(self):
@@ -100,14 +162,11 @@ class ProfileSettingsViewTest(TestCase):
 
     def test_settings_view(self):
         response = self.client.get(reverse('settings'))
-
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'fitness_jerk/settings.html')
-
         self.assertIn('profile_form', response.context)
         self.assertIn('profile_pic', response.context)
         self.assertIn('context', response.context)
-
         self.assertEqual(response.context['context']['BMI'], self.user_profile.bmi)
     
 
@@ -117,11 +176,8 @@ class ProfileSettingsViewTest(TestCase):
             'weight': 75,
             'height': 1.80,
         }
-      
-      
         response = self.client.post(reverse('settings'), data)
         self.user_profile.refresh_from_db()
-      
         self.assertEqual(self.user_profile.weight, 75)
         self.assertEqual(self.user_profile.height, 1.80)
 
@@ -130,10 +186,8 @@ class ProfileSettingsViewTest(TestCase):
         data = {
             'noimage': 'true'
         }
-
         response = self.client.post(reverse('settings'), data)
         self.user_profile.refresh_from_db()
-
         self.assertFalse(self.user_profile.image)
 
     def test_settings_view_post_avatar(self):
@@ -142,7 +196,9 @@ class ProfileSettingsViewTest(TestCase):
             'height': 1.80,
             'avatar': 'superman'
         }
-
         response = self.client.post(reverse('settings'), data)
         self.user_profile.refresh_from_db()
         self.assertEqual(self.user_profile.image, 'static/superman_lego.jpeg')
+
+
+# -------------------------------- WISAM ----------------------------------
