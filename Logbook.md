@@ -20,6 +20,8 @@
 	- Encrypting the data
 	- Hosting website code publicly
 - Write collect_todos.sh
+- Upload HOWTOs
+
 
 ## Next Steps and Prospects
 
@@ -31,12 +33,15 @@
 - Get funding!
 ...
 
+
 ## Lessons learned:
 
+- A good techstack is nice but...
+	-> don't add too much dependencies
 - TopDown approach does the trick.
 - Behaviour driven approach does not...
 - Testdriven approach is awesome!
 - Git knowledge is mandatory
 - Trust in your team
-- Don't add to much dependencies
+
 ```
