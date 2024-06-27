@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     height = models.FloatField(default=0)
     progress = models.IntegerField(default=0)
     workouts_done = models.IntegerField(default=0)
+    latest_post = models.CharField(default="Welcome! You finally choose to better yourself!", max_length=100)
     level = models.CharField(default="Newbie Bastard", max_length=100)
     image = models.ImageField(null=True, blank=True, upload_to="static/")
 
@@ -40,6 +41,9 @@ class UserProfile(models.Model):
         elif self.workouts_done >= 450:
             level = "God Bastard"
         return level
+    
+    
+
 
     @property
     def bmi(self):
@@ -48,20 +52,8 @@ class UserProfile(models.Model):
     @property
     def level(self):
         return self.determine_user_level()
+    
 
-
-
-class Posts(models.Model):
-    member = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
-    post = models.CharField(max_length=255, default="Welcome")
-
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Members.objects.create(user=instance)
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.members.save()
 
 
 # timer needs datetime 
