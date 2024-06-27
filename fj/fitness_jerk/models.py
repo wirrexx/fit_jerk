@@ -12,6 +12,7 @@ class UserProfile(models.Model):
     height = models.FloatField(default=0)
     progress = models.IntegerField(default=0)
     workouts_done = models.IntegerField(default=0)
+    latest_post = models.CharField(default="Welcome! You finally choose to better yourself!", max_length=100)
     level = models.CharField(default="Newbie Bastard", max_length=100)
     image = models.ImageField(null=True, blank=True, upload_to="static/")
 
@@ -21,20 +22,24 @@ class UserProfile(models.Model):
             return round(self.weight / (self.height ** 2), 2)
         return 0
     
+    def progress_percentage(self):
+        """calculates the percentage of completion of the member's level"""
+        pass
+
     def determine_user_level(self):
         """Determines the current level of a user: Newbie -> God Bastard"""
         level = "Newbie Bastard"
-        if self.workouts_done < 50:
+        if self.workouts_done < 90:
             level = "Newbie Bastard"
-        elif 50 <= self.workouts_done < 100:
+        elif 90 <= self.workouts_done < 180:
             level = "Fit Bastard"
-        elif 100 <= self.workouts_done < 150:
+        elif 180 <= self.workouts_done < 270:
             level = "Master Bastard"
-        elif 150 <= self.workouts_done < 200:
+        elif 270 <= self.workouts_done < 360:
             level = "Supreme Bastard"
-        elif 200 <= self.workouts_done < 250:
+        elif 360 <= self.workouts_done < 450:
             level = "Ultra Bastard"
-        elif self.workouts_done >= 250:
+        elif self.workouts_done >= 450:
             level = "God Bastard"
         return level
     
@@ -50,19 +55,6 @@ class UserProfile(models.Model):
         return self.determine_user_level()
     
 
-
-
-class Posts(models.Model):
-    member = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
-    post = models.CharField(max_length=255, default="Welcome")
-
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Members.objects.create(user=instance)
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.members.save()
 
 
 # timer needs datetime 

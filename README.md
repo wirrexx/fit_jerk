@@ -12,33 +12,36 @@ Languages:
 - Python 
 - HTML 
 - CSS
-   
-Webframework: [Django](https://www.djangoproject.com/) with django-allauth
 
-Database: 
+Frameworks
+- Djangowith
+- django-allauth
+
+Databases: 
 - Development: [Sqlite3](https://sqlite.org/)
-- Production: [Postgresql](https://www.postgresql.org/)
 
-Hosting: [pythonanywhere](https://www.pythonanywhere.com/) 
+
+Hosting: 
+- Pythonanywhere
 	
 
 
-## Features 
+## Implemented Features 
 
 - Authenticication System
 	[Logout, Login, ChangePassword, ResetPassword, Signup, OAuth with Google]
 - Profile
-	[BMI, weight, height, progress, picture, completion posts, choose exercise]
+	[BMI, weight, height, progress, picture, completion posts, choose exercise, avatar]
 - Workouts
-	[Exercises: Loose, Muscles, ToneDown, Timer, Start, Pause, Resume, Finish] 
+	[Exercises: Loose, Muscles, ToneDown, Timer, Start, Pause, Give up, Resume, Finish, embedded Youtube videos] 
 	
 
 ## Expected Features
 
-- Create an Avatar
-- Audio 
-- AppStore Implementationn
-- Host our own server
+- Online Shop
+- AI driven Feedback
+- Statistics
+- Migrate to Google Playstore
 
 ## Roles
 
@@ -48,7 +51,7 @@ Head of Operation (Christian)
 
 ## General Planning
 
-We are, and I can't stress this enough, a team!
+We are, and we can't stress this enough, a team!
 Don't be afraid to ask for help!
 We use github project:
 

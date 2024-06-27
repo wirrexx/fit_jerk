@@ -1,7 +1,7 @@
 import random
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth import login, logout 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView, TemplateView
@@ -10,13 +10,24 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from pathlib import Path
 from .forms import FitUserForm, ProfileChangeForm, PictureChangeForm
-from .models import UserProfile, Posts, TrainingSchedule
+from .models import UserProfile, TrainingSchedule
 from pathlib import Path
 from .static import exercise_static
 
 ##TODO: 
 #+  1. Refactor
 #+  2. Add docstrings
+
+# Create utilities here
+def get_file_content_as_list(path_file: str) -> list:
+    """Returns content of a file as a list of strings one string per line"""
+    try:
+        with open(path_file) as f:
+            content = f.readlines()
+    except FileNotFoundError as err:
+        print(err)
+    return content    
+
 
 # Create Constants here
 BASE_DIR = Path(__file__).resolve().parent 
@@ -116,17 +127,19 @@ def delete_user_func(request):
 def profile_view(request):
     """here the user information is displayed in the profile page and depending on the member's workouts number it recognizes his bastard level and calculate the percentage of that level progress"""
     user = request.user
+    post_list = get_file_content_as_list(RESPONSE_FILE)
     user_profile = UserProfile.objects.get(user=user)
-    user_posts = Posts.objects.filter(member=user_profile).last()
+    random_post = random.choice(post_list)
     BMI = user.userprofile.bmi
+    
+    progress_percentage = user_profile.progress/90*100
     if BMI == 0:
-        BMI = "Incomplete Profile"
-    progress = user_profile.progress
+        BMI = "Please complete your profile"
     context = {
         'member': user_profile,
         'BMI': BMI,
-        'progress': f"{progress:.0f}%",
-        'posts': user_posts,
+        'progress': f"{progress_percentage:.0f}%",
+        'motivational_msg': random_post,
         'level': user_profile.level
     }
     return render(request, 'fitness_jerk/profile.html', context)
@@ -146,7 +159,9 @@ def settings_view(request):
 
         if profile_form.is_valid() and profile_pic.is_valid():
             profile_form.save()
+            
             image = profile_pic.cleaned_data['image']
+            
 
             if noimage:
                 user_profile.image = None # this is if the member want to change his profile to no picture after
@@ -174,6 +189,7 @@ def settings_view(request):
         
 
     BMI = user.userprofile.bmi
+    
     if BMI == 0:
         BMI = "Please complete your profile"
     
@@ -184,29 +200,18 @@ def settings_view(request):
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
 
 
-def get_all_replies(path_to_response_file: str) -> list:
-    """Returns content of a file as a list of strings one string per line"""
-    try:
-        with open(path_to_response_file) as f:
-            content = f.readlines()
-    except FileNotFoundError as err:
-        print(err)
-    return content    
 
 
 @login_required
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
-    posts_list = get_all_replies(RESPONSE_FILE)
     user = request.user
     member_info = UserProfile.objects.get(user=user)
     member_info.progress += 1
     member_info.workouts_done += 1
-    if member_info.progress == 101:
+    if member_info.progress == 90:
         member_info.progress = 0
     member_info.save()
-    msg = random.choice(posts_list)
-    Posts.objects.create(member=member_info, post=msg)
     return redirect('profile')
 
 # ---------------------------------------- WISAM --------------------------------------
