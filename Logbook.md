@@ -3,7 +3,8 @@
 
 ## Mandatory TODOs
 
-while [ -e at it ] do {
+while [ -e at_it ]; do
+
 - Add content: [Imprint, Privacy Policy]
 - Implement: [Cookie consent]
 - Upload/Create Logo -> favicon
@@ -16,10 +17,12 @@ while [ -e at it ] do {
 - Google Login behaves strange -> why?
 - Security? Anyone?
 	- Hosting website code publicly
-}
+
 done
 
 ## Next Steps and Prospects
+
+while [ -e nice_to_haves ]; do
 
 - Playstore implementation
 - Online shop implementation
@@ -28,12 +31,17 @@ done
 - Get funding!
 ...
 
+done
+
 
 ## Lessons learned:
 
+while [ -e reflecting ] do 
 - A good techstack is nice but...
 	-> do not add too much dependencies
 - TopDown approach does the trick.
 - Testdriven approach is awesome!
 - Git knowledge is mandatory
+
+done
 ```
