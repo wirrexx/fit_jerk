@@ -211,7 +211,7 @@ def workout_finish(request):
     if member_info.progress == 90:
         member_info.progress = 0
     member_info.save()
-    return redirect('profile'))
+    return redirect('profile')
 
 # ---------------------------------------- WISAM --------------------------------------
 
