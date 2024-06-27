@@ -21,20 +21,24 @@ class UserProfile(models.Model):
             return round(self.weight / (self.height ** 2), 2)
         return 0
     
+    def progress_percentage(self):
+        """calculates the percentage of completion of the member's level"""
+        pass
+
     def determine_user_level(self):
         """Determines the current level of a user: Newbie -> God Bastard"""
         level = "Newbie Bastard"
-        if self.workouts_done < 50:
+        if self.workouts_done < 90:
             level = "Newbie Bastard"
-        elif 50 <= self.workouts_done < 100:
+        elif 90 <= self.workouts_done < 180:
             level = "Fit Bastard"
-        elif 100 <= self.workouts_done < 150:
+        elif 180 <= self.workouts_done < 270:
             level = "Master Bastard"
-        elif 150 <= self.workouts_done < 200:
+        elif 270 <= self.workouts_done < 360:
             level = "Supreme Bastard"
-        elif 200 <= self.workouts_done < 250:
+        elif 360 <= self.workouts_done < 450:
             level = "Ultra Bastard"
-        elif self.workouts_done >= 250:
+        elif self.workouts_done >= 450:
             level = "God Bastard"
         return level
 
