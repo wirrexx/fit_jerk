@@ -14,9 +14,6 @@ from .models import UserProfile, Posts, TrainingSchedule
 from pathlib import Path
 from .static import exercise_static
 
-##TODO: 
-#+  1. Refactor
-#+  2. Add docstrings
 
 # Create Constants here
 BASE_DIR = Path(__file__).resolve().parent 
@@ -169,19 +166,16 @@ def settings_view(request):
                 if avatar == 'superman':
                     user_profile.image = 'static/superman_lego.jpeg'
                 if avatar == 'wonderwoman':
-                    user_profile.image = 'static/wonderwoman_lego.jpg'
-                 
+                    user_profile.image = 'static/wonderwoman_lego.jpg'    
                 user_profile.save()
 
             messages.success(request, "Profile updated successfully")
             return redirect('profile')
         
-
     BMI = user.userprofile.bmi
-    
     if BMI == 0:
         BMI = "Please complete your profile"
-    
+
     context = {
         'member': user_profile,
         'BMI': BMI,
