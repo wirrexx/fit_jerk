@@ -66,6 +66,40 @@ class TestPasswordRelatedViews(TestCase):
         # assertEquel: user.password password given
         pass
 
+
+class TestDeleteUserView(TestCase):
+    def setUp(self):
+        testuser = User.objects.create_user(username="testuser", email="testuser@example.com", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        testuser.save()
+
+    def test_delete_user_view_with_logged_in_user_GET(self):
+        login = self.client.login(username="testuser", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        response = self.client.get(reverse("delete"))
+
+        # check if user is logged in
+        self.assertEqual(str(response.context["user"]), "testuser")
+        
+        # Check if response is a success
+        self.assertEqual(response.status_code, 200)
+
+        # Check if correct template is used
+        self.assertTemplateUsed(response, "fitness_jerk/delete.html")
+    
+    def test_delete_user_view_with_logged_in_user_POST(self):
+        login = self.client.login(username="testuser", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        response = self.client.post(reverse("delete"))
+
+        # check if redirected
+        self.assertEqual(response.status_code, 302)
+
+        # check if redirect is correct
+        # template use is tested in TestCustomLoginView
+        self.assertRedirects(response, reverse("login"))
+
+        # check if user is infact deleted
+        self.assertFalse(User.objects.filter(username="testuser").exists())
+
+    
 class ProfileSettingsViewTest(TestCase):
 
     def setUp(self):
@@ -100,14 +134,11 @@ class ProfileSettingsViewTest(TestCase):
 
     def test_settings_view(self):
         response = self.client.get(reverse('settings'))
-
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'fitness_jerk/settings.html')
-
         self.assertIn('profile_form', response.context)
         self.assertIn('profile_pic', response.context)
         self.assertIn('context', response.context)
-
         self.assertEqual(response.context['context']['BMI'], self.user_profile.bmi)
     
 
@@ -117,11 +148,8 @@ class ProfileSettingsViewTest(TestCase):
             'weight': 75,
             'height': 1.80,
         }
-      
-      
         response = self.client.post(reverse('settings'), data)
         self.user_profile.refresh_from_db()
-      
         self.assertEqual(self.user_profile.weight, 75)
         self.assertEqual(self.user_profile.height, 1.80)
 
@@ -130,10 +158,8 @@ class ProfileSettingsViewTest(TestCase):
         data = {
             'noimage': 'true'
         }
-
         response = self.client.post(reverse('settings'), data)
         self.user_profile.refresh_from_db()
-
         self.assertFalse(self.user_profile.image)
 
     def test_settings_view_post_avatar(self):
@@ -142,7 +168,7 @@ class ProfileSettingsViewTest(TestCase):
             'height': 1.80,
             'avatar': 'superman'
         }
-
         response = self.client.post(reverse('settings'), data)
         self.user_profile.refresh_from_db()
         self.assertEqual(self.user_profile.image, 'static/superman_lego.jpeg')
+

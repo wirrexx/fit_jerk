@@ -56,14 +56,6 @@ class Posts(models.Model):
     member = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     post = models.CharField(max_length=255, default="Welcome")
 
-# @receiver(post_save, sender=User)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Members.objects.create(user=instance)
-# @receiver(post_save, sender=User)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.members.save()
-
 
 # timer needs datetime 
 class TrainingSchedule(models.Model):
