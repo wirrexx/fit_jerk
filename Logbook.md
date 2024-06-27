@@ -33,9 +33,9 @@
 
 ## Lessons learned:
 
-- TopDown approach does the trick
-- Behaviour driven approach doesn't
-- Testdriven approach
+- TopDown approach does the trick.
+- Behaviour driven approach does not...
+- Testdriven approach is awesome!
 - Git knowledge is mandatory
 - Trust in your team
 - Don't add to much dependencies
