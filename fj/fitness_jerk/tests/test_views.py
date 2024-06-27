@@ -7,6 +7,25 @@ from fitness_jerk.forms import FitUserForm, ProfileChangeForm, PictureChangeForm
 from fitness_jerk.models import UserProfile, Posts
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+# -------------------------- XTN ---------------------------------
+
+class TestLogoutView(TestCase):
+    def setUp(self):
+        testuser = User.objects.create_user(username="testuser", email="testuser@example.com", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        testuser.save()
+        
+
+    def test_logout_redirect(self):
+        self.client.login(username="testuser", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
+        
+        # make sure user is logged in
+        response = self.client.get(reverse('logout'))
+        
+        # check if redirecting
+        self.assertEqual(response.status_code, 302)
+        
+        # check response redirects to correct url
+        self.assertRedirects(response, reverse("welcome"))
 
 class TestSignupView(TestCase):
     
@@ -39,7 +58,7 @@ class TestPasswordRelatedViews(TestCase):
     # setup 
     def setUp(self):
         testuser = User.objects.create_user(username="testuser", email="testuser@example.com", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
-
+        testuser.save()
     # CustomPasswordResetView
     def test_CustomPasswordResetView_url_exists_at_right_location(self):
         response = self.client.get("/password-reset/")
@@ -104,6 +123,8 @@ class TestDeleteUserView(TestCase):
         response = self.client.get(reverse('delete'))
         self.assertRedirects(response, '/login/?next=/delete/')
 
+
+# -------------------------------- ANA --------------------------------
     
 class ProfileSettingsViewTest(TestCase):
 
@@ -177,3 +198,5 @@ class ProfileSettingsViewTest(TestCase):
         self.user_profile.refresh_from_db()
         self.assertEqual(self.user_profile.image, 'static/superman_lego.jpeg')
 
+
+# -------------------------------- WISAM ----------------------------------
