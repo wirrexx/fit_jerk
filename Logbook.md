@@ -10,7 +10,6 @@
 - Refactor code and improve code quality:
 	- DRY!
  	- Make code self documenting
-	- Make variable names more concise and on point
 	- Add docstrings
 	- Remove dead code
 - Finish writing tests
