@@ -48,10 +48,12 @@ touch .env
 # populate this file with a secret key
 SECRET_KEY=YOUR_SECRET_KEY
 
-#Note: google auth will not work without you specifying a GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET
+#Note: google auth will not work without you specifying a GOOGLE_CLIENT_ID=<YOUR_CLIENT_ID> and
+#+     GOOGLE_CLIENT_SECRET=<YOUR_CLIENT_SECRET> in .env
 #+     for detailed instructions on how to setup google auth see: DOCs/HOWTO_google_auth
 #Note: The email backend is configured to send emails to the console. If you want to be able to use
-#+     EMAIL via gmail, refer to: DOCs/HOWTO_google_auth
+#+     EMAIL via gmail, refer to: DOCs/HOWTO_google_auth comment development settings and comment out production
+#+     settings. Also you have to add EMAIL_USER=<YOUR_EMAIL_USER_ACCOUNT>, EMAIL_PASS=<YOUR_EMAIL_PASS> 
 ```
 
 ## Implemented Features 
