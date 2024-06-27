@@ -127,19 +127,19 @@ def delete_user_func(request):
 def profile_view(request):
     """here the user information is displayed in the profile page and depending on the member's workouts number it recognizes his bastard level and calculate the percentage of that level progress"""
     user = request.user
-    post_list = get_file_content_as_list(RESPONSE_FILE)
-    user_profile = UserProfile.objects.get(user=user)
-    random_post = random.choice(post_list)
+    user_profile = user.userprofile
+    latest_post =  user.userprofile.latest_post
     BMI = user.userprofile.bmi
     
     progress_percentage = user_profile.progress/90*100
     if BMI == 0:
         BMI = "Please complete your profile"
+    
     context = {
         'member': user_profile,
         'BMI': BMI,
         'progress': f"{progress_percentage:.0f}%",
-        'motivational_msg': random_post,
+        'motivational_msg': latest_post,
         'level': user_profile.level
     }
     return render(request, 'fitness_jerk/profile.html', context)
@@ -200,19 +200,18 @@ def settings_view(request):
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
 
 
-
-
 @login_required
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
     user = request.user
-    member_info = UserProfile.objects.get(user=user)
+    member_info = user.userprofile
     member_info.progress += 1
     member_info.workouts_done += 1
+    member_info.latest_post = random.choice(get_file_content_as_list(RESPONSE_FILE))
     if member_info.progress == 90:
         member_info.progress = 0
     member_info.save()
-    return redirect('profile')
+    return redirect('profile'))
 
 # ---------------------------------------- WISAM --------------------------------------
 
