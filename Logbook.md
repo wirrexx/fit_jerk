@@ -3,7 +3,7 @@
 
 ## Mandatory TODOs
 
-do
+while [ -e at it ] do {
 - Add content: [Imprint, Privacy Policy]
 - Implement: [Cookie consent]
 - Upload/Create Logo -> favicon
@@ -16,6 +16,7 @@ do
 - Google Login behaves strange -> why?
 - Security? Anyone?
 	- Hosting website code publicly
+}
 done
 
 ## Next Steps and Prospects
