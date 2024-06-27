@@ -98,6 +98,11 @@ class TestDeleteUserView(TestCase):
 
         # check if user is infact deleted
         self.assertFalse(User.objects.filter(username="testuser").exists())
+    
+    # 
+    def test_delete_view_redirect_with_user_not_logged_in(self):
+        response = self.client.get(reverse('delete'))
+        self.assertRedirects(response, '/login/?next=/delete/')
 
     
 class ProfileSettingsViewTest(TestCase):
