@@ -12,6 +12,7 @@ class UserProfile(models.Model):
     height = models.FloatField(default=0)
     progress = models.IntegerField(default=0)
     workouts_done = models.IntegerField(default=0)
+    latest_post = models.CharField(default="Welcome! You finally choose to better yourself!", max_length=100)
     level = models.CharField(default="Newbie Bastard", max_length=100)
     image = models.ImageField(null=True, blank=True, upload_to="static/")
 
