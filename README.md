@@ -6,7 +6,7 @@ The different fitness app. Fit Bastard is here to help you loose weight, gain mu
 It will give you a coach that pushes you beyond your levels. Fit Bastard has three prepared workout 
 plans that depend on your goals. 
 
-## Technology used:
+## TechStack:
 
 Languages: 
 - Python 
@@ -14,17 +14,50 @@ Languages:
 - CSS
 
 Frameworks
-- Djangowith
+- Django
 - django-allauth
 
 Databases: 
 - Development: [Sqlite3](https://sqlite.org/)
 
-
 Hosting: 
 - Pythonanywhere
-	
 
+## Installation instructions
+
+```
+# Clone this repo! 
+git clone git@github.com:wirrexx/fit_jerk.git
+
+# In the directory where .git resides create a virtual environment
+python -m venv .venv
+
+# install requirements from requirements.txt
+pip install -r requirements.txt
+
+# change directory to fj/
+cd fj/
+
+# migrate and makemigrations
+python manage.py makemigrations
+python manage.py migrate
+
+# create .env file
+touch .env
+
+# populate this file with a secret key (make sure this is fairly complex)
+SECRET_KEY=<YOUR_SECRET_KEY>
+
+# now run the development server
+python manage.py runserver
+
+#Note: google auth will not work without you specifying a GOOGLE_CLIENT_ID=<YOUR_CLIENT_ID> and
+#+     GOOGLE_CLIENT_SECRET=<YOUR_CLIENT_SECRET> in .env
+#+     for detailed instructions on how to setup google auth see: DOCs/HOWTO_google_auth
+#Note: The email backend is configured to send emails to the console. If you want to be able to use
+#+     EMAIL via gmail, refer to: DOCs/HOWTO_google_auth comment development settings and comment out production
+#+     settings. Also you have to add EMAIL_USER=<YOUR_EMAIL_USER_ACCOUNT>, EMAIL_PASS=<YOUR_EMAIL_PASS> 
+```
 
 ## Implemented Features 
 
@@ -45,9 +78,9 @@ Hosting:
 
 ## Roles
 
-Product Owner (Ana)
-Lead Developer (Wisam)
-Head of Operation (Christian)
+- Ana Pereira - Team Manager/Frontend/Backend
+- Christian Peter - Technical Leader/Code Quality/Backend
+- Wisam Odish - Lead Developer/Frontend/Backend
 
 ## General Planning
 
@@ -59,7 +92,7 @@ We use github project:
 [Project](https://github.com/users/wirrexx/projects/1/views/7)
 
 	
-Standups at 9.00am
+Standups at 9.00am.
 
 
 
