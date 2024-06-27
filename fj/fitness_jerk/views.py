@@ -148,7 +148,9 @@ def settings_view(request):
 
         if profile_form.is_valid() and profile_pic.is_valid():
             profile_form.save()
+            
             image = profile_pic.cleaned_data['image']
+            
 
             if noimage:
                 user_profile.image = None # this is if the member want to change his profile to no picture after

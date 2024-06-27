@@ -33,44 +33,44 @@ class MembersModelTest(TestCase):
     #Test @property: level
     def test_newbie_bastard_level(self):
         userinfo = UserProfile.objects.get(id=1)
-        for workouts_done in range(0,50):
+        for workouts_done in range(0,90):
             userinfo.workouts_done = workouts_done
             self.assertEqual(userinfo.level, "Newbie Bastard")
         
     def test_fit_bastard_level(self):
         userinfo = UserProfile.objects.get(id=1)
-        for workouts_done in range(50, 100):
+        for workouts_done in range(90, 180):
             userinfo.workouts_done = workouts_done
             self.assertEqual(userinfo.level, "Fit Bastard")
     
     def test_master_bastard_level(self):
         userinfo = UserProfile.objects.get(id=1)
-        for workouts_done in range(100, 150):
+        for workouts_done in range(180, 270):
             userinfo.workouts_done = workouts_done
             self.assertEqual(userinfo.level, "Master Bastard")
 
     def test_supreme_bastard_level(self):
         userinfo = UserProfile.objects.get(id=1)
-        for workouts_done in range(150, 200):
+        for workouts_done in range(270, 360):
             userinfo.workouts_done = workouts_done
             self.assertEqual(userinfo.level, "Supreme Bastard")
     
     def test_ultra_bastard_level(self):
         userinfo = UserProfile.objects.get(id=1)
-        for workouts_done in range(200, 250):
+        for workouts_done in range(360, 450):
             userinfo.workouts_done = workouts_done
             self.assertEqual(userinfo.level, "Ultra Bastard")
     
     def test_god_bastard_level(self):
         userinfo = UserProfile.objects.get(id=1)
-        for workouts_done in range(250, 2000):
+        for workouts_done in range(450, 2000):
             userinfo.workouts_done = workouts_done
             self.assertEqual(userinfo.level, "God Bastard")
     
     def test_property_level(self):
         userinfo = UserProfile.objects.get(id=1)
         userinfo.workouts_done = 50
-        self.assertEqual(userinfo.level, "Fit Bastard")
+        self.assertEqual(userinfo.level, "Newbie Bastard")
 
     def test_calculate_BMI(self):
         userinfo = UserProfile.objects.get(id=1)
