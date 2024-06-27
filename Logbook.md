@@ -10,7 +10,6 @@ while [ -e at_it ]; do
 - Refactor code and improve code quality:
 	- DRY!
  	- Make code self documenting
-	- Remove dead code
 	- Finish writing tests
 - Security? Anyone?
 	- Hosting website code publicly
@@ -23,7 +22,6 @@ while [ -e nice_to_haves ]; do
 
 - Online shop implementation
 - Personalized trainings
-- AI-driven feedback
 - Get funding!
 ...
 done
@@ -37,5 +35,6 @@ while [ -e reflecting ] do
 - TopDown approach does the trick.
 - Testdriven approach is awesome!
 - Git knowledge is mandatory
+- Always do a backup!!!
 done
 ```
