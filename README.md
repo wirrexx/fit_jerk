@@ -6,7 +6,7 @@ The different fitness app. Fit Bastard is here to help you loose weight, gain mu
 It will give you a coach that pushes you beyond your levels. Fit Bastard has three prepared workout 
 plans that depend on your goals. 
 
-## Technology used:
+## TechStack:
 
 Languages: 
 - Python 
@@ -14,16 +14,20 @@ Languages:
 - CSS
 
 Frameworks
-- Djangowith
+- Django
 - django-allauth
 
 Databases: 
 - Development: [Sqlite3](https://sqlite.org/)
 
-
 Hosting: 
 - Pythonanywhere
-	
+
+## Installation instructions
+
+Clone this repo!
+Create a virtual environment and install requirements from requirements.txt
+runserver!
 
 
 ## Implemented Features 
@@ -45,9 +49,9 @@ Hosting:
 
 ## Roles
 
-Product Owner (Ana)
-Lead Developer (Wisam)
-Head of Operation (Christian)
+Ana Pereira - Team Manager/Frontend/Backend
+Christian Peter - Technical Leader/Code Quality/Backend
+Wisam Odish - Lead Developer/Frontend/Backend
 
 ## General Planning
 
