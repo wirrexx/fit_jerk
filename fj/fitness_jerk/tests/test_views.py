@@ -1,11 +1,8 @@
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
+from django.test import TestCase 
 from django.urls import reverse
-from fitness_jerk.views import signup_view
 from fitness_jerk.forms import FitUserForm, ProfileChangeForm, PictureChangeForm
 from fitness_jerk.models import UserProfile, Posts
-from django.core.files.uploadedfile import SimpleUploadedFile
 
 # -------------------------- XTN ---------------------------------
 
@@ -26,6 +23,10 @@ class TestLogoutView(TestCase):
         
         # check response redirects to correct url
         self.assertRedirects(response, reverse("welcome"))
+
+        # check if user is infact logged out
+        response = self.client.get(reverse("profile"))
+        self.assertRedirects(response, '/login/?next=/profile/')
 
 class TestSignupView(TestCase):
     
@@ -59,7 +60,7 @@ class TestPasswordRelatedViews(TestCase):
     def setUp(self):
         testuser = User.objects.create_user(username="testuser", email="testuser@example.com", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
         testuser.save()
-        
+
     # CustomPasswordResetView
     def test_CustomPasswordResetView_url_exists_at_right_location(self):
         response = self.client.get("/password-reset/")

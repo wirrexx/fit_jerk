@@ -1,7 +1,7 @@
 import random
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth import login, logout 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LogoutView, LoginView, PasswordResetConfirmView, PasswordResetView, PasswordResetDoneView, PasswordResetCompleteView, PasswordChangeView, PasswordChangeDoneView, TemplateView
@@ -127,19 +127,21 @@ def delete_user_func(request):
 def profile_view(request):
     """here the user information is displayed in the profile page and depending on the member's workouts number it recognizes his bastard level and calculate the percentage of that level progress"""
     user = request.user
+    post_list = get_file_content_as_list(RESPONSE_FILE)
+    user_profile = UserProfile.objects.get(user=user)
+    random_post = random.choice(post_list)
     BMI = user.userprofile.bmi
-    latest_post = user.userprofile.latest_post
     
-    progress_percentage = user.userprofile.progress/90*100
+    progress_percentage = user_profile.progress/90*100
     if BMI == 0:
         BMI = "Please complete your profile"
     
     context = {
-        'member': user.userprofile,
+        'member': user_profile,
         'BMI': BMI,
         'progress': f"{progress_percentage:.0f}%",
-        'motivational_msg': latest_post,
-        'level': user.userprofile.level
+        'motivational_msg': random_post,
+        'level': user_profile.level
     }
     return render(request, 'fitness_jerk/profile.html', context)
 
@@ -205,12 +207,9 @@ def settings_view(request):
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
     user = request.user
-    post_list = get_file_content_as_list(RESPONSE_FILE)
     member_info = UserProfile.objects.get(user=user)
     member_info.progress += 1
     member_info.workouts_done += 1
-    random_post = random.choice(post_list)
-    member_info.latest_post = random_post
     if member_info.progress == 90:
         member_info.progress = 0
     member_info.save()
