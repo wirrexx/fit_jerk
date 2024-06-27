@@ -10,7 +10,7 @@
             {% csrf_token %}
             {% if context.member.image %}
             <div class="image_top">
-                <img class="image_top" src="{{context.member.image.url}}" alt="profile-image" style="width: 300px; border-radius: 10px; text-align: center;">
+                <img class="image_top" src="{{context.member.image.url}}" alt="profile-image" >
             </div>
             {% endif %}
             <div class="user_details">

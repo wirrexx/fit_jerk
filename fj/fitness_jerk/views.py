@@ -126,20 +126,20 @@ def delete_user_func(request):
 def profile_view(request):
     """here the user information is displayed in the profile page and depending on the member's workouts number it recognizes his bastard level and calculate the percentage of that level progress"""
     user = request.user
-    user_profile = UserProfile.objects.get(user=user)
-    latest_post =  user_profile.latest_post
+    #user_profile = UserProfile.objects.get(user=user)
+    latest_post =  user.userprofile.latest_post
     BMI = user.userprofile.bmi
     
-    progress_percentage = user_profile.progress/90*100
+    progress_percentage = user.userprofile.progress/90*100
     if BMI == 0:
         BMI = "Please complete your profile"
     
     context = {
-        'member': user_profile,
+        'member': user,
         'BMI': BMI,
         'progress': f"{progress_percentage:.0f}%",
         'motivational_msg': latest_post,
-        'level': user_profile.level
+        'level': user.userprofile.level
     }
     return render(request, 'fitness_jerk/profile.html', context)
 
@@ -161,7 +161,6 @@ def settings_view(request):
             
             image = profile_pic.cleaned_data['image']
             
-
             if noimage:
                 user_profile.image = None # this is if the member want to change his profile to no picture after
                 user_profile.save()
@@ -180,6 +179,7 @@ def settings_view(request):
                     user_profile.image = 'static/superman_lego.jpeg'
                 if avatar == 'wonderwoman':
                     user_profile.image = 'static/wonderwoman_lego.jpg'    
+                
                 user_profile.save()
 
             messages.success(request, "Profile updated successfully")
