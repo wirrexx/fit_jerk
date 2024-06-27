@@ -11,7 +11,7 @@ while [ -e at_it ]; do
 	- DRY!
  	- Make code self documenting
 	- Finish writing tests
-- Security? Anyone?
+- Security?
 	- Hosting website code publicly
 ...
 done
@@ -33,7 +33,7 @@ while [ -e reflecting ] do
 - A good techstack is nice but...
 	-> do not add too much dependencies
 - Testdriven approach is awesome!
-- Git knowledge is mandatory
+- Check your git knowledge!
 - Always do a backup!!!
 done
 ```
