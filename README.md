@@ -25,10 +25,34 @@ Hosting:
 
 ## Installation instructions
 
-Clone this repo!
-Create a virtual environment and install requirements from requirements.txt
-runserver!
+```
+# Clone this repo! 
+git clone git@github.com:wirrexx/fit_jerk.git
 
+# In the directory where .git resides create a virtual environment
+python -m venv .venv
+
+# install requirements from requirements.txt
+pip install -r requirements.txt
+
+# change directory to fj/
+cd fj/
+
+# migrate and makemigrations
+python manage.py makemigrations
+python manage.py migrate
+
+# create .env file
+touch .env
+
+# populate this file with a secret key
+SECRET_KEY=YOUR_SECRET_KEY
+
+#Note: google auth will not work without you specifying a GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET
+#+     for detailed instructions on how to setup google auth see: DOCs/HOWTO_google_auth
+#Note: The email backend is configured to send emails to the console. If you want to be able to use
+#+     EMAIL via gmail, refer to: DOCs/HOWTO_google_auth
+```
 
 ## Implemented Features 
 
