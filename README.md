@@ -92,7 +92,7 @@ We use github project:
 [Project](https://github.com/users/wirrexx/projects/1/views/7)
 
 	
-Standups at 9.00am
+Standups at 9.00am.
 
 
 
