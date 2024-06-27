@@ -18,6 +18,17 @@ from .static import exercise_static
 #+  1. Refactor
 #+  2. Add docstrings
 
+# Create utilities here
+def get_file_content_as_list(path_file: str) -> list:
+    """Returns content of a file as a list of strings one string per line"""
+    try:
+        with open(path_file) as f:
+            content = f.readlines()
+    except FileNotFoundError as err:
+        print(err)
+    return content    
+
+
 # Create Constants here
 BASE_DIR = Path(__file__).resolve().parent 
 RESPONSE_FILE = BASE_DIR / "templates/tough_responses.txt"
@@ -116,8 +127,9 @@ def delete_user_func(request):
 def profile_view(request):
     """here the user information is displayed in the profile page and depending on the member's workouts number it recognizes his bastard level and calculate the percentage of that level progress"""
     user = request.user
+    post_list = get_file_content_as_list(RESPONSE_FILE)
     user_profile = UserProfile.objects.get(user=user)
-    user_posts = Posts.objects.filter(member=user_profile).last()
+    random_post = random.choice(post_list)
     BMI = user.userprofile.bmi
     
     progress_percentage = user_profile.progress/90*100
@@ -128,7 +140,7 @@ def profile_view(request):
         'member': user_profile,
         'BMI': BMI,
         'progress': f"{progress_percentage:.0f}%",
-        'posts': user_posts,
+        'motivational_msg': random_post,
         'level': user_profile.level
     }
     return render(request, 'fitness_jerk/profile.html', context)
@@ -189,31 +201,18 @@ def settings_view(request):
     return render(request, 'fitness_jerk/settings.html', {'profile_form': profile_form, 'profile_pic': profile_pic, 'context': context})
 
 
-def get_all_replies(path_to_response_file: str) -> list:
-    """Returns content of a file as a list of strings one string per line"""
-    try:
-        with open(path_to_response_file) as f:
-            content = f.readlines()
-    except FileNotFoundError as err:
-        print(err)
-    return content    
 
 
 @login_required
 def workout_finish(request):
     """once the member hit the button done in the workout page this function is triggered"""
-    posts_list = get_all_replies(RESPONSE_FILE)
     user = request.user
     member_info = UserProfile.objects.get(user=user)
     member_info.progress += 1
     member_info.workouts_done += 1
-
     if member_info.progress == 90:
         member_info.progress = 0
-
     member_info.save()
-    msg = random.choice(posts_list)
-    Posts.objects.create(member=member_info, post=msg)
     return redirect('profile')
 
 # ---------------------------------------- WISAM --------------------------------------

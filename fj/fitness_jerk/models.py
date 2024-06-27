@@ -52,11 +52,6 @@ class UserProfile(models.Model):
 
 
 
-class Posts(models.Model):
-    member = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
-    post = models.CharField(max_length=255, default="Welcome")
-
-
 # timer needs datetime 
 class TrainingSchedule(models.Model):
     title = models.CharField(max_length=50)

@@ -59,6 +59,7 @@ class TestPasswordRelatedViews(TestCase):
     def setUp(self):
         testuser = User.objects.create_user(username="testuser", email="testuser@example.com", password="Wr3{j:J%$2]UH<su-~fdyD~Ky)&&yb&M'.hq\rV%")
         testuser.save()
+        
     # CustomPasswordResetView
     def test_CustomPasswordResetView_url_exists_at_right_location(self):
         response = self.client.get("/password-reset/")
