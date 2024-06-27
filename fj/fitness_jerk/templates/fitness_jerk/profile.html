@@ -12,6 +12,8 @@
         <p class="message">{{ message }}</p>
         {% endfor %}
     </div>
+
+
     <div class="rightcolumn">
         <div class="intro">
             <div class="post">
@@ -21,7 +23,6 @@
                     <h1 style="text-transform: capitalize; margin-left: 10px;">{{user.username}}</h1>
                 </div>
                 <br>
-                
                 <p>{{ motivational_msg }}<p>
             </div>
             <div class="profile">
@@ -33,26 +34,28 @@
                 </div>
                 <hr>
                 <div class="details">
-                    <div class="height" style="padding: 10px;">
+                    <div class="height">
                         <p>{{ user.userprofile.height }} m<br></p>
                         <p style="color: rgb(170, 167, 167);">Height</p>
                     </div>
-                    <div class="weight" style="padding: 10px;">
+                    <div class="weight">
                         <p>{{ user.userprofile.weight }} kg<br></p>
-                        <p style="color: rgb(170, 167, 167);">Current<br>Weight</p>
+                        <p style="color: rgb(170, 167, 167);">Weight</p>
                     </div>
-                    <div class="bmi" style="padding: 10px;">
+                    <div class="bmi" ">
                         <p>{{ BMI }}<br></p>
-                        <p style="color: rgb(170, 167, 167);">Current<br>BMI</p>
+                        <p style=" color: rgb(170, 167, 167);">BMI</p>
                     </div>
-                    <div class="progress_workouts" style="padding: 10px;">
+                    <div class="progress_workouts"">
                         <p>{{ user.userprofile.workouts_done }}<br></p>
-                        <p style="color: rgb(170, 167, 167);">Current<br>Workouts</p>
+                        <p style=" color: rgb(170, 167, 167);">Workouts Done</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <div class="leftcolumn">
         <div class="member-progress">
             <h2>{{ level }}</h2>
@@ -60,8 +63,8 @@
                 <div class="progress" style="--width: {{ progress }};"><span>{{ progress }}</span></div>
             </div>
         </div>
-        <div class="workout">
-            <h3 style="margin-top: 15px; margin-left: 15px;">Workouts</h3>
+        <div class="workout carousal">
+            <h3 class="workout_txt;">Workouts</h3>
 
             <div class="muscles">
                 <a href="{% url 'workout' exercise_type='build-muscle' %}">

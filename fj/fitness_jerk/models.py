@@ -42,6 +42,9 @@ class UserProfile(models.Model):
         elif self.workouts_done >= 450:
             level = "God Bastard"
         return level
+    
+    
+
 
     @property
     def bmi(self):
@@ -50,6 +53,7 @@ class UserProfile(models.Model):
     @property
     def level(self):
         return self.determine_user_level()
+    
 
 
 

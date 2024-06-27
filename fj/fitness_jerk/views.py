@@ -135,7 +135,6 @@ def profile_view(request):
     progress_percentage = user_profile.progress/90*100
     if BMI == 0:
         BMI = "Please complete your profile"
-    
     context = {
         'member': user_profile,
         'BMI': BMI,
