@@ -45,8 +45,11 @@ python manage.py migrate
 # create .env file
 touch .env
 
-# populate this file with a secret key
-SECRET_KEY=YOUR_SECRET_KEY
+# populate this file with a secret key (make sure this is fairly complex)
+SECRET_KEY=<YOUR_SECRET_KEY>
+
+# now run the development server
+python manage.py runserver
 
 #Note: google auth will not work without you specifying a GOOGLE_CLIENT_ID=<YOUR_CLIENT_ID> and
 #+     GOOGLE_CLIENT_SECRET=<YOUR_CLIENT_SECRET> in .env
