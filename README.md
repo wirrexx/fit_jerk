@@ -78,9 +78,9 @@ python manage.py runserver
 
 ## Roles
 
-Ana Pereira - Team Manager/Frontend/Backend
-Christian Peter - Technical Leader/Code Quality/Backend
-Wisam Odish - Lead Developer/Frontend/Backend
+- Ana Pereira - Team Manager/Frontend/Backend
+- Christian Peter - Technical Leader/Code Quality/Backend
+- Wisam Odish - Lead Developer/Frontend/Backend
 
 ## General Planning
 
