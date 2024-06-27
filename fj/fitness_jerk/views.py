@@ -15,13 +15,13 @@ from pathlib import Path
 from .static import exercise_static
 
 
-# Create Constants here
+
 BASE_DIR = Path(__file__).resolve().parent 
 RESPONSE_FILE = BASE_DIR / "templates/tough_responses.txt"
 EXERCISES = exercise_static.EXERCISES
 
 
-# Create your views here.
+
 # ---------------------------------- XTIAN ---------------------------------------
 
 ## Password Reset

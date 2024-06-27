@@ -3,8 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-#TODO: Write string representation
-# Create your models here.
+
 class UserProfile(models.Model):
     """Representation of the secondary attributes of a User"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
