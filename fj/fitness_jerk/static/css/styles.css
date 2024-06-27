@@ -1319,7 +1319,7 @@ label[for="id_image"] {
     .progress-bar {
         position: fixed;
         align-content: center;
-        width: 85%;
+        width: 80%;
     }
 
     .progress {
