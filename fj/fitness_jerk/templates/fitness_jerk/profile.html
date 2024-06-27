@@ -12,6 +12,8 @@
         <p class="message">{{ message }}</p>
         {% endfor %}
     </div>
+
+
     <div class="rightcolumn">
         <div class="intro">
             <div class="post">
@@ -36,26 +38,28 @@
                 </div>
                 <hr>
                 <div class="details">
-                    <div class="height" style="padding: 10px;">
+                    <div class="height">
                         <p>{{ user.userprofile.height }} m<br></p>
                         <p style="color: rgb(170, 167, 167);">Height</p>
                     </div>
-                    <div class="weight" style="padding: 10px;">
+                    <div class="weight">
                         <p>{{ user.userprofile.weight }} kg<br></p>
-                        <p style="color: rgb(170, 167, 167);">Current<br>Weight</p>
+                        <p style="color: rgb(170, 167, 167);">Weight</p>
                     </div>
-                    <div class="bmi" style="padding: 10px;">
+                    <div class="bmi" ">
                         <p>{{ BMI }}<br></p>
-                        <p style="color: rgb(170, 167, 167);">BMI</p>
+                        <p style=" color: rgb(170, 167, 167);">BMI</p>
                     </div>
-                    <div class="progress_workouts" style="padding: 10px;">
+                    <div class="progress_workouts"">
                         <p>{{ user.userprofile.workouts_done }}<br></p>
-                        <p style="color: rgb(170, 167, 167);">Current<br>Workouts</p>
+                        <p style=" color: rgb(170, 167, 167);">Workouts Done</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <div class="leftcolumn">
         <div class="member-progress">
             <h2>{{ level }}</h2>
