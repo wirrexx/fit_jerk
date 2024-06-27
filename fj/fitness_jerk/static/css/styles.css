@@ -293,6 +293,7 @@ footer {
     align-content: flex-start;
     align-items: flex-start;
     justify-content: space-between;
+    gap: 1rem;
 }
 
 .post {
@@ -1144,7 +1145,7 @@ label[for="id_image"] {
 }
 
 /* large phones */
-@media only screen and (max-width:410px) and (min-height:915px) {
+@media only screen and (max-width:430px) and (min-height:915px) {
     .about-us-container {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
         backdrop-filter: blur(10px);
@@ -1155,17 +1156,17 @@ label[for="id_image"] {
         overflow: auto;
         font-size: 12px;
         margin-top: 4rem;
-        height: 84%;
+        height: 81.5%;
         line-height: 1.015rem;
         z-index: 1;
-        overflow: auto;
+        overflow: none;
     }
 
     .about-us {
         font-size: .8rem;
         text-align: left;
         color: whitesmoke;
-        line-height: .95rem;
+        line-height: .75rem;
         z-index: 1;
     }
 
@@ -1228,7 +1229,7 @@ label[for="id_image"] {
         scroll-snap-align: start;
         width: 50%;
         background: none;
-        height: 300px;
+        height: 215px;
     }
 
     .row {
@@ -1236,7 +1237,7 @@ label[for="id_image"] {
         align-content: center;
         background: whitesmoke;
         border-radius: 18px;
-        height: 83.25%;
+        height: 81%;
         width: 92%;
         position: relative;
         overflow: hidden;
@@ -1262,21 +1263,37 @@ label[for="id_image"] {
         box-shadow: none;
         text-align-last: center;
         font-weight: 700;
-        margin-top: -100px;
+        margin-top: -25px;
+        line-height: .8;
+        font-size: .8rem;
+    }
+
+    .success_message {
+        position: fixed;
+        display: flex;
+        text-wrap: nowrap;
+        width: 91.2%;
     }
 
     .profile {
         display: block;
         background: none;
         box-shadow: none;
-        text-align-last: center;
+        text-align-last: left;
         margin-top: -15px;
-        width: 100%;
+        margin-left: 0%;
     }
 
+    .profile h3 {
+        justify-content: center;
+        display: flex;
+    }
+
+
     .profile_pic img {
-        width: 100px;
-        height: auto;
+        border-radius: 15px;
+        object-fit: cover;
+        margin-left: 30%;
     }
 
     .member-progress {
@@ -1284,6 +1301,11 @@ label[for="id_image"] {
         box-shadow: none;
         position: relative;
         display: inline-block;
+    }
+
+    .message {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
     }
 
     .member-progress h2 {
@@ -1295,10 +1317,8 @@ label[for="id_image"] {
 
     .progress-bar {
         position: fixed;
-        justify-content: center;
         align-content: center;
         width: 85%;
-        margin-top: -80px;
     }
 
     .progress {
@@ -1317,9 +1337,12 @@ label[for="id_image"] {
         box-shadow: none;
         width: auto;
         cursor: pointer;
-        margin-top: -65px;
+        margin-top: 1px;
         flex-direction: row;
         justify-content: normal;
+        background: none;
+        border-radius: 0px;
+
     }
 
     .workout h3 {
@@ -1328,7 +1351,6 @@ label[for="id_image"] {
         margin-left: 30%;
         background: none;
         box-shadow: none;
-        border-bottom: 2px solid black;
 
     }
 
@@ -1336,14 +1358,20 @@ label[for="id_image"] {
         display: flex;
         background: none;
         box-shadow: none;
-        margin-top: 50px;
+        text-wrap: nowrap;
+        font-size: .87rem;
+        margin-top: 12rem;
+        gap: .5rem;
+
     }
+
 }
+
 
 
 /* medium phones */
 
-
+/* 
 @media only screen and (min-width:350px) and (max-height:844px) {
     .about-us-container {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
@@ -1462,8 +1490,9 @@ label[for="id_image"] {
         box-shadow: none;
         text-align-last: center;
         font-weight: 700;
-        margin-top: -100px;
-        line-height: 1rem;
+        margin-top: -65px;
+        line-height: .8;
+        font-size: .8rem;
     }
 
     .profile {
@@ -1528,7 +1557,6 @@ label[for="id_image"] {
         margin-left: 30%;
         background: none;
         box-shadow: none;
-        border-bottom: 2px solid black;
 
     }
 
@@ -1542,11 +1570,11 @@ label[for="id_image"] {
     }
 }
 
-
+ */
 
 /* small phones */
 
-
+/* 
 @media only screen and (min-width:350px) and (max-height:670px) {
     .about-us-container {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
@@ -1758,7 +1786,6 @@ label[for="id_image"] {
         margin-left: 30%;
         background: none;
         box-shadow: none;
-        border-bottom: 2px solid black;
 
     }
 
@@ -1770,4 +1797,4 @@ label[for="id_image"] {
         font-size: .87rem;
         margin-top: 4rem;
     }
-}
+} */
