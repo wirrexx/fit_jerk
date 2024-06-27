@@ -17,7 +17,6 @@ while [ -e at_it ]; do
 - Google Login behaves strange -> why?
 - Security? Anyone?
 	- Hosting website code publicly
-
 done
 
 ## Next Steps and Prospects
@@ -30,7 +29,6 @@ while [ -e nice_to_haves ]; do
 - AI-driven feedback
 - Get funding!
 ...
-
 done
 
 
@@ -42,6 +40,5 @@ while [ -e reflecting ] do
 - TopDown approach does the trick.
 - Testdriven approach is awesome!
 - Git knowledge is mandatory
-
 done
 ```
