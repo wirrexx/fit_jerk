@@ -37,7 +37,7 @@
 ## Lessons learned:
 
 - A good techstack is nice but...
-	-> don't add too much dependencies
+	-> don not add too much dependencies
 - TopDown approach does the trick.
 - Behaviour driven approach does not...
 - Testdriven approach is awesome!
