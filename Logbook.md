@@ -32,7 +32,6 @@ done
 while [ -e reflecting ] do 
 - A good techstack is nice but...
 	-> do not add too much dependencies
-- TopDown approach does the trick.
 - Testdriven approach is awesome!
 - Git knowledge is mandatory
 - Always do a backup!!!
