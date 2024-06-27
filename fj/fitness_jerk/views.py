@@ -126,8 +126,8 @@ def delete_user_func(request):
 def profile_view(request):
     """here the user information is displayed in the profile page and depending on the member's workouts number it recognizes his bastard level and calculate the percentage of that level progress"""
     user = request.user
-    user_profile = user.userprofile
-    latest_post =  user.userprofile.latest_post
+    user_profile = UserProfile.objects.get(user=user)
+    latest_post =  user_profile.latest_post
     BMI = user.userprofile.bmi
     
     progress_percentage = user_profile.progress/90*100

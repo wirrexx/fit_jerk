@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase 
 from django.urls import reverse
 from fitness_jerk.forms import FitUserForm, ProfileChangeForm, PictureChangeForm
-from fitness_jerk.models import UserProfile, Posts
+from fitness_jerk.models import UserProfile
 
 # -------------------------- XTN ---------------------------------
 
@@ -138,9 +138,10 @@ class ProfileSettingsViewTest(TestCase):
             weight=70, 
             height=1.75, 
             progress=49, 
-            workouts_done=49
+            workouts_done=49,
+            latest_post="Test content"
         )
-        self.post = Posts.objects.create(member=self.user_profile, post="Test content")
+        #self.post = Posts.objects.create(member=self.user_profile, post="Test content")
         self.client.login(username='testuser', password='testpassword')
 
     def test_profile_view(self):
@@ -151,13 +152,13 @@ class ProfileSettingsViewTest(TestCase):
         self.assertIn('member', response.context)
         self.assertIn('BMI', response.context)
         self.assertIn('progress', response.context)
-        self.assertIn('posts', response.context)
+        self.assertIn('motivational_msg', response.context)
         self.assertIn('level', response.context)
 
         self.assertEqual(response.context['BMI'], self.user_profile.bmi) # checks the BMI calculation
         self.assertEqual(response.context['progress'], '54%') #checks if the percentage is correct 
         self.assertEqual(response.context['level'], 'Newbie Bastard') # checks the level if it's the correct one
-        self.assertEqual(response.context['posts'].post, 'Test content') #checks if the post is created
+        self.assertEqual(response.context['motivational_msg'], 'Test content') #checks if the post is created
     
 
     def test_settings_view(self):
