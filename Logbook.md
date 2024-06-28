@@ -34,7 +34,6 @@ done
 ## Lessons learned:
 
 while [ -e reflecting ]; do
-Always do a backup!!!
 
 - A good techstack is nice but...
 	-> do not add too much dependencies
