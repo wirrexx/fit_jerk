@@ -13,6 +13,7 @@ while [ -e at_it ]; do
 	- Testing
 - Security
 	- Hosting website code publicly
+- Fix Google Bugs!
 ...
 done
 
