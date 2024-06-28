@@ -32,12 +32,17 @@ done
 
 ## Lessons learned:
 
-while [ -e reflecting ] do 
+while [ -e reflecting ]; do
+Always do a backup!!!
+
 - A good techstack is nice but...
 	-> do not add too much dependencies
 - Check your git knowledge!
 - Always do a backup!!!
 - Top down approach does the trick.
 - Testdriven approach is awesome!
+- Be more modular in the workflow
+- Frontend, be smart, plan before hand. Layout, Responsiviness
+- Plan, Plan, Plan, it’s never enough!
 done
 ```
