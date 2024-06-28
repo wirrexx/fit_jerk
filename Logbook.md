@@ -21,7 +21,7 @@ done
 while [ -e nice_to_haves ]; do
 
 - Online shop implementation
-- Personalized trainings
+- Add statistics
 - Get funding!
 ...
 done
