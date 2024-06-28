@@ -22,6 +22,10 @@ while [ -e nice_to_haves ]; do
 
 - Online shop implementation
 - Add statistics
+- Personalized trainings
+- AI driven feedback
+- Chat between users
+-> Only the sky is the limit
 ...
 done
 
@@ -33,6 +37,7 @@ while [ -e reflecting ] do
 	-> do not add too much dependencies
 - Check your git knowledge!
 - Always do a backup!!!
+- Top down approach does the trick.
 - Testdriven approach is awesome!
 done
 ```
