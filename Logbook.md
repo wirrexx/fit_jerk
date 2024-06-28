@@ -10,19 +10,18 @@ while [ -e at_it ]; do
 - Refactor code and improve code quality:
 	- DRY!
  	- Make code self documenting
-	- Finish writing tests
-- Security?
+	- Testing
+- Security
 	- Hosting website code publicly
 ...
 done
 
-## Next Steps and Prospects
+## Next up and Prospects
 
 while [ -e nice_to_haves ]; do
 
 - Online shop implementation
 - Add statistics
-- Get funding!
 ...
 done
 
