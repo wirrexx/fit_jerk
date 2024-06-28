@@ -31,8 +31,8 @@ done
 while [ -e reflecting ] do 
 - A good techstack is nice but...
 	-> do not add too much dependencies
-- Testdriven approach is awesome!
 - Check your git knowledge!
 - Always do a backup!!!
+- Testdriven approach is awesome!
 done
 ```
